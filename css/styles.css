@@ -437,3 +437,10 @@ img,svg { display:block; max-width:100%; }
 @media (prefers-reduced-motion:reduce) {
   * { scroll-behavior:auto!important; transition:none!important; }
 }
+
+.station-link {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+}
