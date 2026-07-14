@@ -147,6 +147,95 @@
           <p class="map-help">לחצו ישירות על המפה. האפליקציה מקבלת אזור סביר ולא דורשת דיוק של פיקסל.</p>
         </div>
 
+
+        <div class="worksheet-stage" id="worksheetStage" hidden>
+          <div class="worksheet-heading">
+            <div>
+              <span>שלב ד׳ – דף סיכום</span>
+              <h2>מערכת הנחלים של ארץ ישראל</h2>
+              <p>גררו כל מילה ממחסן המילים אל המקום המתאים. בטלפון אפשר ללחוץ על מילה ואז על המשבצת.</p>
+            </div>
+            <div class="worksheet-status">
+              <strong id="worksheetFilled">0/14</strong>
+              <span>מושגים שובצו</span>
+            </div>
+          </div>
+
+          <div class="word-bank-panel">
+            <h3>מחסן מילים</h3>
+            <div class="word-bank" id="wordBank"></div>
+          </div>
+
+          <article class="worksheet-text" id="worksheetText">
+            <p>
+              מערכת הנחלים של ארץ ישראל נקבעת במידה רבה על ידי הטופוגרפיה של השדרה
+              ההררית המרכזית, המהווה את
+              <span class="drop-slot" data-slot="1" tabindex="0"><span class="slot-number">1</span></span>.
+              הנחל מתחיל את דרכו במקום שנקרא
+              <span class="drop-slot" data-slot="4" tabindex="0"><span class="slot-number">4</span></span>,
+              ואילו המקום שבו הוא נשפך אל הים או אל האגם נקרא
+              <span class="drop-slot" data-slot="2" tabindex="0"><span class="slot-number">2</span></span>.
+              השטח שבו כל הגשמים היורדים מתנקזים אל ערוץ נחל אחד נקרא
+              <span class="drop-slot" data-slot="3" tabindex="0"><span class="slot-number">3</span></span>.
+            </p>
+
+            <p>בשל מבנה הארץ, קיימים שני כיווני זרימה עיקריים:</p>
+            <ul>
+              <li>
+                <strong>מערבה:</strong> נחלים הזורמים אל הים התיכון לאורך
+                <span class="drop-slot" data-slot="5" tabindex="0"><span class="slot-number">5</span></span>
+                וארוך יחסית.
+              </li>
+              <li>
+                <strong>מזרחה:</strong> נחלים הזורמים אל בקע הירדן. בשל הפרשי הגובה החדים,
+                נחלים אלו זורמים במורד
+                <span class="drop-slot" data-slot="6" tabindex="0"><span class="slot-number">6</span></span>
+                וקצר, ולעיתים קרובות יוצרים קניונים עמוקים.
+              </li>
+            </ul>
+
+            <p>
+              יוצא דופן מרכזי הוא <strong>נהר הירדן</strong>, שזורם בכיוון
+              <span class="drop-slot" data-slot="7" tabindex="0"><span class="slot-number">7</span></span>.
+              מוצאו בחרמון והוא נשפך אל
+              <span class="drop-slot" data-slot="8" tabindex="0"><span class="slot-number">8</span></span>.
+              זהו אגן סגור וזהו המקום הנמוך בעולם, ולכן אין ממנו
+              <span class="drop-slot" data-slot="9" tabindex="0"><span class="slot-number">9</span></span>
+              של מים בזרימה.
+            </p>
+
+            <h3>סוגי נחלים</h3>
+            <p>בארץ ישראל קיימים שני סוגי נחלים עיקריים:</p>
+            <ol>
+              <li>
+                <span class="drop-slot" data-slot="10" tabindex="0"><span class="slot-number">10</span></span>:
+                נחל שזורמים בו מים לאורך כל ימות השנה, למשל הירקון.
+              </li>
+              <li>
+                <span class="drop-slot" data-slot="11" tabindex="0"><span class="slot-number">11</span></span>:
+                נחל שזורמים בו מים רק לאחר ירידת גשמים. רוב נחלי הארץ הם מסוג זה.
+              </li>
+            </ol>
+
+            <h3>זיהום ושיקום נחלים</h3>
+            <p>
+              בעשורים האחרונים סבלו נחלי ישראל מ־
+              <span class="drop-slot" data-slot="12" tabindex="0"><span class="slot-number">12</span></span>
+              כבד כתוצאה מהזרמת שפכים וביוב. הגוף המרכזי שפועל לתיקון המצב הוא
+              <span class="drop-slot" data-slot="13" tabindex="0"><span class="slot-number">13</span></span>
+              בשיתוף המשרד להגנת הסביבה. תהליך ה־
+              <span class="drop-slot" data-slot="14" tabindex="0"><span class="slot-number">14</span></span>
+              כולל הפסקת הזרמת זיהום והזרמת מים ירוקים כדי להחזיר לנחל את המערכת האקולוגית שלו.
+            </p>
+          </article>
+
+          <div class="worksheet-actions">
+            <button class="check-worksheet-button" id="checkWorksheetBtn" type="button">בדיקת דף הסיכום</button>
+            <button class="clear-worksheet-button" id="clearWorksheetBtn" type="button">ניקוי התשובות</button>
+          </div>
+          <div class="worksheet-feedback" id="worksheetFeedback" aria-live="polite" hidden></div>
+        </div>
+
         <div class="complete-stage" id="completeStage" hidden>
           <div class="completion-icon" aria-hidden="true">✓</div>
           <h2>מערכת הנחלים שוחזרה!</h2>
@@ -159,11 +248,67 @@
           </div>
 
           <div class="concept-preview">
-            <h3>המשך התחנה</h3>
-            <p>בשלב הבא נעסוק בקו פרשת המים, אגן ניקוז ובהבדל בין נחל איתן לנחל אכזב.</p>
+            <h3>התחנה הושלמה</h3>
+            <p>אפשר לשמור את דף הסיכום במחשב או להדפיס אותו. בחלון ההדפסה ניתן לבחור גם „שמירה כ־PDF”.</p>
           </div>
 
-          <a class="primary-button link-button" href="../index.html">חזרה למסלול הראשי</a>
+          <div class="final-actions">
+            <button class="primary-button" id="printSummaryBtn" type="button">הדפסה / שמירה כ־PDF</button>
+            <button class="download-button" id="downloadSummaryBtn" type="button">הורדת דף סיכום</button>
+            <a class="route-button" href="../index.html">חזרה למסלול הראשי</a>
+          </div>
+
+
+          <section class="print-summary" id="printSummary">
+            <div class="print-header">
+              <img src="../assets/icons/rivers.png" alt="">
+              <div>
+                <h1>סיכום תחנה 1 – מערכת הנחלים של ישראל</h1>
+                <p>מסע בארץ ישראל | רשת אמית</p>
+              </div>
+            </div>
+
+            <div class="print-stats">
+              <div><span>ניקוד</span><strong id="printScore">0</strong></div>
+              <div><span>רצף מרבי</span><strong id="printStreak">0</strong></div>
+              <div><span>נחלים שהושלמו</span><strong>10/10</strong></div>
+            </div>
+
+            <div class="print-content">
+              <h2>מערכת הנחלים</h2>
+              <p>
+                מערכת הנחלים של ארץ ישראל נקבעת במידה רבה על ידי הטופוגרפיה של השדרה
+                ההררית המרכזית, המהווה את <strong>קו פרשת המים</strong>.
+                הנחל מתחיל את דרכו ב<strong>מוצא הנחל</strong>, והמקום שבו הוא נשפך אל ים
+                או אגם נקרא <strong>שפך הנחל</strong>. השטח שממנו מתנקזים המים אל ערוץ
+                נחל אחד נקרא <strong>אגן ניקוז</strong>.
+              </p>
+
+              <h2>כיווני זרימה</h2>
+              <ul>
+                <li>נחלים הזורמים מערבה אל הים התיכון עוברים לרוב לאורך מדרון מתון וארוך.</li>
+                <li>נחלים הזורמים מזרחה אל בקע הירדן יורדים לרוב במדרון תלול וקצר ויוצרים קניונים עמוקים.</li>
+                <li>נהר הירדן זורם מצפון לדרום, מן החרמון אל ים המלח.</li>
+              </ul>
+
+              <h2>סוגי נחלים</h2>
+              <ul>
+                <li><strong>נחל איתן:</strong> מים זורמים בו לאורך כל ימות השנה.</li>
+                <li><strong>נחל אכזב:</strong> מים זורמים בו בעיקר לאחר ירידת גשמים.</li>
+              </ul>
+
+              <h2>זיהום ושיקום</h2>
+              <p>
+                נחלי ישראל סבלו מזיהום בעקבות הזרמת שפכים וביוב.
+                רשות הניקוז והנחלים פועלת בשיתוף המשרד להגנת הסביבה לשיקום הנחלים,
+                להפסקת מקורות הזיהום ולהחזרת המערכת האקולוגית.
+              </p>
+
+              <h2>הנחלים שנחקרו</h2>
+              <p>נחל קישון, נחל אלכסנדר, נחל דן, נחל חרמון (בניאס), נחל שניר (חצבאני), נחל סער, נחל תנינים, נחל שורק, נחל פארן ונחל דוד.</p>
+            </div>
+          </section>
+
         </div>
       </section>
     </section>
@@ -178,7 +323,7 @@
         <li>אם הבחירה אינה מתאימה, ייפתח רמז ותוכלו לנסות שוב.</li>
         <li>לאחר הזיהוי לחצו על נקודת השפך או היעד במפה.</li>
         <li>לבסוף בחרו לאיזה אגן ניקוז הנחל שייך.</li>
-        <li>התחנה מסתיימת רק לאחר השלמת כל עשר החידות.</li>
+        <li>לאחר עשר החידות יש להשלים את דף הסיכום באמצעות גרירת המילים.</li><li>התחנה מסתיימת רק לאחר שכל 14 המושגים שובצו נכון.</li>
       </ol>
     </section>
   </div>
