@@ -155,10 +155,6 @@ const els = {
   completeStage: document.getElementById('completeStage'),
   finalScore: document.getElementById('finalScore'),
   finalStreak: document.getElementById('finalStreak'),
-  printScore: document.getElementById('printScore'),
-  printStreak: document.getElementById('printStreak'),
-  printSummaryBtn: document.getElementById('printSummaryBtn'),
-  downloadSummaryBtn: document.getElementById('downloadSummaryBtn'),
   zoomInBtn: document.getElementById('zoomInBtn'),
   zoomOutBtn: document.getElementById('zoomOutBtn'),
   resetMapBtn: document.getElementById('resetMapBtn'),
@@ -729,8 +725,6 @@ function finishStation() {
 
   els.finalScore.textContent = state.score;
   els.finalStreak.textContent = state.maxStreak;
-  els.printScore.textContent = state.score;
-  els.printStreak.textContent = state.maxStreak;
 
   localStorage.setItem(
     'amitIsraelJourneyStation1',
@@ -817,8 +811,6 @@ document.addEventListener('keydown', (event) => {
 
 els.checkWorksheetBtn.addEventListener('click', checkWorksheet);
 els.clearWorksheetBtn.addEventListener('click', clearWorksheet);
-els.printSummaryBtn.addEventListener('click', () => window.print());
-els.downloadSummaryBtn.addEventListener('click', buildDownloadableSummary);
 
 els.amitLogo.addEventListener('error', () => {
   els.amitLogo.hidden = true;
