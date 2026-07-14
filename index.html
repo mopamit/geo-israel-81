@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מסע בארץ ישראל</title>
+  <meta name="description" content="משחק למידה אינטראקטיבי בגאוגרפיה לתלמידי כיתה ט">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-wrap">
+        <img
+          src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000"
+          alt="לוגו רשת אמית"
+          class="amit-logo"
+          id="amitLogo"
+        >
+        <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
+      </div>
+      <div class="brand-text">
+        <strong>מסע בארץ ישראל</strong>
+        <span>משחק למידה בגאוגרפיה</span>
+      </div>
+    </div>
+
+    <button class="small-button" id="resetBtn" type="button" aria-label="איפוס המשחק">
+      <span aria-hidden="true">↻</span>
+      איפוס
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">לומדים • חוקרים • מתקדמים</div>
+        <h1>מסע בארץ ישראל</h1>
+        <p>
+          יוצאים למסע דיגיטלי בין נחלים, ערים, אתרי מורשת,
+          יישובי ספר ורכסי הרים.
+        </p>
+
+        <button class="primary-button" id="startBtn" type="button">
+          <span class="round-icon" aria-hidden="true">➤</span>
+          מתחילים במסע
+        </button>
+
+        <div class="progress-box">
+          <div class="progress-labels">
+            <span>התקדמות במסע</span>
+            <strong id="progressText">0%</strong>
+          </div>
+          <div class="progress-track" aria-label="התקדמות במסע">
+            <span id="progressBar"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 760 380">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#eaf8fd"/>
+              <stop offset="100%" stop-color="#ffffff"/>
+            </linearGradient>
+            <linearGradient id="greenLand" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#dfe8a4"/>
+              <stop offset="100%" stop-color="#6db580"/>
+            </linearGradient>
+            <linearGradient id="sandLand" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f6e7bb"/>
+              <stop offset="100%" stop-color="#d2aa62"/>
+            </linearGradient>
+          </defs>
+
+          <rect width="760" height="380" rx="30" fill="url(#sky)"/>
+          <circle cx="666" cy="70" r="38" fill="#fff4bd"/>
+
+          <path d="M45 315 C105 245 168 230 228 270 C300 320 335 230 410 268 C482 305 535 220 603 253 C654 278 700 245 750 260 L750 380 L25 380 Z" fill="url(#greenLand)"/>
+          <path d="M0 310 C95 270 145 280 210 312 C268 340 330 302 392 330 L392 380 L0 380 Z" fill="url(#sandLand)"/>
+
+          <path d="M245 220 L292 133 L335 220 Z" fill="#637840"/>
+          <path d="M274 168 L292 133 L307 166 Z" fill="#ffffff"/>
+
+          <path d="M325 300 C360 275 384 252 408 225 C431 199 455 179 482 171" fill="none" stroke="#2badde" stroke-width="15" stroke-linecap="round"/>
+          <path d="M326 300 C360 275 385 252 409 225 C432 199 456 179 482 171" fill="none" stroke="#ffffff" stroke-opacity=".68" stroke-width="3" stroke-linecap="round"/>
+
+          <g fill="#ffffff" stroke="#21739e" stroke-width="2">
+            <rect x="468" y="246" width="34" height="50" rx="3"/>
+            <rect x="507" y="225" width="38" height="71" rx="3"/>
+            <rect x="550" y="240" width="35" height="56" rx="3"/>
+          </g>
+
+          <path d="M126 95 C230 110 310 97 390 132 C468 165 548 138 648 175" fill="none" stroke="#14365e" stroke-width="3" stroke-dasharray="10 12" stroke-linecap="round" opacity=".3"/>
+
+          <g transform="translate(126 95)">
+            <path d="M0 0 C-15 0 -25 11 -25 24 C-25 43 0 63 0 63 C0 63 25 43 25 24 C25 11 15 0 0 0 Z" fill="#14365e" stroke="#fff" stroke-width="4"/>
+            <circle cx="0" cy="23" r="8" fill="#fff"/>
+          </g>
+          <g transform="translate(255 108)">
+            <path d="M0 0 C-15 0 -25 11 -25 24 C-25 43 0 63 0 63 C0 63 25 43 25 24 C25 11 15 0 0 0 Z" fill="#6db580" stroke="#fff" stroke-width="4"/>
+            <circle cx="0" cy="23" r="8" fill="#fff"/>
+          </g>
+          <g transform="translate(390 132)">
+            <path d="M0 0 C-15 0 -25 11 -25 24 C-25 43 0 63 0 63 C0 63 25 43 25 24 C25 11 15 0 0 0 Z" fill="#b0bd21" stroke="#fff" stroke-width="4"/>
+            <circle cx="0" cy="23" r="8" fill="#fff"/>
+          </g>
+          <g transform="translate(520 146)">
+            <path d="M0 0 C-15 0 -25 11 -25 24 C-25 43 0 63 0 63 C0 63 25 43 25 24 C25 11 15 0 0 0 Z" fill="#2badde" stroke="#fff" stroke-width="4"/>
+            <circle cx="0" cy="23" r="8" fill="#fff"/>
+          </g>
+          <g transform="translate(648 175)">
+            <path d="M0 0 C-15 0 -25 11 -25 24 C-25 43 0 63 0 63 C0 63 25 43 25 24 C25 11 15 0 0 0 Z" fill="#21739e" stroke="#fff" stroke-width="4"/>
+            <circle cx="0" cy="23" r="8" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="stations-section" id="stations">
+      <div class="section-heading">
+        <span>מפת המסע</span>
+        <h2>תחנות הלמידה</h2>
+        <p>כל תחנה תיפתח לאחר השלמת התחנה הקודמת.</p>
+      </div>
+
+      <div class="stations-grid">
+        <article class="station-card open" data-station="rivers" style="--station:#2badde;--soft:#e8f7fd">
+          <div class="station-line"></div>
+          <div class="station-top">
+            <span class="station-number">1</span>
+            <span class="station-icon" aria-hidden="true">≋</span>
+          </div>
+          <div class="station-content">
+            <h3>נחלי ישראל</h3>
+            <p>נחקור את מערכת הנחלים, כיווני הזרימה וקו פרשת המים.</p>
+          </div>
+          <button class="station-button" type="button">התחלת התחנה ←</button>
+        </article>
+
+        <article class="station-card locked" data-station="regional-capitals" style="--station:#21739e;--soft:#e8f2f7">
+          <div class="station-line"></div>
+          <div class="station-top">
+            <span class="station-number">2</span>
+            <span class="station-icon" aria-hidden="true">⌖</span>
+          </div>
+          <div class="station-content">
+            <h3>בירות חבלי הארץ</h3>
+            <p>נבין כיצד עיר הופכת למרכז אזורי ולמה מיקומה חשוב.</p>
+          </div>
+          <button class="station-button" type="button" disabled>🔒 התחנה נעולה</button>
+        </article>
+
+        <article class="station-card locked" data-station="heritage" style="--station:#b0bd21;--soft:#f4f7dc">
+          <div class="station-line"></div>
+          <div class="station-top">
+            <span class="station-number">3</span>
+            <span class="station-icon" aria-hidden="true">⌂</span>
+          </div>
+          <div class="station-content">
+            <h3>מרכזי מורשת</h3>
+            <p>נכיר מקומות שמספרים את סיפור הארץ והחברה.</p>
+          </div>
+          <button class="station-button" type="button" disabled>🔒 התחנה נעולה</button>
+        </article>
+
+        <article class="station-card locked" data-station="border-settlements" style="--station:#6db580;--soft:#edf7f0">
+          <div class="station-line"></div>
+          <div class="station-top">
+            <span class="station-number">4</span>
+            <span class="station-icon" aria-hidden="true">⬡</span>
+          </div>
+          <div class="station-content">
+            <h3>יישובי ספר בישראל</h3>
+            <p>נחקור את החיים, האתגרים והחוסן של יישובים סמוכי גבול.</p>
+          </div>
+          <button class="station-button" type="button" disabled>🔒 התחנה נעולה</button>
+        </article>
+
+        <article class="station-card locked" data-station="mountains" style="--station:#637840;--soft:#f0f3e8">
+          <div class="station-line"></div>
+          <div class="station-top">
+            <span class="station-number">5</span>
+            <span class="station-icon" aria-hidden="true">▲</span>
+          </div>
+          <div class="station-content">
+            <h3>הרי ישראל</h3>
+            <p>נכיר את רכסי ההרים ואת השפעתם על האקלים וההתיישבות.</p>
+          </div>
+          <button class="station-button" type="button" disabled>🔒 התחנה נעולה</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="stationModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="סגירה">×</button>
+      <div class="modal-icon">≋</div>
+      <h2 id="modalTitle">נחלי ישראל</h2>
+      <p>נחקור את מערכת הנחלים, כיווני הזרימה וקו פרשת המים.</p>
+      <div class="placeholder">
+        מעטפת התחנה מוכנה. את התוכן האינטראקטיבי נבנה בשלב הבא.
+      </div>
+      <button class="secondary-button" id="backToRoute" type="button">חזרה למסלול</button>
+    </section>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
