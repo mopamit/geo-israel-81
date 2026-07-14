@@ -945,9 +945,6 @@ main {
   background: #f7fafb;
 }
 
-.print-summary {
-  display: none;
-}
 
 @keyframes worksheetShake {
   25% { transform: translateX(6px); }
@@ -976,77 +973,8 @@ main {
   }
 }
 
-@media print {
-  body {
-    background: #fff !important;
-  }
 
-  .station-header,
-  .hud,
-  .station-heading,
-  .game-screen,
-  .dialog-backdrop {
-    display: none !important;
-  }
-
-  main {
-    width: 100%;
-    margin: 0;
-  }
-
-  .print-summary {
-    display: block !important;
-    direction: rtl;
-    color: #111;
-    font-family: Arial, sans-serif;
-    padding: 18mm 15mm;
-  }
-
-  .print-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding-bottom: 12px;
-    border-bottom: 3px solid #14365e;
-  }
-
-  .print-header img {
-    width: 72px;
-    height: 72px;
-    object-fit: contain;
-  }
-
-  .print-header h1 {
-    margin: 0;
-    font-size: 24pt;
-  }
-
-  .print-header p {
-    margin: 4px 0 0;
-  }
-
-  .print-stats {
-    margin: 18px 0;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-  }
-
-  .print-stats > div {
-    padding: 10px;
-    display: grid;
-    text-align: center;
-    border: 1px solid #999;
-  }
-
-  .print-content {
-    font-size: 12pt;
-    line-height: 1.6;
-  }
-
-  .print-content h2 {
-    margin-bottom: 4px;
-    color: #14365e;
-    font-size: 16pt;
-  }
+.final-actions .primary-button,
+.final-actions .route-button {
+  min-width: 220px;
 }
