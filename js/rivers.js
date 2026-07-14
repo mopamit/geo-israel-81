@@ -93,6 +93,20 @@ const RIVERS = [
 
 const BASINS = ['הים התיכון', 'הירדן והכנרת', 'הערבה וים המלח'];
 
+
+function shuffleArray(items) {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
+}
+
+let questionOrder = shuffleArray(RIVERS);
+
 const state = {
   index: 0,
   score: 0,
@@ -144,7 +158,7 @@ const els = {
 };
 
 function currentRiver() {
-  return RIVERS[state.index] ?? null;
+  return questionOrder[state.index] ?? null;
 }
 
 function updateHud() {
@@ -169,7 +183,9 @@ function clearFeedback() {
 function renderRiverOptions() {
   els.riverOptions.innerHTML = '';
 
-  RIVERS.forEach((river) => {
+  const randomizedOptions = shuffleArray(RIVERS);
+
+  randomizedOptions.forEach((river) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'river-option';
@@ -442,6 +458,8 @@ function resetStation() {
   const confirmed = window.confirm('לאפס את כל ההתקדמות בתחנה ולהתחיל מחדש?');
   if (!confirmed) return;
 
+  questionOrder = shuffleArray(RIVERS);
+
   Object.assign(state, {
     index: 0,
     score: 0,
@@ -504,6 +522,14 @@ els.amitLogo.addEventListener('error', () => {
   els.amitLogo.hidden = true;
   els.logoFallback.hidden = false;
 });
+
+els.completeStage.hidden = true;
+els.mapStage.hidden = true;
+els.mapTaskCopy.hidden = true;
+els.basinTask.hidden = true;
+els.feedback.hidden = true;
+els.hintBtn.hidden = true;
+els.instructionsDialog.hidden = true;
 
 updateHud();
 loadQuestion();
