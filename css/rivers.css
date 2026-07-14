@@ -16,7 +16,6 @@
 }
 
 * { box-sizing:border-box; }
-
 html { scroll-behavior:smooth; }
 
 body {
@@ -51,7 +50,7 @@ img { display:block; max-width:100%; }
 .header-brand {
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:13px;
 }
 
 .amit-logo {
@@ -65,37 +64,48 @@ img { display:block; max-width:100%; }
   font-weight:900;
 }
 
-.header-brand > div:last-child {
+.station-river-icon {
+  width:56px;
+  height:56px;
+  object-fit:contain;
+  border-radius:50%;
+}
+
+.header-title {
   display:grid;
   gap:2px;
 }
 
-.header-brand strong { font-size:1rem; }
-.header-brand span { color:#688097; font-size:.88rem; font-weight:700; }
+.header-title strong { font-size:1rem; }
+.header-title span { color:#688097; font-size:.88rem; font-weight:700; }
 
 .header-actions {
   display:flex;
   gap:10px;
 }
 
-.icon-button {
-  width:44px;
-  height:44px;
+.image-icon-button {
+  width:54px;
+  height:54px;
+  padding:0;
   display:grid;
   place-items:center;
-  border:1px solid rgba(20,54,94,.15);
+  border:0;
   border-radius:50%;
-  color:var(--navy);
-  background:#fff;
+  background:transparent;
   text-decoration:none;
-  font-size:1.25rem;
-  font-weight:900;
-  transition:transform .2s ease,box-shadow .2s ease;
+  transition:transform .18s ease, filter .18s ease;
 }
 
-.icon-button:hover {
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(20,54,94,.12);
+.image-icon-button img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.image-icon-button:hover {
+  transform:translateY(-2px) scale(1.03);
+  filter:brightness(1.08);
 }
 
 main {
@@ -104,7 +114,7 @@ main {
 }
 
 .hud {
-  margin-bottom:20px;
+  margin-bottom:18px;
   padding:13px 18px;
   display:grid;
   grid-template-columns:180px 210px minmax(280px,1fr);
@@ -116,7 +126,7 @@ main {
   box-shadow:0 10px 26px rgba(20,54,94,.08);
 }
 
-.hud > div {
+.hud-stat {
   min-height:44px;
   padding-inline:10px;
   display:flex;
@@ -126,15 +136,8 @@ main {
   border-left:1px solid rgba(20,54,94,.1);
 }
 
-.hud > div:first-child { border-left:0; }
-
 .hud span { color:#5d7388; font-weight:800; }
 .hud strong { font-size:1.25rem; }
-
-.hud-progress {
-  display:block!important;
-  border-left:0!important;
-}
 
 .hud-progress-label {
   display:flex;
@@ -158,112 +161,48 @@ main {
   transition:width .3s ease;
 }
 
-.intro-screen {
-  min-height:650px;
-  padding:clamp(28px,5vw,68px);
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(360px,.78fr);
-  gap:70px;
+.station-heading {
+  margin-bottom:18px;
+  padding:24px 30px;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
+  gap:25px;
   background:#fff;
   border:1px solid rgba(20,54,94,.08);
-  border-radius:30px;
-  box-shadow:0 20px 50px rgba(20,54,94,.1);
+  border-radius:22px;
+  box-shadow:0 12px 28px rgba(20,54,94,.08);
 }
 
 .station-tag {
   display:inline-flex;
-  padding:8px 15px;
+  padding:7px 13px;
   border-radius:999px;
   color:var(--blue);
-  background:rgba(43,173,222,.13);
+  background:#e8f7fd;
   font-weight:900;
 }
 
-.intro-copy h1 {
-  margin:18px 0 10px;
-  color:var(--navy);
-  font-size:clamp(3rem,7vw,6rem);
-  line-height:1;
-  letter-spacing:-.05em;
+.station-heading h1 {
+  margin:8px 0 4px;
+  font-size:clamp(2rem,4vw,3.6rem);
+  letter-spacing:-.04em;
 }
 
-.mission {
-  margin:0 0 28px;
-  max-width:780px;
-  color:#435d75;
-  font-size:clamp(1.15rem,1.7vw,1.45rem);
-  line-height:1.65;
+.station-heading p {
+  margin:0;
+  max-width:900px;
+  color:#526a80;
+  line-height:1.55;
   font-weight:650;
 }
 
-.rules {
-  max-width:760px;
-  padding:22px 25px;
-  border:1px solid rgba(43,173,222,.2);
-  border-radius:20px;
-  background:#f4fbfe;
-}
-
-.rules h2 { margin:0 0 12px; }
-.rules ul { margin:0; padding-right:22px; }
-.rules li { margin:8px 0; color:#486178; line-height:1.55; font-weight:650; }
-
-.primary-button {
-  min-height:58px;
-  margin-top:26px;
-  padding:0 26px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  border:0;
-  border-radius:999px;
-  color:#fff;
-  background:linear-gradient(135deg,var(--navy),var(--blue));
-  box-shadow:0 14px 28px rgba(20,54,94,.23);
-  font-weight:900;
-  font-size:1.08rem;
-  text-decoration:none;
-}
-
-.intro-visual {
-  position:relative;
-  min-height:420px;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
+.heading-river-icon {
+  width:120px;
+  height:120px;
+  object-fit:contain;
   border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 45%,#fff 0 20%,#e5f7fd 21% 42%,#bcebf8 43% 59%,#7ed2eb 60% 74%,#2badde 75%);
-  box-shadow:inset 0 0 0 18px rgba(255,255,255,.55),0 25px 60px rgba(43,173,222,.25);
-}
-
-.river-symbol {
-  color:#fff;
-  font-size:9rem;
-  font-weight:900;
-  text-shadow:0 12px 26px rgba(20,54,94,.2);
-}
-
-.water-ring {
-  position:absolute;
-  border:3px solid rgba(255,255,255,.55);
-  border-radius:50%;
-}
-
-.ring-one { width:72%; height:72%; }
-.ring-two { width:48%; height:48%; }
-
-.intro-badge {
-  position:absolute;
-  bottom:50px;
-  padding:9px 18px;
-  border-radius:999px;
-  color:var(--navy);
-  background:#fff;
-  font-weight:900;
-  box-shadow:0 10px 22px rgba(20,54,94,.15);
+  flex:0 0 auto;
 }
 
 .game-screen {
@@ -484,7 +423,7 @@ main {
 }
 
 .map-viewport {
-  height:680px;
+  height:760px;
   overflow:auto;
   border:1px solid #cbdce5;
   border-radius:18px;
@@ -514,17 +453,56 @@ main {
 
 .map-marker {
   position:absolute;
-  width:34px;
-  height:34px;
+  width:38px;
+  height:38px;
   display:grid;
   place-items:center;
-  transform:translate(50%,-50%);
+  transform:translate(-50%,-50%) rotate(-45deg);
   border:4px solid #fff;
   border-radius:50% 50% 50% 0;
   color:#fff;
   background:var(--blue);
   box-shadow:0 7px 18px rgba(20,54,94,.3);
   font-weight:900;
+}
+
+.map-marker::after {
+  content:attr(data-number);
+}
+
+.map-marker {
+  font-size:0;
+}
+
+.map-marker::before {
+  content:'';
+  position:absolute;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:#fff;
+}
+
+.map-marker::after {
+  position:absolute;
+  top:7px;
+  right:7px;
+  transform:rotate(45deg);
+  color:var(--navy);
+  font-size:.72rem;
+  z-index:2;
+}
+
+.click-preview {
+  position:absolute;
+  width:28px;
+  height:28px;
+  transform:translate(-50%,-50%);
+  border:4px solid var(--cyan);
+  border-radius:50%;
+  background:rgba(255,255,255,.8);
+  box-shadow:0 0 0 8px rgba(43,173,222,.18);
+  pointer-events:none;
 }
 
 .map-help {
@@ -598,6 +576,20 @@ main {
 .concept-preview h3 { margin:0 0 5px; }
 .concept-preview p { margin:0; color:#5d6e31; font-weight:700; }
 
+.primary-button {
+  min-height:52px;
+  padding:0 24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  border-radius:999px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--navy),var(--blue));
+  font-weight:900;
+  text-decoration:none;
+}
+
 .link-button { margin-top:22px; }
 
 .dialog-backdrop {
@@ -648,25 +640,24 @@ main {
   .game-screen { grid-template-columns:1fr; }
   .mission-panel { position:static; }
   .river-options { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .intro-screen { grid-template-columns:1fr; }
-  .intro-visual { min-height:360px; max-width:560px; width:100%; margin:auto; }
 }
 
 @media (max-width:760px) {
   main { width:min(100% - 20px,1540px); margin-top:12px; }
   .station-header { padding-inline:12px; }
-  .header-brand > div:last-child { display:none; }
-  .amit-logo { height:46px; }
+  .header-title { display:none; }
+  .amit-logo { height:44px; }
+  .station-river-icon { width:46px; height:46px; }
+  .image-icon-button { width:46px; height:46px; }
   .hud { grid-template-columns:1fr 1fr; }
   .hud-progress { grid-column:1/-1; }
-  .hud > div { border-left:0; }
-  .intro-screen { padding:24px 18px; gap:30px; min-height:0; }
-  .intro-copy h1 { font-size:3.5rem; }
-  .intro-visual { min-height:300px; }
+  .hud-stat { border-left:0; }
+  .station-heading { padding:18px; }
+  .heading-river-icon { width:82px; height:82px; }
   .activity-panel,.mission-panel { padding:18px; }
   .activity-heading { align-items:flex-start; flex-direction:column; gap:7px; }
   .river-options { grid-template-columns:1fr; }
-  .map-viewport { height:580px; }
+  .map-viewport { height:620px; }
   .summary-cards { grid-template-columns:1fr; }
 }
 
