@@ -17,26 +17,40 @@
         id="amitLogo"
       >
       <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
-      <div>
-        <strong>מסע בארץ ישראל</strong>
-        <span>תחנה 1 – מערכת הנחלים</span>
+
+      <img
+        src="../assets/icons/rivers.png"
+        alt=""
+        class="station-river-icon"
+        aria-hidden="true"
+      >
+
+      <div class="header-title">
+        <strong>מערכת הנחלים של ישראל</strong>
+        <span>תחנה 1 – תחנה כחולה</span>
       </div>
     </div>
 
     <div class="header-actions">
-      <a class="icon-button" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית">⌂</a>
-      <button class="icon-button" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות">?</button>
-      <button class="icon-button" id="resetBtn" type="button" aria-label="איפוס התחנה" title="איפוס התחנה">↻</button>
+      <a class="image-icon-button" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית">
+        <img src="../assets/icons/home.png" alt="">
+      </a>
+      <button class="image-icon-button" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות">
+        <img src="../assets/icons/instructions.png" alt="">
+      </button>
+      <button class="image-icon-button" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש">
+        <img src="../assets/icons/reset.png" alt="">
+      </button>
     </div>
   </header>
 
   <main>
     <section class="hud" aria-label="נתוני המשחק">
-      <div>
+      <div class="hud-stat">
         <span>🏆 ניקוד</span>
         <strong id="scoreValue">0</strong>
       </div>
-      <div>
+      <div class="hud-stat">
         <span>🔥 רצף הצלחות</span>
         <strong id="streakValue">0</strong>
       </div>
@@ -49,39 +63,19 @@
       </div>
     </section>
 
-    <section class="intro-screen" id="introScreen">
-      <div class="intro-copy">
+    <section class="station-heading">
+      <div>
         <span class="station-tag">תחנה כחולה</span>
         <h1>בעקבות הנחלים</h1>
-        <p class="mission">
-          עשרה נחלים נעלמו מהמפה. זהו כל נחל, מצאו את נקודת השפך או היעד שלו וגלו לאיזה אגן ניקוז הוא שייך.
+        <p>
+          קראו כל חידה, זהו את הנחל מתוך כל האפשרויות,
+          ולאחר מכן מקמו אותו על המפה ובחרו את יעד הניקוז.
         </p>
-
-        <div class="rules">
-          <h2>איך משחקים?</h2>
-          <ul>
-            <li>קוראים חידה ובוחרים את הנחל מתוך <strong>כל שמות הנחלים</strong>.</li>
-            <li>לאחר הזיהוי מסמנים על המפה את נקודת השפך או היעד.</li>
-            <li>טעות אינה עוצרת את המשחק: מקבלים רמז ומנסים שוב.</li>
-            <li>אין מעבר לחידה הבאה לפני שהמשימה הושלמה במלואה.</li>
-          </ul>
-        </div>
-
-        <button class="primary-button" id="startStationBtn" type="button">
-          התחלת החקירה
-          <span aria-hidden="true">←</span>
-        </button>
       </div>
-
-      <div class="intro-visual">
-        <div class="water-ring ring-one"></div>
-        <div class="water-ring ring-two"></div>
-        <div class="river-symbol" aria-hidden="true">≋</div>
-        <div class="intro-badge">10 נחלים</div>
-      </div>
+      <img src="../assets/icons/rivers.png" alt="איור נחל" class="heading-river-icon">
     </section>
 
-    <section class="game-screen" id="gameScreen" hidden>
+    <section class="game-screen" id="gameScreen">
       <aside class="mission-panel">
         <div class="step-label" id="stepLabel">שלב א׳ – זיהוי הנחל</div>
         <div class="question-number">חידה <span id="questionNumber">1</span> מתוך 10</div>
@@ -119,7 +113,7 @@
               <span>שלב א׳</span>
               <h2>בחרו את שם הנחל</h2>
             </div>
-            <p>כל האפשרויות מוצגות. קראו היטב לפני הבחירה.</p>
+            <p>כל עשרת הנחלים מוצגים. נחלים שכבר פתרתם נשארים מסומנים.</p>
           </div>
           <div class="river-options" id="riverOptions"></div>
         </div>
@@ -128,9 +122,9 @@
           <div class="activity-heading">
             <div>
               <span>שלב ב׳</span>
-              <h2>סמנו את המיקום</h2>
+              <h2>מקמו את הנחל על המפה</h2>
             </div>
-            <p>ניתן להגדיל את המפה וללחוץ על האזור המתאים.</p>
+            <p>הגדילו את המפה ולחצו על אזור השפך או היעד המתאים.</p>
           </div>
 
           <div class="map-toolbar">
@@ -142,20 +136,21 @@
           <div class="map-viewport" id="mapViewport">
             <div class="map-canvas" id="mapCanvas">
               <img
-                src="../assets/maps/rivers-numbered-map.png"
-                alt="מפת ישראל בחלוקה לאזורים עם סימוני נחלים"
+                src="../assets/maps/israel-regions-map.png"
+                alt="מפת ארץ ישראל בחלוקה לאזורים, ובה נחלים, ערים ותבליט"
                 id="riverMap"
               >
               <div class="map-markers" id="mapMarkers"></div>
+              <div class="click-preview" id="clickPreview" hidden></div>
             </div>
           </div>
-          <p class="map-help">לחצו על המפה. אין צורך בדיוק של פיקסל – אזור קרוב יתקבל.</p>
+          <p class="map-help">לחצו ישירות על המפה. האפליקציה מקבלת אזור סביר ולא דורשת דיוק של פיקסל.</p>
         </div>
 
         <div class="complete-stage" id="completeStage" hidden>
           <div class="completion-icon" aria-hidden="true">✓</div>
           <h2>מערכת הנחלים שוחזרה!</h2>
-          <p>זיהיתם את כל עשרת הנחלים, מיקמתם אותם וחילקתם אותם לפי יעדי הניקוז.</p>
+          <p>השלמתם את כל עשר החידות, מיקמתם את כל הנחלים וזיהיתם את יעדי הניקוז שלהם.</p>
 
           <div class="summary-cards">
             <div><span>ניקוד סופי</span><strong id="finalScore">0</strong></div>
@@ -164,8 +159,8 @@
           </div>
 
           <div class="concept-preview">
-            <h3>השלב הבא בתחנה</h3>
-            <p>קו פרשת המים, אגן ניקוז וההבדל בין נחל איתן לנחל אכזב.</p>
+            <h3>המשך התחנה</h3>
+            <p>בשלב הבא נעסוק בקו פרשת המים, אגן ניקוז ובהבדל בין נחל איתן לנחל אכזב.</p>
           </div>
 
           <a class="primary-button link-button" href="../index.html">חזרה למסלול הראשי</a>
@@ -179,10 +174,11 @@
       <button class="dialog-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button>
       <h2 id="instructionsTitle">הוראות התחנה</h2>
       <ol>
-        <li>בכל חידה בחרו את שם הנחל מתוך כל האפשרויות.</li>
+        <li>בכל חידה בחרו את שם הנחל מתוך כל עשרת הנחלים.</li>
         <li>אם הבחירה אינה מתאימה, ייפתח רמז ותוכלו לנסות שוב.</li>
         <li>לאחר הזיהוי לחצו על נקודת השפך או היעד במפה.</li>
         <li>לבסוף בחרו לאיזה אגן ניקוז הנחל שייך.</li>
+        <li>התחנה מסתיימת רק לאחר השלמת כל עשר החידות.</li>
       </ol>
     </section>
   </div>
