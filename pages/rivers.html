@@ -9,7 +9,7 @@
 </head>
 <body>
   <header class="station-header">
-    <div class="header-brand">
+    <div class="brand-area">
       <img
         src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000"
         alt="לוגו רשת אמית"
@@ -17,190 +17,232 @@
         id="amitLogo"
       >
       <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
-
-      <img
-        src="../assets/icons/rivers.png"
-        alt=""
-        class="station-river-icon"
-        aria-hidden="true"
-      >
-
-      <div class="header-title">
+      <div class="brand-copy">
         <strong>מערכת הנחלים של ישראל</strong>
-        <span>תחנה 1 – תחנה כחולה</span>
+        <span>תחנה 1 – התחנה הכחולה</span>
       </div>
     </div>
 
-    <div class="header-actions">
-      <a class="image-icon-button" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית">
+    <nav class="header-actions" aria-label="פעולות תחנה">
+      <a class="round-action" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית">
         <img src="../assets/icons/home.png" alt="">
       </a>
-      <button class="image-icon-button" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות">
+      <button class="round-action" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות">
         <img src="../assets/icons/instructions.png" alt="">
       </button>
-      <button class="image-icon-button" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש">
+      <button class="round-action" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש">
         <img src="../assets/icons/reset.png" alt="">
       </button>
-    </div>
+    </nav>
   </header>
 
   <main>
-    <section class="hud" aria-label="נתוני המשחק">
-      <div class="hud-stat">
+    <section class="hud" aria-label="מצב המשחק">
+      <div class="hud-item">
         <span>🏆 ניקוד</span>
         <strong id="scoreValue">0</strong>
       </div>
-      <div class="hud-stat">
-        <span>🔥 רצף הצלחות</span>
+      <div class="hud-item">
+        <span>🔥 רצף</span>
         <strong id="streakValue">0</strong>
       </div>
+      <div class="hud-item">
+        <span>💧 נחלים שהושלמו</span>
+        <strong id="completedValue">0/10</strong>
+      </div>
       <div class="hud-progress">
-        <div class="hud-progress-label">
-          <span>📊 התקדמות</span>
-          <strong id="progressValue">0/10</strong>
+        <div class="progress-label">
+          <span>מסלול חובה</span>
+          <strong id="requiredValue">0/3</strong>
         </div>
         <div class="progress-track"><span id="progressBar"></span></div>
       </div>
     </section>
 
-    <section class="station-heading">
+    <section class="station-intro">
       <div>
-        <span class="station-tag">תחנה כחולה</span>
+        <span class="station-chip">תחנה כחולה</span>
         <h1>בעקבות הנחלים</h1>
         <p>
-          קראו כל חידה, זהו את הנחל מתוך כל האפשרויות,
-          ולאחר מכן מקמו אותו על המפה ובחרו את יעד הניקוז.
+          השלימו לפחות שלושה נחלים. לאחר מכן תוכלו לעבור לדף העבודה
+          או להמשיך לחידות בונוס ולצבור נקודות נוספות.
         </p>
       </div>
-      <img src="../assets/icons/rivers.png" alt="איור נחל" class="heading-river-icon">
+      <img src="../assets/icons/rivers.png" alt="איור של נחל" class="station-icon">
     </section>
 
-    <section class="game-screen" id="gameScreen">
-      <aside class="mission-panel">
-        <div class="step-label" id="stepLabel">שלב א׳ – זיהוי הנחל</div>
-        <div class="question-number">חידה <span id="questionNumber">1</span> מתוך 10</div>
+    <section class="game-layout" id="gameLayout">
+      <aside class="challenge-panel">
+        <div class="phase-chip" id="phaseChip">שלב א׳ – זיהוי הנחל</div>
+        <p class="challenge-count">
+          משימה <strong id="challengeNumber">1</strong>
+          <span id="challengeType">מתוך 3 משימות החובה</span>
+        </p>
 
         <article class="riddle-card">
-          <span class="riddle-icon" aria-hidden="true">?</span>
+          <span class="question-mark" aria-hidden="true">?</span>
           <h2>מי אני?</h2>
           <p id="riddleText"></p>
         </article>
 
-        <div class="feedback" id="feedback" aria-live="polite" hidden></div>
+        <div class="feedback" id="feedback" hidden aria-live="polite"></div>
 
         <button class="hint-button" id="hintBtn" type="button" hidden>
-          <span aria-hidden="true">💡</span>
-          הצגת רמז
+          💡 הצגת רמז
         </button>
 
-        <div class="map-task-copy" id="mapTaskCopy" hidden>
-          <h2>עכשיו מאתרים במפה</h2>
-          <p id="mapInstruction"></p>
-          <div class="selected-river" id="selectedRiver"></div>
-        </div>
+        <section class="map-instructions" id="mapInstructions" hidden>
+          <h2>מקמו את הנחל</h2>
+          <p>
+            לחצו על מקום כלשהו לאורך תוואי
+            <strong id="currentRiverName"></strong>.
+          </p>
+          <p class="small-note">
+            אפשר ללחוץ בכל נקודה לאורך הנחל. אין צורך לסמן את השפך.
+          </p>
+        </section>
 
-        <div class="basin-task" id="basinTask" hidden>
-          <h2>לאן זורמים המים?</h2>
-          <p>בחרו את יעד הניקוז של הנחל.</p>
-          <div class="basin-options" id="basinOptions"></div>
-        </div>
+        <section class="choice-step" id="outletStep" hidden>
+          <h2>לאן הנחל נשפך או מתחבר?</h2>
+          <div class="choice-list" id="outletChoices"></div>
+        </section>
+
+        <section class="choice-step" id="basinStep" hidden>
+          <h2>לאיזה אגן ניקוז הוא שייך?</h2>
+          <div class="choice-list" id="basinChoices"></div>
+        </section>
       </aside>
 
       <section class="activity-panel">
-        <div class="names-stage" id="namesStage">
-          <div class="activity-heading">
+        <section id="nameStage">
+          <div class="section-heading">
             <div>
               <span>שלב א׳</span>
               <h2>בחרו את שם הנחל</h2>
             </div>
-            <p>כל עשרת הנחלים מוצגים. נחלים שכבר פתרתם נשארים מסומנים.</p>
+            <p>
+              מוצגים כל הנחלים שעדיין לא השתמשתם בהם.
+              סדר האפשרויות משתנה בכל משימה.
+            </p>
           </div>
           <div class="river-options" id="riverOptions"></div>
-        </div>
+        </section>
 
-        <div class="map-stage" id="mapStage" hidden>
-          <div class="activity-heading">
+        <section id="mapStage" hidden>
+          <div class="section-heading">
             <div>
               <span>שלב ב׳</span>
-              <h2>מקמו את הנחל על המפה</h2>
+              <h2>סימון לאורך תוואי הנחל</h2>
             </div>
-            <p>הגדילו את המפה ולחצו על אזור השפך או היעד המתאים.</p>
+            <p>
+              הגדילו את המפה ולחצו על התוואי. הסימון נבדק מול מסלול הנחל כולו.
+            </p>
           </div>
 
           <div class="map-toolbar">
-            <button type="button" id="zoomInBtn" aria-label="הגדלה">＋</button>
-            <button type="button" id="zoomOutBtn" aria-label="הקטנה">−</button>
-            <button type="button" id="resetMapBtn">איפוס תצוגה</button>
+            <button id="zoomInBtn" type="button">＋ הגדלה</button>
+            <button id="zoomOutBtn" type="button">− הקטנה</button>
+            <button id="resetMapBtn" type="button">איפוס תצוגה</button>
           </div>
 
           <div class="map-viewport" id="mapViewport">
             <div class="map-canvas" id="mapCanvas">
               <img
-                src="../assets/maps/israel-regions-map.png"
-                alt="מפת ארץ ישראל בחלוקה לאזורים, ובה נחלים, ערים ותבליט"
+                src="../assets/maps/israel-rivers-map.png"
+                alt="מפת ארץ ישראל בחלוקה לאזורים ובה מערכת הנחלים"
                 id="riverMap"
               >
-              <div class="map-markers" id="mapMarkers"></div>
-              <div class="click-preview" id="clickPreview" hidden></div>
+              <svg
+                class="river-overlay"
+                id="riverOverlay"
+                viewBox="0 0 1000 2600"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <g id="solvedRiverPaths"></g>
+              </svg>
+              <div id="clickMarker" class="click-marker" hidden></div>
             </div>
           </div>
-          <p class="map-help">לחצו ישירות על המפה. האפליקציה מקבלת אזור סביר ולא דורשת דיוק של פיקסל.</p>
-        </div>
 
+          <p class="map-note">
+            המפה גדולה וניתנת לגלילה. לחיצה נכונה תדגיש את תוואי הנחל שנפתר.
+          </p>
+        </section>
 
-        <div class="worksheet-stage" id="worksheetStage" hidden>
+        <section class="decision-stage" id="decisionStage" hidden>
+          <div class="decision-card">
+            <div class="decision-icon">✓</div>
+            <h2>שלושת נחלי החובה הושלמו</h2>
+            <p>
+              אפשר לעבור לדף העבודה, או להמשיך בכל פעם לנחל בונוס נוסף.
+            </p>
+            <div class="decision-actions">
+              <button class="primary-button" id="goWorksheetBtn" type="button">
+                מעבר לדף העבודה
+              </button>
+              <button class="bonus-button" id="bonusBtn" type="button">
+                חידת בונוס נוספת
+              </button>
+            </div>
+            <p class="remaining-note" id="remainingBonusText"></p>
+          </div>
+        </section>
+
+        <section class="worksheet-stage" id="worksheetStage" hidden>
           <div class="worksheet-heading">
             <div>
-              <span>שלב ד׳ – דף סיכום</span>
+              <span>דף עבודה אינטראקטיבי</span>
               <h2>מערכת הנחלים של ארץ ישראל</h2>
-              <p>גררו כל מילה ממחסן המילים אל המקום המתאים. בטלפון אפשר ללחוץ על מילה ואז על המשבצת.</p>
+              <p>
+                לחצו על משבצת ריקה ובחרו מילה. במחשב אפשר גם לגרור
+                ממחסן המילים שבתחתית.
+              </p>
             </div>
-            <div class="worksheet-status">
-              <strong id="worksheetFilled">0/14</strong>
-              <span>מושגים שובצו</span>
+            <div class="worksheet-counter">
+              <strong id="worksheetCounter">0/14</strong>
+              <span>מילים שובצו</span>
             </div>
           </div>
 
-          <div class="word-bank-panel">
-            <h3>מחסן מילים</h3>
-            <div class="word-bank" id="wordBank"></div>
-          </div>
-
-          <article class="worksheet-text" id="worksheetText">
+          <article class="worksheet-paper">
             <p>
-              מערכת הנחלים של ארץ ישראל נקבעת במידה רבה על ידי הטופוגרפיה של השדרה
-              ההררית המרכזית, המהווה את
-              <span class="drop-slot" data-slot="1" tabindex="0"><span class="slot-number">1</span></span>.
+              מערכת הנחלים של ארץ ישראל נקבעת במידה רבה על ידי
+              <button class="hot-word" type="button" data-term="טופוגרפיה">הטופוגרפיה</button>
+              של השדרה ההררית המרכזית, המהווה את
+              <span class="answer-slot" data-slot="1" tabindex="0"></span>.
               הנחל מתחיל את דרכו במקום שנקרא
-              <span class="drop-slot" data-slot="4" tabindex="0"><span class="slot-number">4</span></span>,
+              <span class="answer-slot" data-slot="4" tabindex="0"></span>,
               ואילו המקום שבו הוא נשפך אל הים או אל האגם נקרא
-              <span class="drop-slot" data-slot="2" tabindex="0"><span class="slot-number">2</span></span>.
+              <span class="answer-slot" data-slot="2" tabindex="0"></span>.
               השטח שבו כל הגשמים היורדים מתנקזים אל ערוץ נחל אחד נקרא
-              <span class="drop-slot" data-slot="3" tabindex="0"><span class="slot-number">3</span></span>.
+              <span class="answer-slot" data-slot="3" tabindex="0"></span>.
             </p>
 
             <p>בשל מבנה הארץ, קיימים שני כיווני זרימה עיקריים:</p>
             <ul>
               <li>
                 <strong>מערבה:</strong> נחלים הזורמים אל הים התיכון לאורך
-                <span class="drop-slot" data-slot="5" tabindex="0"><span class="slot-number">5</span></span>
+                <span class="answer-slot" data-slot="5" tabindex="0"></span>
                 וארוך יחסית.
               </li>
               <li>
-                <strong>מזרחה:</strong> נחלים הזורמים אל בקע הירדן. בשל הפרשי הגובה החדים,
-                נחלים אלו זורמים במורד
-                <span class="drop-slot" data-slot="6" tabindex="0"><span class="slot-number">6</span></span>
+                <strong>מזרחה:</strong> נחלים הזורמים אל בקע הירדן. בשל הפרשי
+                הגובה החדים, נחלים אלו זורמים במורד
+                <span class="answer-slot" data-slot="6" tabindex="0"></span>
                 וקצר, ולעיתים קרובות יוצרים קניונים עמוקים.
               </li>
             </ul>
 
             <p>
               יוצא דופן מרכזי הוא <strong>נהר הירדן</strong>, שזורם בכיוון
-              <span class="drop-slot" data-slot="7" tabindex="0"><span class="slot-number">7</span></span>.
+              <span class="answer-slot" data-slot="7" tabindex="0"></span>.
               מוצאו בחרמון והוא נשפך אל
-              <span class="drop-slot" data-slot="8" tabindex="0"><span class="slot-number">8</span></span>.
-              זהו אגן סגור וזהו המקום הנמוך בעולם, ולכן אין ממנו
-              <span class="drop-slot" data-slot="9" tabindex="0"><span class="slot-number">9</span></span>
+              <span class="answer-slot" data-slot="8" tabindex="0"></span>.
+              זהו
+              <button class="hot-word" type="button" data-term="אגן סגור">אגן סגור</button>
+              וזהו המקום הנמוך בעולם, ולכן אין ממנו
+              <span class="answer-slot" data-slot="9" tabindex="0"></span>
               של מים בזרימה.
             </p>
 
@@ -208,70 +250,107 @@
             <p>בארץ ישראל קיימים שני סוגי נחלים עיקריים:</p>
             <ol>
               <li>
-                <span class="drop-slot" data-slot="10" tabindex="0"><span class="slot-number">10</span></span>:
+                <span class="answer-slot" data-slot="10" tabindex="0"></span>:
                 נחל שזורמים בו מים לאורך כל ימות השנה, למשל הירקון.
               </li>
               <li>
-                <span class="drop-slot" data-slot="11" tabindex="0"><span class="slot-number">11</span></span>:
-                נחל שזורמים בו מים רק לאחר ירידת גשמים. רוב נחלי הארץ הם מסוג זה.
+                <span class="answer-slot" data-slot="11" tabindex="0"></span>:
+                נחל שזורם בו מים רק לאחר רדת גשמים. רוב נחלי הארץ הם סוג זה.
               </li>
             </ol>
 
             <h3>זיהום ושיקום נחלים</h3>
             <p>
               בעשורים האחרונים סבלו נחלי ישראל מ־
-              <span class="drop-slot" data-slot="12" tabindex="0"><span class="slot-number">12</span></span>
+              <span class="answer-slot" data-slot="12" tabindex="0"></span>
               כבד כתוצאה מהזרמת שפכים וביוב. הגוף המרכזי שפועל לתיקון המצב הוא
-              <span class="drop-slot" data-slot="13" tabindex="0"><span class="slot-number">13</span></span>
+              <span class="answer-slot wide-slot" data-slot="13" tabindex="0"></span>
               בשיתוף המשרד להגנת הסביבה. תהליך ה־
-              <span class="drop-slot" data-slot="14" tabindex="0"><span class="slot-number">14</span></span>
-              כולל הפסקת הזרמת זיהום והזרמת מים ירוקים כדי להחזיר לנחל את המערכת האקולוגית שלו.
+              <span class="answer-slot" data-slot="14" tabindex="0"></span>
+              כולל הפסקת הזרמת זיהום והזרמת "מים ירוקים" כדי להחזיר לנחל
+              את
+              <button class="hot-word" type="button" data-term="מערכת אקולוגית">המערכת האקולוגית</button>
+              שלו.
             </p>
           </article>
 
           <div class="worksheet-actions">
-            <button class="check-worksheet-button" id="checkWorksheetBtn" type="button">בדיקת דף הסיכום</button>
-            <button class="clear-worksheet-button" id="clearWorksheetBtn" type="button">ניקוי התשובות</button>
-          </div>
-          <div class="worksheet-feedback" id="worksheetFeedback" aria-live="polite" hidden></div>
-        </div>
-
-        <div class="complete-stage" id="completeStage" hidden>
-          <div class="completion-icon" aria-hidden="true">✓</div>
-          <h2>תחנה 1 הושלמה!</h2>
-          <p>זיהיתם את כל עשרת הנחלים והשלמתם נכון את דף העבודה האינטראקטיבי.</p>
-
-          <div class="summary-cards">
-            <div><span>ניקוד סופי</span><strong id="finalScore">0</strong></div>
-            <div><span>רצף מרבי</span><strong id="finalStreak">0</strong></div>
-            <div><span>נחלים שהושלמו</span><strong>10/10</strong></div>
+            <button class="check-button" id="checkWorksheetBtn" type="button">
+              בדיקת דף העבודה
+            </button>
+            <button class="clear-button" id="clearWorksheetBtn" type="button">
+              ניקוי כל המילים
+            </button>
           </div>
 
-          <div class="concept-preview">
-            <h3>דף הסיכום מוכן</h3>
-            <p>כעת אפשר להוריד את קובץ ה־PDF המקורי, לשמור אותו או להדפיס אותו.</p>
+          <div class="worksheet-feedback" id="worksheetFeedback" hidden></div>
+
+          <div class="word-bank-dock" id="wordBankDock">
+            <div class="word-bank-title">
+              <strong>מחסן מילים</strong>
+              <span>לחצו או גררו</span>
+            </div>
+            <div class="word-bank" id="wordBank"></div>
+          </div>
+        </section>
+
+        <section class="complete-stage" id="completeStage" hidden>
+          <div class="stamp">התחנה הושלמה</div>
+          <h2>סיימתם את תחנת הנחלים</h2>
+          <p>
+            השלמתם את דף העבודה. כעת ניתן להוריד את קובץ ה־PDF המקורי
+            ולשמור או להדפיס אותו.
+          </p>
+
+          <div class="completion-stats">
+            <div><span>נחלים שהושלמו</span><strong id="finalRivers">3</strong></div>
+            <div><span>נחלי בונוס</span><strong id="finalBonus">0</strong></div>
+            <div><span>ניקוד</span><strong id="finalScore">0</strong></div>
           </div>
 
-          <div class="final-actions">
-            <a class="primary-button" href="../assets/docs/rivers-summary.pdf" download="דף סיכום נחלים.pdf">הורדת דף הסיכום PDF</a>
+          <div class="completion-actions">
+            <a
+              class="primary-button"
+              id="downloadPdfBtn"
+              href="../assets/docs/rivers-summary.pdf"
+              download="דף סיכום נחלים.pdf"
+            >
+              הורדת דף הסיכום PDF
+            </a>
             <a class="route-button" href="../index.html">חזרה למסלול הראשי</a>
           </div>
-        </div>
+        </section>
       </section>
     </section>
   </main>
 
-  <div class="dialog-backdrop" id="instructionsDialog" hidden>
-    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
-      <button class="dialog-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button>
-      <h2 id="instructionsTitle">הוראות התחנה</h2>
+  <div class="modal-backdrop" id="instructionsModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+      <button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button>
+      <h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2>
       <ol>
-        <li>בכל חידה בחרו את שם הנחל מתוך כל עשרת הנחלים.</li>
-        <li>אם הבחירה אינה מתאימה, ייפתח רמז ותוכלו לנסות שוב.</li>
-        <li>לאחר הזיהוי לחצו על נקודת השפך או היעד במפה.</li>
-        <li>לבסוף בחרו לאיזה אגן ניקוז הנחל שייך.</li>
-        <li>לאחר עשר החידות יש להשלים את דף הסיכום באמצעות גרירת המילים.</li><li>התחנה מסתיימת רק לאחר שכל 14 המושגים שובצו נכון.</li>
+        <li>מזהים את הנחל מתוך כל האפשרויות שנותרו.</li>
+        <li>לוחצים על מקום כלשהו לאורך תוואי הנחל במפה.</li>
+        <li>בוחרים את נקודת השפך או החיבור מתוך שלוש אפשרויות.</li>
+        <li>בוחרים את אגן הניקוז.</li>
+        <li>לאחר שלושה נחלים אפשר לעבור לדף העבודה או להמשיך לבונוס.</li>
       </ol>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="wordPickerModal" hidden>
+    <section class="modal word-picker-modal" role="dialog" aria-modal="true" aria-labelledby="wordPickerTitle">
+      <button class="modal-close" id="closeWordPickerBtn" type="button" aria-label="סגירה">×</button>
+      <h2 id="wordPickerTitle">בחרו מילה מתאימה</h2>
+      <div class="picker-words" id="pickerWords"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="hotWordModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="hotWordTitle">
+      <button class="modal-close" id="closeHotWordBtn" type="button" aria-label="סגירה">×</button>
+      <h2 id="hotWordTitle"></h2>
+      <p id="hotWordExplanation"></p>
     </section>
   </div>
 
