@@ -117,7 +117,10 @@ const state = {
   stage: 'name',
   solved: [],
   markers: [],
-  zoom: 1
+  zoom: 1,
+  worksheetAnswers: {},
+  selectedWord: null,
+  summaryCompleted: false
 };
 
 const els = {
@@ -143,9 +146,19 @@ const els = {
   mapMarkers: document.getElementById('mapMarkers'),
   mapViewport: document.getElementById('mapViewport'),
   clickPreview: document.getElementById('clickPreview'),
+  worksheetStage: document.getElementById('worksheetStage'),
+  wordBank: document.getElementById('wordBank'),
+  worksheetFilled: document.getElementById('worksheetFilled'),
+  checkWorksheetBtn: document.getElementById('checkWorksheetBtn'),
+  clearWorksheetBtn: document.getElementById('clearWorksheetBtn'),
+  worksheetFeedback: document.getElementById('worksheetFeedback'),
   completeStage: document.getElementById('completeStage'),
   finalScore: document.getElementById('finalScore'),
   finalStreak: document.getElementById('finalStreak'),
+  printScore: document.getElementById('printScore'),
+  printStreak: document.getElementById('printStreak'),
+  printSummaryBtn: document.getElementById('printSummaryBtn'),
+  downloadSummaryBtn: document.getElementById('downloadSummaryBtn'),
   zoomInBtn: document.getElementById('zoomInBtn'),
   zoomOutBtn: document.getElementById('zoomOutBtn'),
   resetMapBtn: document.getElementById('resetMapBtn'),
@@ -226,6 +239,7 @@ function loadQuestion() {
 
   els.namesStage.hidden = false;
   els.mapStage.hidden = true;
+  els.worksheetStage.hidden = true;
   els.completeStage.hidden = true;
   els.mapTaskCopy.hidden = true;
   els.basinTask.hidden = true;
@@ -391,7 +405,7 @@ function chooseBasin(basin, button) {
     window.setTimeout(() => {
       if (state.solved.length === RIVERS.length) {
         state.index = RIVERS.length;
-        finishStation();
+        showWorksheetStage();
         return;
       }
 
@@ -422,15 +436,289 @@ function renderMarkers() {
   });
 }
 
+
+const WORKSHEET_ANSWERS = {
+  1: 'קו פרשת המים',
+  2: 'שפך הנחל',
+  3: 'אגן ניקוז',
+  4: 'מוצא הנחל',
+  5: 'מדרון מתון',
+  6: 'מדרון תלול',
+  7: 'מצפון לדרום',
+  8: 'ים המלח',
+  9: 'מוצא של מים',
+  10: 'נחל איתן',
+  11: 'נחל אכזב',
+  12: 'זיהום',
+  13: 'רשות הניקוז והנחלים',
+  14: 'שיקום'
+};
+
+const WORKSHEET_WORDS = Object.values(WORKSHEET_ANSWERS);
+
+function showWorksheetStage() {
+  state.stage = 'worksheet';
+  state.selectedWord = null;
+
+  els.namesStage.hidden = true;
+  els.mapStage.hidden = true;
+  els.completeStage.hidden = true;
+  els.worksheetStage.hidden = false;
+  els.mapTaskCopy.hidden = true;
+  els.basinTask.hidden = true;
+  els.hintBtn.hidden = true;
+
+  els.stepLabel.textContent = 'שלב ד׳ – דף סיכום';
+  els.riddleText.textContent = 'השלימו את דף הסיכום באמצעות מחסן המילים.';
+  clearFeedback();
+
+  renderWordBank();
+  renderWorksheetSlots();
+  updateWorksheetCounter();
+
+  window.scrollTo({
+    top: els.worksheetStage.getBoundingClientRect().top + window.scrollY - 100,
+    behavior: 'smooth'
+  });
+}
+
+function renderWordBank() {
+  els.wordBank.innerHTML = '';
+
+  shuffleArray(WORKSHEET_WORDS).forEach((word) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'word-chip';
+    chip.textContent = word;
+    chip.dataset.word = word;
+    chip.draggable = true;
+
+    const used = Object.values(state.worksheetAnswers).includes(word);
+    if (used) {
+      chip.classList.add('used');
+      chip.disabled = true;
+    }
+
+    if (state.selectedWord === word) {
+      chip.classList.add('selected');
+    }
+
+    chip.addEventListener('click', () => {
+      if (chip.disabled) return;
+      state.selectedWord = state.selectedWord === word ? null : word;
+      renderWordBank();
+    });
+
+    chip.addEventListener('dragstart', (event) => {
+      event.dataTransfer.setData('text/plain', word);
+      event.dataTransfer.effectAllowed = 'move';
+      state.selectedWord = word;
+    });
+
+    els.wordBank.appendChild(chip);
+  });
+}
+
+function renderWorksheetSlots() {
+  document.querySelectorAll('.drop-slot').forEach((slot) => {
+    const slotNumber = Number(slot.dataset.slot);
+    const answer = state.worksheetAnswers[slotNumber];
+
+    slot.classList.remove('filled', 'correct', 'incorrect', 'drag-over');
+    slot.querySelectorAll('.slot-answer').forEach((node) => node.remove());
+
+    if (answer) {
+      const answerNode = document.createElement('span');
+      answerNode.className = 'slot-answer';
+      answerNode.textContent = answer;
+      slot.appendChild(answerNode);
+      slot.classList.add('filled');
+    }
+
+    slot.ondragover = (event) => {
+      event.preventDefault();
+      slot.classList.add('drag-over');
+    };
+
+    slot.ondragleave = () => {
+      slot.classList.remove('drag-over');
+    };
+
+    slot.ondrop = (event) => {
+      event.preventDefault();
+      slot.classList.remove('drag-over');
+      const word = event.dataTransfer.getData('text/plain');
+      placeWordInSlot(slotNumber, word);
+    };
+
+    slot.onclick = () => {
+      if (state.selectedWord) {
+        placeWordInSlot(slotNumber, state.selectedWord);
+        return;
+      }
+
+      if (state.worksheetAnswers[slotNumber]) {
+        delete state.worksheetAnswers[slotNumber];
+        renderWordBank();
+        renderWorksheetSlots();
+        updateWorksheetCounter();
+      }
+    };
+
+    slot.onkeydown = (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        slot.click();
+      }
+    };
+  });
+}
+
+function placeWordInSlot(slotNumber, word) {
+  if (!WORKSHEET_WORDS.includes(word)) return;
+
+  Object.keys(state.worksheetAnswers).forEach((key) => {
+    if (state.worksheetAnswers[key] === word) {
+      delete state.worksheetAnswers[key];
+    }
+  });
+
+  state.worksheetAnswers[slotNumber] = word;
+  state.selectedWord = null;
+
+  renderWordBank();
+  renderWorksheetSlots();
+  updateWorksheetCounter();
+
+  els.worksheetFeedback.hidden = true;
+}
+
+function updateWorksheetCounter() {
+  const count = Object.keys(state.worksheetAnswers).length;
+  els.worksheetFilled.textContent = `${count}/14`;
+}
+
+function checkWorksheet() {
+  const filledCount = Object.keys(state.worksheetAnswers).length;
+
+  document.querySelectorAll('.drop-slot').forEach((slot) => {
+    const slotNumber = Number(slot.dataset.slot);
+    const current = state.worksheetAnswers[slotNumber];
+
+    slot.classList.remove('correct', 'incorrect');
+
+    if (!current) return;
+
+    if (current === WORKSHEET_ANSWERS[slotNumber]) {
+      slot.classList.add('correct');
+    } else {
+      slot.classList.add('incorrect');
+    }
+  });
+
+  if (filledCount < 14) {
+    els.worksheetFeedback.hidden = false;
+    els.worksheetFeedback.className = 'worksheet-feedback try-again';
+    els.worksheetFeedback.textContent = `כמעט שם. שובצו ${filledCount} מתוך 14 מושגים. השלימו את כל המשבצות ונסו שוב.`;
+    return;
+  }
+
+  const incorrectSlots = Object.keys(WORKSHEET_ANSWERS).filter(
+    (slotNumber) => state.worksheetAnswers[slotNumber] !== WORKSHEET_ANSWERS[slotNumber]
+  );
+
+  if (incorrectSlots.length > 0) {
+    els.worksheetFeedback.hidden = false;
+    els.worksheetFeedback.className = 'worksheet-feedback try-again';
+    els.worksheetFeedback.textContent = `יש ${incorrectSlots.length} התאמות שכדאי לבדוק שוב. המשבצות מסומנות בצהוב, ואפשר ללחוץ עליהן כדי להחזיר את המילה למחסן.`;
+    return;
+  }
+
+  state.summaryCompleted = true;
+  state.score += 200;
+  updateHud();
+
+  els.worksheetFeedback.hidden = false;
+  els.worksheetFeedback.className = 'worksheet-feedback success';
+  els.worksheetFeedback.textContent = 'מדויק! כל 14 המושגים שובצו נכון. התחנה הושלמה ונוספו 200 נקודות.';
+
+  window.setTimeout(finishStation, 900);
+}
+
+function clearWorksheet() {
+  state.worksheetAnswers = {};
+  state.selectedWord = null;
+  renderWordBank();
+  renderWorksheetSlots();
+  updateWorksheetCounter();
+  els.worksheetFeedback.hidden = true;
+}
+
+function buildDownloadableSummary() {
+  const htmlContent = `<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>סיכום תחנה 1 – מערכת הנחלים של ישראל</title>
+<style>
+body{font-family:Arial,sans-serif;direction:rtl;max-width:900px;margin:40px auto;padding:0 24px;line-height:1.7;color:#173650}
+h1{border-bottom:4px solid #21739e;padding-bottom:12px}
+h2{color:#21739e;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.stats div{padding:14px;text-align:center;background:#eef7fb;border-radius:12px}
+strong{color:#14365e}
+@media print{body{margin:0;max-width:none}}
+</style>
+</head>
+<body>
+<h1>סיכום תחנה 1 – מערכת הנחלים של ישראל</h1>
+<div class="stats">
+<div>ניקוד<br><strong>${state.score}</strong></div>
+<div>רצף מרבי<br><strong>${state.maxStreak}</strong></div>
+<div>נחלים שהושלמו<br><strong>10/10</strong></div>
+</div>
+<h2>מערכת הנחלים</h2>
+<p>מערכת הנחלים של ארץ ישראל נקבעת במידה רבה על ידי הטופוגרפיה של השדרה ההררית המרכזית, המהווה את <strong>קו פרשת המים</strong>. הנחל מתחיל את דרכו ב<strong>מוצא הנחל</strong>, והמקום שבו הוא נשפך אל ים או אגם נקרא <strong>שפך הנחל</strong>. השטח שממנו מתנקזים המים אל ערוץ נחל אחד נקרא <strong>אגן ניקוז</strong>.</p>
+<h2>כיווני זרימה</h2>
+<ul>
+<li>נחלים הזורמים מערבה אל הים התיכון עוברים לרוב לאורך מדרון מתון וארוך.</li>
+<li>נחלים הזורמים מזרחה אל בקע הירדן יורדים לרוב במדרון תלול וקצר.</li>
+<li>נהר הירדן זורם מצפון לדרום, מן החרמון אל ים המלח.</li>
+</ul>
+<h2>סוגי נחלים</h2>
+<ul>
+<li><strong>נחל איתן:</strong> מים זורמים בו לאורך כל ימות השנה.</li>
+<li><strong>נחל אכזב:</strong> מים זורמים בו בעיקר לאחר ירידת גשמים.</li>
+</ul>
+<h2>זיהום ושיקום</h2>
+<p>נחלי ישראל סבלו מזיהום בעקבות הזרמת שפכים וביוב. רשות הניקוז והנחלים פועלת בשיתוף המשרד להגנת הסביבה לשיקום הנחלים ולהחזרת המערכת האקולוגית.</p>
+<h2>הנחלים שנחקרו</h2>
+<p>נחל קישון, נחל אלכסנדר, נחל דן, נחל חרמון (בניאס), נחל שניר (חצבאני), נחל סער, נחל תנינים, נחל שורק, נחל פארן ונחל דוד.</p>
+</body>
+</html>`;
+
+  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'סיכום-תחנה-1-מערכת-הנחלים.html';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+
 function finishStation() {
-  if (state.solved.length !== RIVERS.length) {
-    console.warn('ניסיון לסיים את התחנה לפני השלמת כל הנחלים.', state);
+  if (state.solved.length !== RIVERS.length || !state.summaryCompleted) {
+    console.warn('ניסיון לסיים את התחנה לפני השלמת כל הנחלים ודף הסיכום.', state);
     return;
   }
 
   state.stage = 'complete';
   els.namesStage.hidden = true;
   els.mapStage.hidden = true;
+  els.worksheetStage.hidden = true;
   els.completeStage.hidden = false;
   els.stepLabel.textContent = 'התחנה הושלמה';
   els.riddleText.textContent = 'כל עשרת הנחלים אותרו בהצלחה.';
@@ -441,6 +729,8 @@ function finishStation() {
 
   els.finalScore.textContent = state.score;
   els.finalStreak.textContent = state.maxStreak;
+  els.printScore.textContent = state.score;
+  els.printStreak.textContent = state.maxStreak;
 
   localStorage.setItem(
     'amitIsraelJourneyStation1',
@@ -449,6 +739,7 @@ function finishStation() {
       score: state.score,
       maxStreak: state.maxStreak,
       solved: [...state.solved],
+      worksheetCompleted: true,
       completedAt: new Date().toISOString()
     })
   );
@@ -470,12 +761,17 @@ function resetStation() {
     stage: 'name',
     solved: [],
     markers: [],
-    zoom: 1
+    zoom: 1,
+    worksheetAnswers: {},
+    selectedWord: null,
+    summaryCompleted: false
   });
 
   localStorage.removeItem('amitIsraelJourneyStation1');
 
+  els.worksheetStage.hidden = true;
   els.completeStage.hidden = true;
+  clearWorksheet();
   updateHud();
   loadQuestion();
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -518,11 +814,18 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+
+els.checkWorksheetBtn.addEventListener('click', checkWorksheet);
+els.clearWorksheetBtn.addEventListener('click', clearWorksheet);
+els.printSummaryBtn.addEventListener('click', () => window.print());
+els.downloadSummaryBtn.addEventListener('click', buildDownloadableSummary);
+
 els.amitLogo.addEventListener('error', () => {
   els.amitLogo.hidden = true;
   els.logoFallback.hidden = false;
 });
 
+els.worksheetStage.hidden = true;
 els.completeStage.hidden = true;
 els.mapStage.hidden = true;
 els.mapTaskCopy.hidden = true;
