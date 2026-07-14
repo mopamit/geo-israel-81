@@ -8,6 +8,7 @@ const RIVER_LIBRARY = [
     outletChoices: ['מפרץ חיפה והים התיכון', 'הכנרת', 'ים המלח'],
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
+    hitTolerance: 34,
     path: [[545,318],[520,330],[493,350],[468,364],[441,376],[420,388]]
   },
   {
@@ -19,6 +20,7 @@ const RIVER_LIBRARY = [
     outletChoices: ['הים התיכון ליד מכמורת', 'נהר הירדן', 'מפרץ אילת'],
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
+    hitTolerance: 34,
     path: [[455,653],[430,662],[405,669],[378,677],[350,687]]
   },
   {
@@ -30,7 +32,8 @@ const RIVER_LIBRARY = [
     outletChoices: ['נהר הירדן', 'הים התיכון', 'ים המלח'],
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
-    path: [[800,64],[793,91],[785,118],[778,150],[770,185]]
+    hitTolerance: 24,
+    path: [[785,58],[781,88],[776,118],[772,150],[768,182],[766,204]]
   },
   {
     id: 'banias',
@@ -41,7 +44,8 @@ const RIVER_LIBRARY = [
     outletChoices: ['נהר הירדן', 'הים התיכון', 'מפרץ אילת'],
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
-    path: [[864,90],[850,112],[834,137],[815,160],[790,185]]
+    hitTolerance: 22,
+    path: [[832,70],[828,96],[821,122],[812,148],[800,173],[788,196]]
   },
   {
     id: 'snir',
@@ -52,7 +56,8 @@ const RIVER_LIBRARY = [
     outletChoices: ['נהר הירדן', 'ים המלח', 'הים התיכון'],
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
-    path: [[754,41],[748,72],[744,108],[745,143],[754,181]]
+    hitTolerance: 22,
+    path: [[742,42],[739,74],[736,107],[736,140],[739,171],[744,198]]
   },
   {
     id: 'saar',
@@ -63,7 +68,8 @@ const RIVER_LIBRARY = [
     outletChoices: ['נחל חרמון ומשם לירדן', 'הים התיכון', 'ים המלח'],
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
-    path: [[905,175],[878,187],[850,198],[819,207],[790,215]]
+    hitTolerance: 20,
+    path: [[885,63],[883,92],[880,121],[875,148],[867,173],[853,196],[835,212]]
   },
   {
     id: 'taninim',
@@ -74,6 +80,7 @@ const RIVER_LIBRARY = [
     outletChoices: ['הים התיכון ליד ג׳סר א־זרקא', 'הכנרת', 'ים המלח'],
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
+    hitTolerance: 34,
     path: [[493,529],[462,538],[430,548],[397,559],[365,570]]
   },
   {
@@ -85,6 +92,7 @@ const RIVER_LIBRARY = [
     outletChoices: ['הים התיכון ליד פלמחים', 'נהר הירדן', 'ים המלח'],
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
+    hitTolerance: 34,
     path: [[581,944],[545,954],[510,966],[475,981],[438,996],[400,1012],[360,1030]]
   },
   {
@@ -96,6 +104,7 @@ const RIVER_LIBRARY = [
     outletChoices: ['הערבה', 'הים התיכון', 'הכנרת'],
     basin: 'אגן ים המלח והערבה',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
+    hitTolerance: 36,
     path: [[528,1722],[560,1701],[595,1679],[630,1654],[670,1626]]
   },
   {
@@ -107,13 +116,14 @@ const RIVER_LIBRARY = [
     outletChoices: ['ים המלח', 'הים התיכון', 'הכנרת'],
     basin: 'אגן ים המלח והערבה',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
+    hitTolerance: 30,
     path: [[707,1227],[696,1241],[684,1254],[674,1268],[665,1284]]
   }
 ];
 
 const REQUIRED_COUNT = 3;
 const MAP_VIEWBOX = { width: 1000, height: 2600 };
-const STORAGE_KEY = 'amitRiversStationV5';
+const STORAGE_KEY = 'amitRiversStationV6';
 
 const WORKSHEET_ANSWERS = {
   1: 'קו פרשת המים',
@@ -437,7 +447,7 @@ function handleMapClick(event) {
   const click = screenClickToViewBox(event);
   positionClickMarker(click);
 
-  const tolerance = 42;
+  const tolerance = state.currentRiver.hitTolerance || 34;
   const distance = distanceToPolyline(click, state.currentRiver.path);
 
   if (distance <= tolerance) {
