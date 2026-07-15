@@ -121,12 +121,41 @@
         <div class="decision-card">
           <div class="decision-icon">✓</div>
           <h2>שלוש ערי החובה הושלמו</h2>
-          <p>אפשר לסיים את התחנה ולקבל את דף הסיכום, או להמשיך לעיר בונוס נוספת.</p>
+          <p>אפשר לעבור למפת החקר של כל 12 הערים, או להמשיך לעיר בונוס נוספת.</p>
           <div class="decision-actions">
-            <button class="primary-button" id="finishStationBtn" type="button">סיום התחנה</button>
+            <button class="primary-button" id="finishStationBtn" type="button">מעבר למפת החקר</button>
             <button class="bonus-button" id="bonusBtn" type="button">עיר בונוס נוספת</button>
           </div>
           <p class="remaining-note" id="remainingBonusText"></p>
+        </div>
+      </section>
+
+      <section class="explore-stage" id="exploreStage" hidden>
+        <div class="section-heading explore-heading">
+          <div>
+            <span>מפת חקר</span>
+            <h2>12 בירות חבלי הארץ</h2>
+          </div>
+          <p>כל 12 הערים מופיעות כעת על המפה. לחצו על דגל אדום כדי לפתוח תעודת זהות עירונית.</p>
+        </div>
+
+        <div class="explore-map-wrap">
+          <div class="map-toolbar">
+            <button id="exploreZoomInBtn" type="button">＋ הגדלה</button>
+            <button id="exploreZoomOutBtn" type="button">− הקטנה</button>
+            <button id="exploreResetMapBtn" type="button">איפוס תצוגה</button>
+          </div>
+          <div class="map-viewport explore-map-viewport" id="exploreMapViewport">
+            <div class="map-canvas" id="exploreMapCanvas">
+              <img src="../assets/maps/israel-regions-map.png" alt="מפת חקר של בירות חבלי הארץ" id="exploreRegionsMap">
+              <div class="map-flags explore-flags" id="exploreFlags"></div>
+            </div>
+          </div>
+          <p class="map-note">דגל כהה מסמן עיר שפתרתם בעצמכם. דגל בהיר מסמן עיר שנחשפה במפת החקר.</p>
+        </div>
+
+        <div class="explore-actions">
+          <button class="primary-button" id="completeExplorationBtn" type="button">סיום התחנה והורדת הסיכום</button>
         </div>
       </section>
 
@@ -162,8 +191,22 @@
       <li>לוחצים על מיקומה במפה.</li>
       <li>בוחרים את חבל הארץ.</li>
       <li>בוחרים שלושה שירותים או תפקידים אזוריים מתאימים.</li>
-      <li>אחרי שלוש ערים אפשר לסיים או להמשיך לבונוס.</li>
+      <li>אחרי שלוש ערים אפשר להמשיך לבונוס או לפתוח מפת חקר של כל 12 הערים.</li><li>במפת החקר לחצו על כל דגל כדי לראות תעודת זהות עירונית.</li>
     </ol>
+  </section>
+</div>
+
+<div class="modal-backdrop" id="cityInfoModal" hidden>
+  <section class="modal city-info-modal" role="dialog" aria-modal="true" aria-labelledby="cityInfoName">
+    <button class="modal-close" id="closeCityInfoBtn" type="button" aria-label="סגירה">×</button>
+    <span class="city-info-type" id="cityInfoType"></span>
+    <h2 id="cityInfoName"></h2>
+    <dl class="city-info-list">
+      <div><dt>חבל הארץ</dt><dd id="cityInfoRegion"></dd></div>
+      <div><dt>תפקיד אזורי</dt><dd id="cityInfoRole"></dd></div>
+      <div><dt>מאפיין ייחודי</dt><dd id="cityInfoFeature"></dd></div>
+      <div><dt>שירותים מרכזיים</dt><dd id="cityInfoServices"></dd></div>
+    </dl>
   </section>
 </div>
 <script src="../js/regions.js"></script>
