@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תחנה 2 - בירות חבלי הארץ</title>
+  <meta name="description" content="תחנת למידה אינטראקטיבית על ערים מרכזיות בחבלי הארץ בישראל">
+  <link rel="stylesheet" href="../css/regions.css">
+</head>
+<body>
+<header class="station-header">
+  <div class="brand-area">
+    <img src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000" alt="לוגו רשת אמית" class="amit-logo" id="amitLogo">
+    <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
+    <img src="../assets/icons/regions.svg" alt="" class="station-symbol" aria-hidden="true">
+    <div class="brand-copy">
+      <strong>בירות חבלי הארץ</strong>
+      <span>תחנה 2 - התחנה האדומה</span>
+    </div>
+  </div>
+  <nav class="header-actions" aria-label="פעולות תחנה">
+    <a class="round-action" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית"><span>⌂</span></a>
+    <button class="round-action" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות"><span>?</span></button>
+    <button class="round-action" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש"><span>↻</span></button>
+  </nav>
+</header>
+
+<main>
+  <section class="hud" aria-label="מצב המשחק">
+    <div class="hud-item"><span>🏆 ניקוד</span><strong id="scoreValue">0</strong></div>
+    <div class="hud-item"><span>🔥 רצף</span><strong id="streakValue">0</strong></div>
+    <div class="hud-item"><span>🚩 ערים שהושלמו</span><strong id="completedValue">0/12</strong></div>
+    <div class="hud-progress">
+      <div class="progress-label"><span>מסלול חובה</span><strong id="requiredValue">0/3</strong></div>
+      <div class="progress-track"><span id="progressBar"></span></div>
+    </div>
+  </section>
+
+  <section class="station-intro">
+    <div>
+      <span class="station-chip">תחנה אדומה</span>
+      <h1>מרכזי חבלי הארץ</h1>
+      <p>זהו לפחות שלוש ערים מחלקים שונים של הארץ, מקמו אותן על המפה וגלו מדוע הן משמשות מרכזי שירותים אזוריים.</p>
+    </div>
+    <img src="../assets/icons/regions.svg" alt="איור עיר" class="intro-icon">
+  </section>
+
+  <section class="game-layout">
+    <aside class="challenge-panel">
+      <div class="phase-chip" id="phaseChip">שלב א׳ - זיהוי העיר</div>
+      <p class="challenge-count">משימה <strong id="challengeNumber">1</strong> <span id="challengeType">מתוך 3 משימות החובה</span></p>
+      <article class="riddle-card">
+        <span class="question-mark" aria-hidden="true">?</span>
+        <h2>איזו עיר אני?</h2>
+        <p id="riddleText"></p>
+      </article>
+      <div class="feedback" id="feedback" hidden aria-live="polite"></div>
+      <button class="hint-button" id="hintBtn" type="button" hidden>💡 הצגת רמז</button>
+
+      <section class="map-instructions" id="mapInstructions" hidden>
+        <h2>מקמו את העיר</h2>
+        <p>לחצו על מיקומה של <strong id="currentCityName"></strong> במפה.</p>
+      </section>
+
+      <section class="choice-step" id="regionStep" hidden>
+        <h2>לאיזה חבל ארץ היא שייכת?</h2>
+        <div class="choice-list" id="regionChoices"></div>
+      </section>
+
+      <section class="services-step" id="servicesStep" hidden>
+        <h2>מה הופך אותה למרכז אזורי?</h2>
+        <p>בחרו את שלושת התפקידים המתאימים לעיר.</p>
+        <div class="services-list" id="servicesChoices"></div>
+        <button class="check-services" id="checkServicesBtn" type="button">בדיקת הבחירה</button>
+      </section>
+    </aside>
+
+    <section class="activity-panel">
+      <section id="nameStage">
+        <div class="section-heading">
+          <div><span>שלב א׳</span><h2>בחרו את שם העיר</h2></div>
+          <p>כל הערים שעדיין לא שימשו מוצגות בסדר אקראי.</p>
+        </div>
+        <div class="city-options" id="cityOptions"></div>
+      </section>
+
+      <section id="mapStage" hidden>
+        <div class="section-heading">
+          <div><span>שלב ב׳</span><h2>מקמו את העיר במפה</h2></div>
+          <p>הגדילו את המפה ולחצו באזור העיר. אין צורך לפגוע בפיקסל מדויק.</p>
+        </div>
+        <div class="map-toolbar">
+          <button id="zoomInBtn" type="button">＋ הגדלה</button>
+          <button id="zoomOutBtn" type="button">− הקטנה</button>
+          <button id="resetMapBtn" type="button">איפוס תצוגה</button>
+        </div>
+        <div class="map-viewport" id="mapViewport">
+          <div class="map-canvas" id="mapCanvas">
+            <img src="../assets/maps/israel-regions-map.png" alt="מפת ארץ ישראל בחלוקה לחבלי ארץ" id="regionsMap">
+            <div class="map-flags" id="mapFlags"></div>
+            <div class="click-marker" id="clickMarker" hidden></div>
+          </div>
+        </div>
+        <p class="map-note">לאחר מיקום נכון יופיע דגל אדום ממוספר.</p>
+      </section>
+
+      <section class="passport-stage" id="passportStage" hidden>
+        <article class="passport-card">
+          <div class="passport-top"><span>כרטיס זהות עירוני</span><strong id="passportType"></strong></div>
+          <h2 id="passportCity"></h2>
+          <dl>
+            <div><dt>חבל הארץ</dt><dd id="passportRegion"></dd></div>
+            <div><dt>תפקיד אזורי</dt><dd id="passportRole"></dd></div>
+            <div><dt>מאפיין ייחודי</dt><dd id="passportFeature"></dd></div>
+          </dl>
+          <button class="primary-button" id="continueBtn" type="button">המשך במסע</button>
+        </article>
+      </section>
+
+      <section class="decision-stage" id="decisionStage" hidden>
+        <div class="decision-card">
+          <div class="decision-icon">✓</div>
+          <h2>שלוש ערי החובה הושלמו</h2>
+          <p>אפשר לסיים את התחנה ולקבל את דף הסיכום, או להמשיך לעיר בונוס נוספת.</p>
+          <div class="decision-actions">
+            <button class="primary-button" id="finishStationBtn" type="button">סיום התחנה</button>
+            <button class="bonus-button" id="bonusBtn" type="button">עיר בונוס נוספת</button>
+          </div>
+          <p class="remaining-note" id="remainingBonusText"></p>
+        </div>
+      </section>
+
+      <section class="complete-stage" id="completeStage" hidden>
+        <div class="stamp">התחנה הושלמה</div>
+        <h2>סיימתם את תחנת בירות חבלי הארץ</h2>
+        <p>כעת ניתן להוריד דף סיכום הכולל את 12 הערים, חבלי הארץ, התפקידים האזוריים והמושגים המרכזיים.</p>
+        <div class="completion-stats">
+          <div><span>ערים שהושלמו</span><strong id="finalCities">3</strong></div>
+          <div><span>ערי בונוס</span><strong id="finalBonus">0</strong></div>
+          <div><span>ניקוד</span><strong id="finalScore">0</strong></div>
+        </div>
+        <div class="completion-actions">
+          <a class="primary-button" href="../assets/docs/regional-capitals-summary.pdf" download="סיכום בירות חבלי הארץ.pdf">הורדת דף הסיכום PDF</a>
+          <a class="route-button" href="../index.html">חזרה למסלול הראשי</a>
+        </div>
+      </section>
+
+      <section class="collection-panel" id="collectionPanel">
+        <div class="collection-heading"><h2>כרטיסי הערים שאספתם</h2><span id="collectionCount">0</span></div>
+        <div class="collection-grid" id="collectionGrid"><p class="empty-collection">הכרטיס הראשון יופיע לאחר השלמת עיר.</p></div>
+      </section>
+    </section>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="instructionsModal" hidden>
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+    <button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button>
+    <h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2>
+    <ol>
+      <li>מזהים את העיר מתוך כל האפשרויות שנותרו.</li>
+      <li>לוחצים על מיקומה במפה.</li>
+      <li>בוחרים את חבל הארץ.</li>
+      <li>בוחרים שלושה שירותים או תפקידים אזוריים מתאימים.</li>
+      <li>אחרי שלוש ערים אפשר לסיים או להמשיך לבונוס.</li>
+    </ol>
+  </section>
+</div>
+<script src="../js/regions.js"></script>
+</body>
+</html>
