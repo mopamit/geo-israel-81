@@ -59,8 +59,8 @@ const CITY_LIBRARY = [
     id:'afula', name:'עפולה', zone:'north',
     riddle:'הכינוי שלי הוא "בירת העמק", ואני שוכנת ממש בלב עמק יזרעאל הפורה.',
     hint:'אני משמשת מרכז שירותים ליישובי עמק יזרעאל.',
-    position:{x:66.237,y:16.553},
-    hitEllipse:{x:66.237,y:16.553,rx:2.062,ry:0.732},
+    position:{x:63.015,y:18.848},
+    hitEllipse:{x:63.015,y:18.848,rx:2.062,ry:0.781},
     region:'עמק יזרעאל',
     regionChoices:['עמק יזרעאל','הרי יהודה','הערבה'],
     role:'צומת תחבורתי ומסחרי המשרת את יישובי העמק',
@@ -101,8 +101,8 @@ const CITY_LIBRARY = [
     id:'nof-hagalil', name:'נוף הגליל', zone:'north',
     riddle:'אני עיר מרכזית, דינמית ומתפתחת, הממוקמת באזור הגליל התחתון.',
     hint:'שמי החדש מחליף את השם נצרת עילית.',
-    position:{x:63.015,y:18.848},
-    hitEllipse:{x:63.015,y:18.848,rx:2.062,ry:0.781},
+    position:{x:66.237,y:16.553},
+    hitEllipse:{x:66.237,y:16.553,rx:2.062,ry:0.732},
     region:'הגליל התחתון',
     regionChoices:['הגליל התחתון','אגן הכנרת','הערבה'],
     role:'מרכז כלכלי ומנהלי מרכזי בגליל התחתון',
@@ -170,17 +170,17 @@ const CITY_LIBRARY = [
 ];
 
 const REQUIRED_COUNT=3;
-const STORAGE_KEY='amitRegionalCapitalsV4';
-const state={requiredSet:[],queue:[],current:null,completedIds:[],requiredCompleted:0,bonusCompleted:0,score:0,streak:0,maxStreak:0,attempts:0,stage:'name',zoom:1,exploreZoom:1,selectedServices:[]};
+const STORAGE_KEY='amitRegionalCapitalsV5';
+const state={requiredSet:[],queue:[],current:null,completedIds:[],requiredCompleted:0,bonusCompleted:0,score:0,streak:0,maxStreak:0,attempts:0,stage:'name',zoom:1,exploreZoom:1,mapFitWidth:0,exploreFitWidth:0,suppressMapClickUntil:0,selectedServices:[]};
 const els={
-  scoreValue:document.getElementById('scoreValue'),streakValue:document.getElementById('streakValue'),completedValue:document.getElementById('completedValue'),requiredValue:document.getElementById('requiredValue'),progressBar:document.getElementById('progressBar'),phaseChip:document.getElementById('phaseChip'),challengeNumber:document.getElementById('challengeNumber'),challengeType:document.getElementById('challengeType'),riddleText:document.getElementById('riddleText'),feedback:document.getElementById('feedback'),hintBtn:document.getElementById('hintBtn'),mapInstructions:document.getElementById('mapInstructions'),currentCityName:document.getElementById('currentCityName'),regionStep:document.getElementById('regionStep'),regionChoices:document.getElementById('regionChoices'),servicesStep:document.getElementById('servicesStep'),servicesChoices:document.getElementById('servicesChoices'),checkServicesBtn:document.getElementById('checkServicesBtn'),nameStage:document.getElementById('nameStage'),cityOptions:document.getElementById('cityOptions'),mapStage:document.getElementById('mapStage'),mapCanvas:document.getElementById('mapCanvas'),mapViewport:document.getElementById('mapViewport'),regionsMap:document.getElementById('regionsMap'),mapFlags:document.getElementById('mapFlags'),clickMarker:document.getElementById('clickMarker'),passportStage:document.getElementById('passportStage'),passportType:document.getElementById('passportType'),passportCity:document.getElementById('passportCity'),passportRegion:document.getElementById('passportRegion'),passportRole:document.getElementById('passportRole'),passportFeature:document.getElementById('passportFeature'),continueBtn:document.getElementById('continueBtn'),decisionStage:document.getElementById('decisionStage'),finishStationBtn:document.getElementById('finishStationBtn'),bonusBtn:document.getElementById('bonusBtn'),remainingBonusText:document.getElementById('remainingBonusText'),exploreStage:document.getElementById('exploreStage'),exploreFlags:document.getElementById('exploreFlags'),exploreMapCanvas:document.getElementById('exploreMapCanvas'),exploreMapViewport:document.getElementById('exploreMapViewport'),exploreZoomInBtn:document.getElementById('exploreZoomInBtn'),exploreZoomOutBtn:document.getElementById('exploreZoomOutBtn'),exploreResetMapBtn:document.getElementById('exploreResetMapBtn'),completeExplorationBtn:document.getElementById('completeExplorationBtn'),completeStage:document.getElementById('completeStage'),finalCities:document.getElementById('finalCities'),finalBonus:document.getElementById('finalBonus'),finalScore:document.getElementById('finalScore'),collectionCount:document.getElementById('collectionCount'),collectionGrid:document.getElementById('collectionGrid'),zoomInBtn:document.getElementById('zoomInBtn'),zoomOutBtn:document.getElementById('zoomOutBtn'),resetMapBtn:document.getElementById('resetMapBtn'),instructionsBtn:document.getElementById('instructionsBtn'),closeInstructionsBtn:document.getElementById('closeInstructionsBtn'),instructionsModal:document.getElementById('instructionsModal'),cityInfoModal:document.getElementById('cityInfoModal'),closeCityInfoBtn:document.getElementById('closeCityInfoBtn'),cityInfoType:document.getElementById('cityInfoType'),cityInfoName:document.getElementById('cityInfoName'),cityInfoRegion:document.getElementById('cityInfoRegion'),cityInfoRole:document.getElementById('cityInfoRole'),cityInfoFeature:document.getElementById('cityInfoFeature'),cityInfoServices:document.getElementById('cityInfoServices'),resetBtn:document.getElementById('resetBtn'),amitLogo:document.getElementById('amitLogo'),logoFallback:document.getElementById('logoFallback')
+  scoreValue:document.getElementById('scoreValue'),streakValue:document.getElementById('streakValue'),completedValue:document.getElementById('completedValue'),requiredValue:document.getElementById('requiredValue'),progressBar:document.getElementById('progressBar'),phaseChip:document.getElementById('phaseChip'),challengeNumber:document.getElementById('challengeNumber'),challengeType:document.getElementById('challengeType'),riddleText:document.getElementById('riddleText'),feedback:document.getElementById('feedback'),hintBtn:document.getElementById('hintBtn'),mapInstructions:document.getElementById('mapInstructions'),currentCityName:document.getElementById('currentCityName'),regionStep:document.getElementById('regionStep'),regionChoices:document.getElementById('regionChoices'),servicesStep:document.getElementById('servicesStep'),servicesChoices:document.getElementById('servicesChoices'),checkServicesBtn:document.getElementById('checkServicesBtn'),nameStage:document.getElementById('nameStage'),cityOptions:document.getElementById('cityOptions'),mapStage:document.getElementById('mapStage'),mapCanvas:document.getElementById('mapCanvas'),mapViewport:document.getElementById('mapViewport'),regionsMap:document.getElementById('regionsMap'),mapFlags:document.getElementById('mapFlags'),clickMarker:document.getElementById('clickMarker'),passportStage:document.getElementById('passportStage'),passportType:document.getElementById('passportType'),passportCity:document.getElementById('passportCity'),passportRegion:document.getElementById('passportRegion'),passportRole:document.getElementById('passportRole'),passportFeature:document.getElementById('passportFeature'),continueBtn:document.getElementById('continueBtn'),decisionStage:document.getElementById('decisionStage'),finishStationBtn:document.getElementById('finishStationBtn'),bonusBtn:document.getElementById('bonusBtn'),remainingBonusText:document.getElementById('remainingBonusText'),exploreStage:document.getElementById('exploreStage'),exploreFlags:document.getElementById('exploreFlags'),exploreMapCanvas:document.getElementById('exploreMapCanvas'),exploreMapViewport:document.getElementById('exploreMapViewport'),exploreFitMapBtn:document.getElementById('exploreFitMapBtn'),exploreZoomInBtn:document.getElementById('exploreZoomInBtn'),exploreZoomOutBtn:document.getElementById('exploreZoomOutBtn'),exploreResetMapBtn:document.getElementById('exploreResetMapBtn'),completeExplorationBtn:document.getElementById('completeExplorationBtn'),completeStage:document.getElementById('completeStage'),finalCities:document.getElementById('finalCities'),finalBonus:document.getElementById('finalBonus'),finalScore:document.getElementById('finalScore'),collectionCount:document.getElementById('collectionCount'),collectionGrid:document.getElementById('collectionGrid'),fitMapBtn:document.getElementById('fitMapBtn'),zoomInBtn:document.getElementById('zoomInBtn'),zoomOutBtn:document.getElementById('zoomOutBtn'),resetMapBtn:document.getElementById('resetMapBtn'),instructionsBtn:document.getElementById('instructionsBtn'),closeInstructionsBtn:document.getElementById('closeInstructionsBtn'),instructionsModal:document.getElementById('instructionsModal'),cityInfoModal:document.getElementById('cityInfoModal'),closeCityInfoBtn:document.getElementById('closeCityInfoBtn'),cityInfoType:document.getElementById('cityInfoType'),cityInfoName:document.getElementById('cityInfoName'),cityInfoRegion:document.getElementById('cityInfoRegion'),cityInfoRole:document.getElementById('cityInfoRole'),cityInfoFeature:document.getElementById('cityInfoFeature'),cityInfoServices:document.getElementById('cityInfoServices'),resetBtn:document.getElementById('resetBtn'),amitLogo:document.getElementById('amitLogo'),logoFallback:document.getElementById('logoFallback')
 };
 
 function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function getCity(id){return CITY_LIBRARY.find(c=>c.id===id)}
 function remainingCities(){return CITY_LIBRARY.filter(c=>!state.completedIds.includes(c.id))}
 function chooseRequiredCities(){const north=shuffle(CITY_LIBRARY.filter(c=>c.zone==='north'))[0];const center=shuffle(CITY_LIBRARY.filter(c=>c.zone==='center'))[0];const south=shuffle(CITY_LIBRARY.filter(c=>c.zone==='south'))[0];return shuffle([north.id,center.id,south.id])}
-function initialize(){Object.assign(state,{requiredSet:chooseRequiredCities(),queue:[],current:null,completedIds:[],requiredCompleted:0,bonusCompleted:0,score:0,streak:0,maxStreak:0,attempts:0,stage:'name',zoom:1,selectedServices:[]});state.queue=[...state.requiredSet];localStorage.removeItem(STORAGE_KEY);loadNextCity();updateHud();renderCollection()}
+function initialize(){Object.assign(state,{requiredSet:chooseRequiredCities(),queue:[],current:null,completedIds:[],requiredCompleted:0,bonusCompleted:0,score:0,streak:0,maxStreak:0,attempts:0,stage:'name',zoom:1,exploreZoom:1,mapFitWidth:0,exploreFitWidth:0,suppressMapClickUntil:0,selectedServices:[]});state.queue=[...state.requiredSet];localStorage.removeItem(STORAGE_KEY);loadNextCity();updateHud();renderCollection()}
 function updateHud(){els.scoreValue.textContent=state.score;els.streakValue.textContent=state.streak;els.completedValue.textContent=`${state.completedIds.length}/12`;els.requiredValue.textContent=`${Math.min(state.requiredCompleted,3)}/3`;els.progressBar.style.width=`${Math.min(state.requiredCompleted/3,1)*100}%`}
 function showFeedback(text,type){els.feedback.hidden=false;els.feedback.className=`feedback ${type}`;els.feedback.textContent=text}
 function clearFeedback(){els.feedback.hidden=true;els.feedback.className='feedback';els.feedback.textContent=''}
@@ -189,8 +189,8 @@ function resetSidebar(){els.mapInstructions.hidden=true;els.regionStep.hidden=tr
 function loadNextCity(){if(!state.queue.length){showDecision();return}state.current=getCity(state.queue.shift());state.stage='name';state.attempts=0;state.selectedServices=[];hideStages();els.nameStage.hidden=false;resetSidebar();els.phaseChip.textContent='שלב א׳ - זיהוי העיר';els.challengeNumber.textContent=state.completedIds.length+1;els.challengeType.textContent=state.requiredCompleted<3?'מתוך 3 משימות החובה':'עיר בונוס';els.riddleText.textContent=state.current.riddle;renderCityOptions();renderFlags();updateHud()}
 function renderCityOptions(){els.cityOptions.innerHTML='';shuffle(remainingCities()).forEach(city=>{const b=document.createElement('button');b.type='button';b.className='city-option';b.textContent=city.name;b.addEventListener('click',()=>chooseCity(city,b));els.cityOptions.appendChild(b)})}
 function chooseCity(city,button){if(state.stage!=='name')return;state.attempts++;if(city.id===state.current.id){const earned=state.attempts===1?100:50;state.score+=earned;state.streak++;state.maxStreak=Math.max(state.maxStreak,state.streak);showFeedback(`מדויק! זיהיתם את ${city.name}. נוספו ${earned} נקודות.`,'success');updateHud();setTimeout(showMapStage,600)}else{state.streak=0;updateHud();button.classList.add('wrong');setTimeout(()=>button.classList.remove('wrong'),400);showFeedback('כמעט שם. חזרו לרמזים על המיקום, הכינוי והמאפיין הייחודי של העיר.','try-again');els.hintBtn.hidden=false}}
-function showMapStage(){state.stage='map';hideStages();els.mapStage.hidden=false;els.phaseChip.textContent='שלב ב׳ - מיקום במפה';els.mapInstructions.hidden=false;els.regionStep.hidden=true;els.servicesStep.hidden=true;els.currentCityName.textContent=state.current.name;els.hintBtn.hidden=true;els.clickMarker.hidden=true;clearFeedback();setZoom(1);els.mapViewport.scrollTop=0;els.mapViewport.scrollLeft=0}
-function handleMapClick(event){if(state.stage!=='map')return;const r=els.regionsMap.getBoundingClientRect();const x=((event.clientX-r.left)/r.width)*100;const y=((event.clientY-r.top)/r.height)*100;els.clickMarker.hidden=false;els.clickMarker.style.left=`${x}%`;els.clickMarker.style.top=`${y}%`;const area=state.current.hitEllipse;const inside=area?Math.pow((x-area.x)/area.rx,2)+Math.pow((y-area.y)/area.ry,2)<=1:false;if(inside){state.score+=50;state.streak++;state.maxStreak=Math.max(state.maxStreak,state.streak);state.stage='region';showFeedback(`המיקום מתאים. ${state.current.name} סומנה בדגל אדום.`,'success');renderCurrentFlag();showRegionStep();updateHud()}else{state.streak=0;updateHud();showFeedback('הסימון נקלט, אך אינו נמצא בתוך האזור הכחול שהוגדר סביב העיר. הגדילו את המפה ולחצו על העיר עצמה.','try-again');els.hintBtn.hidden=false}}
+function showMapStage(){state.stage='map';hideStages();els.mapStage.hidden=false;els.phaseChip.textContent='שלב ב׳ - מיקום במפה';els.mapInstructions.hidden=false;els.regionStep.hidden=true;els.servicesStep.hidden=true;els.currentCityName.textContent=state.current.name;els.hintBtn.hidden=true;els.clickMarker.hidden=true;clearFeedback();requestAnimationFrame(()=>fitWholeMap('task'))}
+function handleMapClick(event){if(state.stage!=='map'||Date.now()<state.suppressMapClickUntil)return;const r=els.regionsMap.getBoundingClientRect();const x=((event.clientX-r.left)/r.width)*100;const y=((event.clientY-r.top)/r.height)*100;els.clickMarker.hidden=false;els.clickMarker.style.left=`${x}%`;els.clickMarker.style.top=`${y}%`;const area=state.current.hitEllipse;const inside=area?Math.pow((x-area.x)/area.rx,2)+Math.pow((y-area.y)/area.ry,2)<=1:false;if(inside){state.score+=50;state.streak++;state.maxStreak=Math.max(state.maxStreak,state.streak);state.stage='region';showFeedback(`המיקום מתאים. ${state.current.name} סומנה בדגל אדום.`,'success');renderCurrentFlag();showRegionStep();updateHud()}else{state.streak=0;updateHud();showFeedback('הסימון נקלט, אך אינו נמצא בתוך האזור הכחול שהוגדר סביב העיר. הגדילו את המפה ולחצו על העיר עצמה.','try-again');els.hintBtn.hidden=false}}
 function renderCurrentFlag(){if(document.getElementById(`flag-${state.current.id}`))return;const flag=document.createElement('div');flag.className='city-flag';flag.id=`flag-${state.current.id}`;flag.style.left=`${state.current.position.x}%`;flag.style.top=`${state.current.position.y}%`;const span=document.createElement('span');span.textContent=state.completedIds.length+1;flag.appendChild(span);els.mapFlags.appendChild(flag)}
 function renderFlags(){els.mapFlags.innerHTML='';state.completedIds.forEach((id,index)=>{const city=getCity(id);const flag=document.createElement('div');flag.className='city-flag';flag.id=`flag-${city.id}`;flag.style.left=`${city.position.x}%`;flag.style.top=`${city.position.y}%`;const span=document.createElement('span');span.textContent=index+1;flag.appendChild(span);els.mapFlags.appendChild(flag)})}
 function showRegionStep(){els.phaseChip.textContent='שלב ג׳ - חבל הארץ';els.regionStep.hidden=false;els.regionChoices.innerHTML='';shuffle(state.current.regionChoices).forEach(choice=>{const b=document.createElement('button');b.type='button';b.className='choice-button';b.textContent=choice;b.addEventListener('click',()=>chooseRegion(choice,b));els.regionChoices.appendChild(b)})}
@@ -201,16 +201,16 @@ function showPassport(){state.stage='passport';hideStages();els.passportStage.hi
 function continueAfterPassport(){if(state.requiredCompleted>=3)showDecision();else loadNextCity()}
 function showDecision(){state.stage='decision';hideStages();els.decisionStage.hidden=false;resetSidebar();els.phaseChip.textContent='בחירת המשך';els.riddleText.textContent='שלוש ערי החובה הושלמו.';const n=remainingCities().length;els.remainingBonusText.textContent=n?`נותרו ${n} ערים זמינות לבונוס.`:'השלמתם את כל 12 הערים.';els.bonusBtn.hidden=n===0}
 function startBonus(){const choices=remainingCities();if(!choices.length){finishStation();return}state.queue=[shuffle(choices)[0].id];loadNextCity()}
-function showExploration(){state.stage='explore';hideStages();els.exploreStage.hidden=false;resetSidebar();els.phaseChip.textContent='מפת חקר';els.riddleText.textContent='לחצו על כל אחד מ-12 הדגלים כדי להכיר את העיר.';state.exploreZoom=1;els.exploreMapCanvas.style.width='100%';els.exploreMapViewport.scrollTop=0;els.exploreMapViewport.scrollLeft=0;renderExploreFlags()}
+function showExploration(){state.stage='explore';hideStages();els.exploreStage.hidden=false;resetSidebar();els.phaseChip.textContent='מפת חקר';els.riddleText.textContent='לחצו על כל אחד מ-12 הדגלים כדי להכיר את העיר.';renderExploreFlags();requestAnimationFrame(()=>fitWholeMap('explore'))}
 const OFFICIAL_CITY_NUMBERS={
   'jerusalem':1,
   'tel-aviv':2,
   'haifa':3,
   'beer-sheva':4,
-  'nof-hagalil':5,
+  'afula':5,
   'katzrin':6,
   'safed':7,
-  'afula':8,
+  'nof-hagalil':8,
   'tiberias':9,
   'eilat':10,
   'ariel':11,
@@ -219,20 +219,82 @@ const OFFICIAL_CITY_NUMBERS={
 
 function renderExploreFlags(){els.exploreFlags.innerHTML='';CITY_LIBRARY.forEach(city=>{const flag=document.createElement('button');flag.type='button';flag.className=`city-flag explore-city-flag ${state.completedIds.includes(city.id)?'solved':'revealed'}`;flag.style.left=`${city.position.x}%`;flag.style.top=`${city.position.y}%`;flag.setAttribute('aria-label',`פתיחת תעודת הזהות של ${city.name}`);const span=document.createElement('span');span.textContent=OFFICIAL_CITY_NUMBERS[city.id];flag.appendChild(span);flag.addEventListener('click',event=>{event.stopPropagation();openCityInfo(city)});els.exploreFlags.appendChild(flag)})}
 function openCityInfo(city){els.cityInfoType.textContent=city.type;els.cityInfoName.textContent=city.name;els.cityInfoRegion.textContent=city.region;els.cityInfoRole.textContent=city.role;els.cityInfoFeature.textContent=city.feature;els.cityInfoServices.textContent=city.services.join(' • ');els.cityInfoModal.hidden=false}
-function setExploreZoom(z){state.exploreZoom=Math.max(1,Math.min(2.5,z));els.exploreMapCanvas.style.width=`${state.exploreZoom*100}%`}
+function getFitWidth(viewport,image){
+  if(!image.naturalWidth||!image.naturalHeight)return Math.max(240,viewport.clientWidth*.36);
+  const byHeight=(viewport.clientHeight-8)*(image.naturalWidth/image.naturalHeight);
+  return Math.max(220,Math.min(viewport.clientWidth-8,byHeight));
+}
+function centerViewport(viewport){
+  viewport.scrollLeft=Math.max(0,(viewport.scrollWidth-viewport.clientWidth)/2);
+  viewport.scrollTop=Math.max(0,(viewport.scrollHeight-viewport.clientHeight)/2);
+}
+function fitWholeMap(kind){
+  const isExplore=kind==='explore';
+  const viewport=isExplore?els.exploreMapViewport:els.mapViewport;
+  const canvas=isExplore?els.exploreMapCanvas:els.mapCanvas;
+  const image=isExplore?document.getElementById('exploreRegionsMap'):els.regionsMap;
+  const width=getFitWidth(viewport,image);
+  if(isExplore){state.exploreFitWidth=width;state.exploreZoom=1}else{state.mapFitWidth=width;state.zoom=1}
+  canvas.style.width=`${width}px`;
+  requestAnimationFrame(()=>centerViewport(viewport));
+}
+function setExploreZoom(z){
+  state.exploreZoom=Math.max(1,Math.min(5,z));
+  const base=state.exploreFitWidth||getFitWidth(els.exploreMapViewport,document.getElementById('exploreRegionsMap'));
+  els.exploreMapCanvas.style.width=`${base*state.exploreZoom}px`;
+  requestAnimationFrame(()=>centerViewport(els.exploreMapViewport));
+}
+function attachPan(viewport){
+  let active=false,moved=false,startX=0,startY=0,startLeft=0,startTop=0,pointerId=null;
+  viewport.addEventListener('pointerdown',event=>{
+    if(event.button!==undefined&&event.button!==0)return;
+    active=true;moved=false;pointerId=event.pointerId;
+    startX=event.clientX;startY=event.clientY;
+    startLeft=viewport.scrollLeft;startTop=viewport.scrollTop;
+  });
+  viewport.addEventListener('pointermove',event=>{
+    if(!active||event.pointerId!==pointerId)return;
+    const dx=event.clientX-startX,dy=event.clientY-startY;
+    if(!moved&&Math.hypot(dx,dy)>5){moved=true;viewport.classList.add('is-dragging');viewport.setPointerCapture?.(pointerId)}
+    if(!moved)return;
+    event.preventDefault();
+    viewport.scrollLeft=startLeft-dx;
+    viewport.scrollTop=startTop-dy;
+  });
+  const end=event=>{
+    if(!active||event.pointerId!==pointerId)return;
+    if(moved)state.suppressMapClickUntil=Date.now()+250;
+    active=false;viewport.classList.remove('is-dragging');
+    try{viewport.releasePointerCapture?.(pointerId)}catch(_error){}
+  };
+  viewport.addEventListener('pointerup',end);
+  viewport.addEventListener('pointercancel',end);
+  viewport.addEventListener('click',event=>{
+    if(Date.now()<state.suppressMapClickUntil){event.preventDefault();event.stopPropagation()}
+  },true);
+}
 function finishStation(){state.stage='complete';hideStages();els.completeStage.hidden=false;resetSidebar();els.phaseChip.textContent='התחנה הושלמה';els.riddleText.textContent='כעת אפשר להוריד את דף הסיכום.';els.finalCities.textContent=state.completedIds.length;els.finalBonus.textContent=state.bonusCompleted;els.finalScore.textContent=state.score;localStorage.setItem(STORAGE_KEY,JSON.stringify({completed:true,completedIds:state.completedIds,score:state.score,bonusCompleted:state.bonusCompleted,completedAt:new Date().toISOString()}))}
 function renderCollection(){els.collectionCount.textContent=state.completedIds.length;els.collectionGrid.innerHTML='';if(!state.completedIds.length){els.collectionGrid.innerHTML='<p class="empty-collection">הכרטיס הראשון יופיע לאחר השלמת עיר.</p>';return}state.completedIds.forEach(id=>{const city=getCity(id);const card=document.createElement('article');card.className='collection-card';card.innerHTML=`<strong>${city.name}</strong><span>${city.region}</span><span>${city.type}</span>`;els.collectionGrid.appendChild(card)})}
-function setZoom(z){state.zoom=Math.max(1,Math.min(2.5,z));els.mapCanvas.style.width=`${state.zoom*100}%`}
-function resetStation(){if(!confirm('לאפס את התחנה ולהגריל שלוש ערים חדשות?'))return;localStorage.removeItem(STORAGE_KEY);els.mapFlags.innerHTML='';initialize();window.scrollTo({top:0,behavior:'smooth'})}
+function setZoom(z){
+  state.zoom=Math.max(1,Math.min(5,z));
+  const base=state.mapFitWidth||getFitWidth(els.mapViewport,els.regionsMap);
+  els.mapCanvas.style.width=`${base*state.zoom}px`;
+  requestAnimationFrame(()=>centerViewport(els.mapViewport));
+}
+function resetStation(){if(!confirm('לאפס את התחנה ולהגריל שלוש ערים חדשות?'))return;localStorage.removeItem(STORAGE_KEY);els.mapFlags.innerHTML='';attachPan(els.mapViewport);
+attachPan(els.exploreMapViewport);
+window.addEventListener('resize',()=>{if(!els.mapStage.hidden)fitWholeMap('task');if(!els.exploreStage.hidden)fitWholeMap('explore')});
+initialize();window.scrollTo({top:0,behavior:'smooth'})}
 
 els.hintBtn.addEventListener('click',()=>showFeedback(`רמז: ${state.current.hint}`,'try-again'));
 els.regionsMap.addEventListener('click',handleMapClick);
-els.zoomInBtn.addEventListener('click',()=>setZoom(state.zoom+.25));
-els.zoomOutBtn.addEventListener('click',()=>setZoom(state.zoom-.25));
-els.resetMapBtn.addEventListener('click',()=>{setZoom(1);els.mapViewport.scrollTop=0;els.mapViewport.scrollLeft=0});
+els.fitMapBtn.addEventListener('click',()=>fitWholeMap('task'));
+els.zoomInBtn.addEventListener('click',()=>setZoom(state.zoom+.35));
+els.zoomOutBtn.addEventListener('click',()=>setZoom(state.zoom-.35));
+els.resetMapBtn.addEventListener('click',()=>centerViewport(els.mapViewport));
 els.checkServicesBtn.addEventListener('click',checkServices);
 els.continueBtn.addEventListener('click',continueAfterPassport);
-els.finishStationBtn.addEventListener('click',showExploration);els.completeExplorationBtn.addEventListener('click',finishStation);els.exploreZoomInBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom+.25));els.exploreZoomOutBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom-.25));els.exploreResetMapBtn.addEventListener('click',()=>{setExploreZoom(1);els.exploreMapViewport.scrollTop=0;els.exploreMapViewport.scrollLeft=0});els.closeCityInfoBtn.addEventListener('click',()=>els.cityInfoModal.hidden=true);els.cityInfoModal.addEventListener('click',e=>{if(e.target===els.cityInfoModal)els.cityInfoModal.hidden=true});
+els.finishStationBtn.addEventListener('click',showExploration);els.completeExplorationBtn.addEventListener('click',finishStation);els.exploreFitMapBtn.addEventListener('click',()=>fitWholeMap('explore'));els.exploreZoomInBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom+.35));els.exploreZoomOutBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom-.35));els.exploreResetMapBtn.addEventListener('click',()=>centerViewport(els.exploreMapViewport));els.closeCityInfoBtn.addEventListener('click',()=>els.cityInfoModal.hidden=true);els.cityInfoModal.addEventListener('click',e=>{if(e.target===els.cityInfoModal)els.cityInfoModal.hidden=true});
 els.bonusBtn.addEventListener('click',startBonus);
 els.instructionsBtn.addEventListener('click',()=>els.instructionsModal.hidden=false);
 els.closeInstructionsBtn.addEventListener('click',()=>els.instructionsModal.hidden=true);
@@ -240,4 +302,7 @@ els.instructionsModal.addEventListener('click',e=>{if(e.target===els.instruction
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){els.instructionsModal.hidden=true;els.cityInfoModal.hidden=true}});
 els.resetBtn.addEventListener('click',resetStation);
 els.amitLogo.addEventListener('error',()=>{els.amitLogo.hidden=true;els.logoFallback.hidden=false});
+attachPan(els.mapViewport);
+attachPan(els.exploreMapViewport);
+window.addEventListener('resize',()=>{if(!els.mapStage.hidden)fitWholeMap('task');if(!els.exploreStage.hidden)fitWholeMap('explore')});
 initialize();
