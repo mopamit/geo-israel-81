@@ -33,8 +33,8 @@ img,svg { display:block; max-width:100%; }
   position:sticky;
   top:0;
   z-index:20;
-  min-height:82px;
-  padding:12px clamp(18px,4vw,64px);
+  min-height:112px;
+  padding:16px clamp(24px,4.5vw,78px);
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -46,19 +46,19 @@ img,svg { display:block; max-width:100%; }
 .brand {
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:20px;
 }
 
 .logo-wrap {
-  min-width:82px;
-  min-height:54px;
+  min-width:132px;
+  min-height:76px;
   display:flex;
   align-items:center;
 }
 
 .amit-logo {
   width:auto;
-  height:54px;
+  height:76px;
   object-fit:contain;
 }
 
@@ -74,25 +74,35 @@ img,svg { display:block; max-width:100%; }
   gap:2px;
 }
 
-.brand-text strong { font-size:1.05rem; }
-.brand-text span { color:#5a6f86; font-size:.9rem; font-weight:650; }
+.brand-text strong { font-size:1.28rem; }
+.brand-text span { color:#5a6f86; font-size:1rem; font-weight:700; }
 
-.small-button {
-  min-height:44px;
-  padding:0 17px;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  border:1px solid rgba(20,54,94,.16);
-  border-radius:999px;
-  color:var(--navy);
-  background:#fff;
-  font-weight:800;
+.reset-icon-button {
+  width:66px;
+  height:66px;
+  padding:0;
+  display:grid;
+  place-items:center;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  transition:transform .18s ease,filter .18s ease;
+}
+
+.reset-icon-button img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.reset-icon-button:hover {
+  transform:translateY(-2px) scale(1.04);
+  filter:brightness(1.08);
 }
 
 .hero {
   width:min(1500px,calc(100% - 40px));
-  margin:36px auto 0;
+  margin:24px auto 0;
   padding:clamp(26px,4vw,58px);
   display:grid;
   grid-template-columns:minmax(0,.92fr) minmax(520px,1.08fr);
@@ -128,7 +138,7 @@ img,svg { display:block; max-width:100%; }
 }
 
 .hero p {
-  margin:24px 0 30px;
+  margin:20px 0 20px;
   color:#3f566d;
   font-size:clamp(1.15rem,1.6vw,1.42rem);
   line-height:1.65;
@@ -161,7 +171,7 @@ img,svg { display:block; max-width:100%; }
 }
 
 .progress-box {
-  margin-top:30px;
+  margin-top:16px;
   max-width:430px;
 }
 
@@ -201,7 +211,7 @@ img,svg { display:block; max-width:100%; }
 
 .stations-section {
   width:min(1500px,calc(100% - 40px));
-  margin:76px auto 90px;
+  margin:20px auto 90px;
 }
 
 .section-heading {
@@ -443,4 +453,14 @@ img,svg { display:block; max-width:100%; }
   align-items:center;
   justify-content:center;
   text-decoration:none;
+}
+
+@media (max-width:760px) {
+  .topbar { min-height:88px; padding:10px 14px; }
+  .logo-wrap { min-width:96px; min-height:60px; }
+  .amit-logo { height:60px; }
+  .brand-text { display:none; }
+  .reset-icon-button { width:54px; height:54px; }
+  .hero { margin-top:14px; }
+  .stations-section { margin-top:14px; }
 }
