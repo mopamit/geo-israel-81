@@ -25,9 +25,8 @@
       </div>
     </div>
 
-    <button class="small-button" id="resetBtn" type="button" aria-label="איפוס המשחק">
-      <span aria-hidden="true">↻</span>
-      איפוס
+    <button class="reset-icon-button" id="resetBtn" type="button" aria-label="איפוס המשחק" title="איפוס המשחק">
+      <img src="./assets/icons/reset.png" alt="">
     </button>
   </header>
 
@@ -40,11 +39,6 @@
           יוצאים למסע דיגיטלי בין נחלים, ערים, אתרי מורשת,
           יישובי ספר ורכסי הרים.
         </p>
-
-        <button class="primary-button" id="startBtn" type="button">
-          <span class="round-icon" aria-hidden="true">➤</span>
-          מתחילים במסע
-        </button>
 
         <div class="progress-box">
           <div class="progress-labels">
@@ -67,12 +61,6 @@
     </section>
 
     <section class="stations-section" id="stations">
-      <div class="section-heading">
-        <span>מפת המסע</span>
-        <h2>תחנות הלמידה</h2>
-        <p>כל תחנה תיפתח לאחר השלמת התחנה הקודמת.</p>
-      </div>
-
       <div class="stations-grid">
         <article class="station-card open" data-station="rivers" style="--station:#2badde;--soft:#e8f7fd">
           <div class="station-line"></div>
@@ -97,9 +85,7 @@
             <h3>בירות חבלי הארץ</h3>
             <p>נבין כיצד עיר הופכת למרכז אזורי ולמה מיקומה חשוב.</p>
           </div>
-<a class="station-button station-link" href="./pages/regions.html">
-  התחלת התחנה ←
-</a>    
+          <a class="station-button station-link" href="./pages/regions.html">התחלת התחנה ←</a>
         </article>
 
         <article class="station-card locked" data-station="heritage" style="--station:#b0bd21;--soft:#f4f7dc">
@@ -143,19 +129,6 @@
       </div>
     </section>
   </main>
-
-  <div class="modal-backdrop" id="stationModal" hidden>
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="סגירה">×</button>
-      <div class="modal-icon">≋</div>
-      <h2 id="modalTitle">נחלי ישראל</h2>
-      <p>נחקור את מערכת הנחלים, כיווני הזרימה וקו פרשת המים.</p>
-      <div class="placeholder">
-        מעטפת התחנה מוכנה. את התוכן האינטראקטיבי נבנה בשלב הבא.
-      </div>
-      <button class="secondary-button" id="backToRoute" type="button">חזרה למסלול</button>
-    </section>
-  </div>
 
   <script src="./js/app.js"></script>
 </body>
