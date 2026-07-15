@@ -90,9 +90,10 @@
           <p>הגדילו את המפה ולחצו באזור העיר. אין צורך לפגוע בפיקסל מדויק.</p>
         </div>
         <div class="map-toolbar">
+          <button id="fitMapBtn" type="button">כל מפת ישראל</button>
           <button id="zoomInBtn" type="button">＋ הגדלה</button>
           <button id="zoomOutBtn" type="button">− הקטנה</button>
-          <button id="resetMapBtn" type="button">איפוס תצוגה</button>
+          <button id="resetMapBtn" type="button">מרכוז המפה</button>
         </div>
         <div class="map-viewport" id="mapViewport">
           <div class="map-canvas" id="mapCanvas">
@@ -101,7 +102,7 @@
             <div class="click-marker" id="clickMarker" hidden></div>
           </div>
         </div>
-        <p class="map-note">לאחר מיקום נכון יופיע דגל אדום ממוספר.</p>
+        <p class="map-note">אפשר לגרור את המפה בלחיצה ממושכת. לחיצה קצרה על העיר מסמנת תשובה.</p>
       </section>
 
       <section class="passport-stage" id="passportStage" hidden>
@@ -141,9 +142,10 @@
 
         <div class="explore-map-wrap">
           <div class="map-toolbar">
+            <button id="exploreFitMapBtn" type="button">כל מפת ישראל</button>
             <button id="exploreZoomInBtn" type="button">＋ הגדלה</button>
             <button id="exploreZoomOutBtn" type="button">− הקטנה</button>
-            <button id="exploreResetMapBtn" type="button">איפוס תצוגה</button>
+            <button id="exploreResetMapBtn" type="button">מרכוז המפה</button>
           </div>
           <div class="map-viewport explore-map-viewport" id="exploreMapViewport">
             <div class="map-canvas" id="exploreMapCanvas">
@@ -151,7 +153,7 @@
               <div class="map-flags explore-flags" id="exploreFlags"></div>
             </div>
           </div>
-          <p class="map-note">דגל כהה מסמן עיר שפתרתם בעצמכם. דגל בהיר מסמן עיר שנחשפה במפת החקר.</p>
+          <p class="map-note">גררו את המפה בלחיצה ממושכת. לחיצה קצרה על דגל פותחת את תעודת הזהות של העיר.</p>
         </div>
 
         <div class="explore-actions">
