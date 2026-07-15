@@ -464,3 +464,7 @@ img,svg { display:block; max-width:100%; }
   .hero { margin-top:14px; }
   .stations-section { margin-top:14px; }
 }
+
+/* Station brand icons */
+.station-icon { padding:0; overflow:hidden; background:transparent; }
+.station-icon img { width:100%; height:100%; object-fit:contain; display:block; }
