@@ -3,7 +3,7 @@ const CITY_LIBRARY = [
     id:'jerusalem', name:'ירושלים', zone:'center',
     riddle:'אני בירת ישראל ועיר הקודש. בחורף, לפעמים השלג מכסה את ההר שלי.',
     hint:'אני נמצאת בהרי יהודה ומשמשת מרכז שלטוני ולאומי.',
-    position:{x:57.2,y:41.1,tolerance:5.2},
+    position:{x:62.7,y:40.5,tolerance:3.0},
     region:'הרי יהודה / ישראל',
     regionChoices:['הרי יהודה / ישראל','מישור החוף','הנגב'],
     role:'מרכז השלטון, בירת המדינה ומרכז לאומי',
@@ -16,7 +16,7 @@ const CITY_LIBRARY = [
     id:'tel-aviv', name:'תל אביב', zone:'center',
     riddle:'אני נמצאת במרכז גוש דן ונחשבת לבירת התרבות והכלכלה. מכנים אותי העיר "ללא הפסקה".',
     hint:'אני העיר המרכזית במטרופולין הגדול בישראל ושוכנת לחוף הים התיכון.',
-    position:{x:31.8,y:31.0,tolerance:5.0},
+    position:{x:32.8,y:32.0,tolerance:3.0},
     region:'גוש דן / מישור החוף',
     regionChoices:['גוש דן / מישור החוף','עמק יזרעאל','רמת הגולן'],
     role:'הלב הכלכלי, העסקי והתרבותי של המדינה',
@@ -29,7 +29,7 @@ const CITY_LIBRARY = [
     id:'haifa', name:'חיפה', zone:'north',
     riddle:'מכנים אותי "בירת הצפון". אני בנויה בצורה ייחודית, חבוקה בין הר הכרמל לים.',
     hint:'אני עיר נמל מרכזית בצפון, הבנויה על מדרונות הכרמל.',
-    position:{x:39.5,y:14.7,tolerance:5.5},
+    position:{x:46.1,y:14.9,tolerance:3.2},
     region:'צפון / כרמל',
     regionChoices:['צפון / כרמל','הגליל התחתון','הערבה'],
     role:'עיר נמל מרכזית ומרכז תעשייה וטכנולוגיה בצפון',
@@ -42,7 +42,7 @@ const CITY_LIBRARY = [
     id:'beer-sheva', name:'באר שבע', zone:'south',
     riddle:'אני ידועה כ"בירת הנגב". אני עירם של אברהם אבינו ושל אוניברסיטת בן-גוריון.',
     hint:'אני העיר הגדולה והמרכזית בדרום הארץ.',
-    position:{x:35.8,y:55.2,tolerance:5.7},
+    position:{x:31.7,y:53.9,tolerance:3.4},
     region:'הנגב',
     regionChoices:['הנגב','הגליל העליון','אגן הכנרת'],
     role:'המטרופולין של הדרום ומרכז רפואה, השכלה ותעסוקה',
@@ -55,7 +55,7 @@ const CITY_LIBRARY = [
     id:'afula', name:'עפולה', zone:'north',
     riddle:'הכינוי שלי הוא "בירת העמק", ואני שוכנת ממש בלב עמק יזרעאל הפורה.',
     hint:'אני משמשת מרכז שירותים ליישובי עמק יזרעאל.',
-    position:{x:56.0,y:20.6,tolerance:5.2},
+    position:{x:65.9,y:19.6,tolerance:3.0},
     region:'עמק יזרעאל',
     regionChoices:['עמק יזרעאל','הרי יהודה','הערבה'],
     role:'צומת תחבורתי ומסחרי המשרת את יישובי העמק',
@@ -68,7 +68,7 @@ const CITY_LIBRARY = [
     id:'katzrin', name:'קצרין', zone:'north',
     riddle:'אני מוכרת כ"בירת הגולן". הנופים סביבי הם נופי בזלת, ואני שוכנת ליד כפר יהודי עתיק.',
     hint:'אני המרכז המנהלי והתיירותי של רמת הגולן.',
-    position:{x:82.3,y:8.1,tolerance:5.0},
+    position:{x:88.6,y:8.0,tolerance:3.0},
     region:'רמת הגולן',
     regionChoices:['רמת הגולן','מישור החוף','מדבר יהודה'],
     role:'המרכז העירוני והמנהלי של הגולן ומוקד תיירות',
@@ -81,7 +81,7 @@ const CITY_LIBRARY = [
     id:'safed', name:'צפת', zone:'north',
     riddle:'אני "בירת הגליל העליון". אני עיר של קבלה, רוח ואמנות, השוכנת בגובה רב.',
     hint:'אני אחת מארבע ערי הקודש ומזוהה עם קבלה ואמנים.',
-    position:{x:71.0,y:6.1,tolerance:5.0},
+    position:{x:76.4,y:8.8,tolerance:2.8},
     region:'הגליל העליון',
     regionChoices:['הגליל העליון','הנגב','גוש דן'],
     role:'מרכז רוחני, רפואי ותיירותי בגליל העליון',
@@ -94,7 +94,7 @@ const CITY_LIBRARY = [
     id:'nof-hagalil', name:'נוף הגליל', zone:'north',
     riddle:'אני עיר מרכזית, דינמית ומתפתחת, הממוקמת באזור הגליל התחתון.',
     hint:'שמי החדש מחליף את השם נצרת עילית.',
-    position:{x:62.0,y:15.8,tolerance:5.0},
+    position:{x:69.2,y:16.0,tolerance:3.0},
     region:'הגליל התחתון',
     regionChoices:['הגליל התחתון','אגן הכנרת','הערבה'],
     role:'מרכז כלכלי ומנהלי מרכזי בגליל התחתון',
@@ -107,7 +107,7 @@ const CITY_LIBRARY = [
     id:'tiberias', name:'טבריה', zone:'north',
     riddle:'אני אחת מארבע ערי הקודש של ישראל, ושוכנת ממש על שפת הכנרת.',
     hint:'אני עיר תיירות מרכזית על החוף המערבי של הכנרת.',
-    position:{x:71.9,y:13.1,tolerance:5.1},
+    position:{x:76.6,y:13.1,tolerance:3.0},
     region:'אגן הכנרת',
     regionChoices:['אגן הכנרת','השומרון','מישור החוף'],
     role:'בירת הנופש והתיירות על שפת הכנרת',
@@ -120,7 +120,7 @@ const CITY_LIBRARY = [
     id:'eilat', name:'אילת', zone:'south',
     riddle:'אני "בירת הערבה" והדרום הרחוק, ומהווה את השער הדרומי של ישראל לים האדום.',
     hint:'אני העיר הדרומית ביותר בישראל ושוכנת לחוף מפרץ.',
-    position:{x:42.2,y:96.6,tolerance:5.5},
+    position:{x:40.4,y:97.8,tolerance:3.4},
     region:'הערבה / דרום רחוק',
     regionChoices:['הערבה / דרום רחוק','הגליל העליון','עמק יזרעאל'],
     role:'השער הדרומי של ישראל למסחר בין-לאומי ונופש',
@@ -133,7 +133,7 @@ const CITY_LIBRARY = [
     id:'ariel', name:'אריאל', zone:'center',
     riddle:'מכנים אותי "בירת השומרון". אני עיר אוניברסיטאית הבנויה על גבעות השומרון.',
     hint:'אני נמצאת במרכז השומרון ומזוהה עם אוניברסיטה.',
-    position:{x:56.6,y:33.0,tolerance:5.0},
+    position:{x:61.1,y:32.2,tolerance:3.0},
     region:'השומרון',
     regionChoices:['השומרון','רמת הגולן','הנגב'],
     role:'מרכז חינוכי, אקדמי ומנהלי בשומרון',
@@ -146,7 +146,7 @@ const CITY_LIBRARY = [
     id:'arad', name:'ערד', zone:'south',
     riddle:'אני "בירת מדבר הנגב". אני ידועה במיוחד באוויר הנקי שלי ובקרבתי לאתר מצדה.',
     hint:'אני נמצאת במזרח הנגב, מערבית לים המלח.',
-    position:{x:61.7,y:55.5,tolerance:5.3},
+    position:{x:63.3,y:53.9,tolerance:3.2},
     region:'מזרח הנגב / מדבר יהודה',
     regionChoices:['מזרח הנגב / מדבר יהודה','הגליל התחתון','מישור החוף'],
     role:'מרכז שירותים למזרח הנגב וליישובי ים המלח',
@@ -158,10 +158,10 @@ const CITY_LIBRARY = [
 ];
 
 const REQUIRED_COUNT=3;
-const STORAGE_KEY='amitRegionalCapitalsV1';
-const state={requiredSet:[],queue:[],current:null,completedIds:[],requiredCompleted:0,bonusCompleted:0,score:0,streak:0,maxStreak:0,attempts:0,stage:'name',zoom:1,selectedServices:[]};
+const STORAGE_KEY='amitRegionalCapitalsV2';
+const state={requiredSet:[],queue:[],current:null,completedIds:[],requiredCompleted:0,bonusCompleted:0,score:0,streak:0,maxStreak:0,attempts:0,stage:'name',zoom:1,exploreZoom:1,selectedServices:[]};
 const els={
-  scoreValue:document.getElementById('scoreValue'),streakValue:document.getElementById('streakValue'),completedValue:document.getElementById('completedValue'),requiredValue:document.getElementById('requiredValue'),progressBar:document.getElementById('progressBar'),phaseChip:document.getElementById('phaseChip'),challengeNumber:document.getElementById('challengeNumber'),challengeType:document.getElementById('challengeType'),riddleText:document.getElementById('riddleText'),feedback:document.getElementById('feedback'),hintBtn:document.getElementById('hintBtn'),mapInstructions:document.getElementById('mapInstructions'),currentCityName:document.getElementById('currentCityName'),regionStep:document.getElementById('regionStep'),regionChoices:document.getElementById('regionChoices'),servicesStep:document.getElementById('servicesStep'),servicesChoices:document.getElementById('servicesChoices'),checkServicesBtn:document.getElementById('checkServicesBtn'),nameStage:document.getElementById('nameStage'),cityOptions:document.getElementById('cityOptions'),mapStage:document.getElementById('mapStage'),mapCanvas:document.getElementById('mapCanvas'),mapViewport:document.getElementById('mapViewport'),regionsMap:document.getElementById('regionsMap'),mapFlags:document.getElementById('mapFlags'),clickMarker:document.getElementById('clickMarker'),passportStage:document.getElementById('passportStage'),passportType:document.getElementById('passportType'),passportCity:document.getElementById('passportCity'),passportRegion:document.getElementById('passportRegion'),passportRole:document.getElementById('passportRole'),passportFeature:document.getElementById('passportFeature'),continueBtn:document.getElementById('continueBtn'),decisionStage:document.getElementById('decisionStage'),finishStationBtn:document.getElementById('finishStationBtn'),bonusBtn:document.getElementById('bonusBtn'),remainingBonusText:document.getElementById('remainingBonusText'),completeStage:document.getElementById('completeStage'),finalCities:document.getElementById('finalCities'),finalBonus:document.getElementById('finalBonus'),finalScore:document.getElementById('finalScore'),collectionCount:document.getElementById('collectionCount'),collectionGrid:document.getElementById('collectionGrid'),zoomInBtn:document.getElementById('zoomInBtn'),zoomOutBtn:document.getElementById('zoomOutBtn'),resetMapBtn:document.getElementById('resetMapBtn'),instructionsBtn:document.getElementById('instructionsBtn'),closeInstructionsBtn:document.getElementById('closeInstructionsBtn'),instructionsModal:document.getElementById('instructionsModal'),resetBtn:document.getElementById('resetBtn'),amitLogo:document.getElementById('amitLogo'),logoFallback:document.getElementById('logoFallback')
+  scoreValue:document.getElementById('scoreValue'),streakValue:document.getElementById('streakValue'),completedValue:document.getElementById('completedValue'),requiredValue:document.getElementById('requiredValue'),progressBar:document.getElementById('progressBar'),phaseChip:document.getElementById('phaseChip'),challengeNumber:document.getElementById('challengeNumber'),challengeType:document.getElementById('challengeType'),riddleText:document.getElementById('riddleText'),feedback:document.getElementById('feedback'),hintBtn:document.getElementById('hintBtn'),mapInstructions:document.getElementById('mapInstructions'),currentCityName:document.getElementById('currentCityName'),regionStep:document.getElementById('regionStep'),regionChoices:document.getElementById('regionChoices'),servicesStep:document.getElementById('servicesStep'),servicesChoices:document.getElementById('servicesChoices'),checkServicesBtn:document.getElementById('checkServicesBtn'),nameStage:document.getElementById('nameStage'),cityOptions:document.getElementById('cityOptions'),mapStage:document.getElementById('mapStage'),mapCanvas:document.getElementById('mapCanvas'),mapViewport:document.getElementById('mapViewport'),regionsMap:document.getElementById('regionsMap'),mapFlags:document.getElementById('mapFlags'),clickMarker:document.getElementById('clickMarker'),passportStage:document.getElementById('passportStage'),passportType:document.getElementById('passportType'),passportCity:document.getElementById('passportCity'),passportRegion:document.getElementById('passportRegion'),passportRole:document.getElementById('passportRole'),passportFeature:document.getElementById('passportFeature'),continueBtn:document.getElementById('continueBtn'),decisionStage:document.getElementById('decisionStage'),finishStationBtn:document.getElementById('finishStationBtn'),bonusBtn:document.getElementById('bonusBtn'),remainingBonusText:document.getElementById('remainingBonusText'),exploreStage:document.getElementById('exploreStage'),exploreFlags:document.getElementById('exploreFlags'),exploreMapCanvas:document.getElementById('exploreMapCanvas'),exploreMapViewport:document.getElementById('exploreMapViewport'),exploreZoomInBtn:document.getElementById('exploreZoomInBtn'),exploreZoomOutBtn:document.getElementById('exploreZoomOutBtn'),exploreResetMapBtn:document.getElementById('exploreResetMapBtn'),completeExplorationBtn:document.getElementById('completeExplorationBtn'),completeStage:document.getElementById('completeStage'),finalCities:document.getElementById('finalCities'),finalBonus:document.getElementById('finalBonus'),finalScore:document.getElementById('finalScore'),collectionCount:document.getElementById('collectionCount'),collectionGrid:document.getElementById('collectionGrid'),zoomInBtn:document.getElementById('zoomInBtn'),zoomOutBtn:document.getElementById('zoomOutBtn'),resetMapBtn:document.getElementById('resetMapBtn'),instructionsBtn:document.getElementById('instructionsBtn'),closeInstructionsBtn:document.getElementById('closeInstructionsBtn'),instructionsModal:document.getElementById('instructionsModal'),cityInfoModal:document.getElementById('cityInfoModal'),closeCityInfoBtn:document.getElementById('closeCityInfoBtn'),cityInfoType:document.getElementById('cityInfoType'),cityInfoName:document.getElementById('cityInfoName'),cityInfoRegion:document.getElementById('cityInfoRegion'),cityInfoRole:document.getElementById('cityInfoRole'),cityInfoFeature:document.getElementById('cityInfoFeature'),cityInfoServices:document.getElementById('cityInfoServices'),resetBtn:document.getElementById('resetBtn'),amitLogo:document.getElementById('amitLogo'),logoFallback:document.getElementById('logoFallback')
 };
 
 function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -172,7 +172,7 @@ function initialize(){Object.assign(state,{requiredSet:chooseRequiredCities(),qu
 function updateHud(){els.scoreValue.textContent=state.score;els.streakValue.textContent=state.streak;els.completedValue.textContent=`${state.completedIds.length}/12`;els.requiredValue.textContent=`${Math.min(state.requiredCompleted,3)}/3`;els.progressBar.style.width=`${Math.min(state.requiredCompleted/3,1)*100}%`}
 function showFeedback(text,type){els.feedback.hidden=false;els.feedback.className=`feedback ${type}`;els.feedback.textContent=text}
 function clearFeedback(){els.feedback.hidden=true;els.feedback.className='feedback';els.feedback.textContent=''}
-function hideStages(){els.nameStage.hidden=true;els.mapStage.hidden=true;els.passportStage.hidden=true;els.decisionStage.hidden=true;els.completeStage.hidden=true}
+function hideStages(){els.nameStage.hidden=true;els.mapStage.hidden=true;els.passportStage.hidden=true;els.decisionStage.hidden=true;els.exploreStage.hidden=true;els.completeStage.hidden=true}
 function resetSidebar(){els.mapInstructions.hidden=true;els.regionStep.hidden=true;els.servicesStep.hidden=true;els.hintBtn.hidden=true;clearFeedback()}
 function loadNextCity(){if(!state.queue.length){showDecision();return}state.current=getCity(state.queue.shift());state.stage='name';state.attempts=0;state.selectedServices=[];hideStages();els.nameStage.hidden=false;resetSidebar();els.phaseChip.textContent='שלב א׳ - זיהוי העיר';els.challengeNumber.textContent=state.completedIds.length+1;els.challengeType.textContent=state.requiredCompleted<3?'מתוך 3 משימות החובה':'עיר בונוס';els.riddleText.textContent=state.current.riddle;renderCityOptions();renderFlags();updateHud()}
 function renderCityOptions(){els.cityOptions.innerHTML='';shuffle(remainingCities()).forEach(city=>{const b=document.createElement('button');b.type='button';b.className='city-option';b.textContent=city.name;b.addEventListener('click',()=>chooseCity(city,b));els.cityOptions.appendChild(b)})}
@@ -189,6 +189,10 @@ function showPassport(){state.stage='passport';hideStages();els.passportStage.hi
 function continueAfterPassport(){if(state.requiredCompleted>=3)showDecision();else loadNextCity()}
 function showDecision(){state.stage='decision';hideStages();els.decisionStage.hidden=false;resetSidebar();els.phaseChip.textContent='בחירת המשך';els.riddleText.textContent='שלוש ערי החובה הושלמו.';const n=remainingCities().length;els.remainingBonusText.textContent=n?`נותרו ${n} ערים זמינות לבונוס.`:'השלמתם את כל 12 הערים.';els.bonusBtn.hidden=n===0}
 function startBonus(){const choices=remainingCities();if(!choices.length){finishStation();return}state.queue=[shuffle(choices)[0].id];loadNextCity()}
+function showExploration(){state.stage='explore';hideStages();els.exploreStage.hidden=false;resetSidebar();els.phaseChip.textContent='מפת חקר';els.riddleText.textContent='לחצו על כל אחד מ-12 הדגלים כדי להכיר את העיר.';state.exploreZoom=1;els.exploreMapCanvas.style.width='100%';els.exploreMapViewport.scrollTop=0;els.exploreMapViewport.scrollLeft=0;renderExploreFlags()}
+function renderExploreFlags(){els.exploreFlags.innerHTML='';CITY_LIBRARY.forEach((city,index)=>{const flag=document.createElement('button');flag.type='button';flag.className=`city-flag explore-city-flag ${state.completedIds.includes(city.id)?'solved':'revealed'}`;flag.style.left=`${city.position.x}%`;flag.style.top=`${city.position.y}%`;flag.setAttribute('aria-label',`פתיחת תעודת הזהות של ${city.name}`);const span=document.createElement('span');span.textContent=index+1;flag.appendChild(span);flag.addEventListener('click',event=>{event.stopPropagation();openCityInfo(city)});els.exploreFlags.appendChild(flag)})}
+function openCityInfo(city){els.cityInfoType.textContent=city.type;els.cityInfoName.textContent=city.name;els.cityInfoRegion.textContent=city.region;els.cityInfoRole.textContent=city.role;els.cityInfoFeature.textContent=city.feature;els.cityInfoServices.textContent=city.services.join(' • ');els.cityInfoModal.hidden=false}
+function setExploreZoom(z){state.exploreZoom=Math.max(1,Math.min(2.5,z));els.exploreMapCanvas.style.width=`${state.exploreZoom*100}%`}
 function finishStation(){state.stage='complete';hideStages();els.completeStage.hidden=false;resetSidebar();els.phaseChip.textContent='התחנה הושלמה';els.riddleText.textContent='כעת אפשר להוריד את דף הסיכום.';els.finalCities.textContent=state.completedIds.length;els.finalBonus.textContent=state.bonusCompleted;els.finalScore.textContent=state.score;localStorage.setItem(STORAGE_KEY,JSON.stringify({completed:true,completedIds:state.completedIds,score:state.score,bonusCompleted:state.bonusCompleted,completedAt:new Date().toISOString()}))}
 function renderCollection(){els.collectionCount.textContent=state.completedIds.length;els.collectionGrid.innerHTML='';if(!state.completedIds.length){els.collectionGrid.innerHTML='<p class="empty-collection">הכרטיס הראשון יופיע לאחר השלמת עיר.</p>';return}state.completedIds.forEach(id=>{const city=getCity(id);const card=document.createElement('article');card.className='collection-card';card.innerHTML=`<strong>${city.name}</strong><span>${city.region}</span><span>${city.type}</span>`;els.collectionGrid.appendChild(card)})}
 function setZoom(z){state.zoom=Math.max(1,Math.min(2.5,z));els.mapCanvas.style.width=`${state.zoom*100}%`}
@@ -201,12 +205,12 @@ els.zoomOutBtn.addEventListener('click',()=>setZoom(state.zoom-.25));
 els.resetMapBtn.addEventListener('click',()=>{setZoom(1);els.mapViewport.scrollTop=0;els.mapViewport.scrollLeft=0});
 els.checkServicesBtn.addEventListener('click',checkServices);
 els.continueBtn.addEventListener('click',continueAfterPassport);
-els.finishStationBtn.addEventListener('click',finishStation);
+els.finishStationBtn.addEventListener('click',showExploration);els.completeExplorationBtn.addEventListener('click',finishStation);els.exploreZoomInBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom+.25));els.exploreZoomOutBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom-.25));els.exploreResetMapBtn.addEventListener('click',()=>{setExploreZoom(1);els.exploreMapViewport.scrollTop=0;els.exploreMapViewport.scrollLeft=0});els.closeCityInfoBtn.addEventListener('click',()=>els.cityInfoModal.hidden=true);els.cityInfoModal.addEventListener('click',e=>{if(e.target===els.cityInfoModal)els.cityInfoModal.hidden=true});
 els.bonusBtn.addEventListener('click',startBonus);
 els.instructionsBtn.addEventListener('click',()=>els.instructionsModal.hidden=false);
 els.closeInstructionsBtn.addEventListener('click',()=>els.instructionsModal.hidden=true);
 els.instructionsModal.addEventListener('click',e=>{if(e.target===els.instructionsModal)els.instructionsModal.hidden=true});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')els.instructionsModal.hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){els.instructionsModal.hidden=true;els.cityInfoModal.hidden=true}});
 els.resetBtn.addEventListener('click',resetStation);
 els.amitLogo.addEventListener('error',()=>{els.amitLogo.hidden=true;els.logoFallback.hidden=false});
 initialize();
