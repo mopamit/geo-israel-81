@@ -23,3 +23,28 @@ main{width:min(1560px,calc(100% - 28px));margin:20px auto 70px}.hud{margin-botto
 .round-action{padding:0!important;background:transparent!important;border:0!important;color:transparent!important;overflow:visible}
 .round-action img{width:100%;height:100%;object-fit:contain;display:block}
 .station-symbol,.intro-icon{object-fit:contain}
+
+
+/* ניווט במפה: תצוגה מלאה, זום וגרירה */
+.map-viewport {
+  cursor: grab;
+  touch-action: none;
+  overscroll-behavior: contain;
+  user-select: none;
+}
+.map-viewport.is-dragging {
+  cursor: grabbing;
+}
+.map-canvas {
+  margin-inline: auto;
+  max-width: none;
+  transition: width .18s ease;
+}
+.map-canvas > img {
+  pointer-events: auto;
+}
+.map-toolbar button:first-child {
+  border-color: var(--red);
+  color: var(--red-dark, #a92f3a);
+  background: #fff6f6;
+}
