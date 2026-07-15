@@ -202,7 +202,22 @@ function continueAfterPassport(){if(state.requiredCompleted>=3)showDecision();el
 function showDecision(){state.stage='decision';hideStages();els.decisionStage.hidden=false;resetSidebar();els.phaseChip.textContent='בחירת המשך';els.riddleText.textContent='שלוש ערי החובה הושלמו.';const n=remainingCities().length;els.remainingBonusText.textContent=n?`נותרו ${n} ערים זמינות לבונוס.`:'השלמתם את כל 12 הערים.';els.bonusBtn.hidden=n===0}
 function startBonus(){const choices=remainingCities();if(!choices.length){finishStation();return}state.queue=[shuffle(choices)[0].id];loadNextCity()}
 function showExploration(){state.stage='explore';hideStages();els.exploreStage.hidden=false;resetSidebar();els.phaseChip.textContent='מפת חקר';els.riddleText.textContent='לחצו על כל אחד מ-12 הדגלים כדי להכיר את העיר.';state.exploreZoom=1;els.exploreMapCanvas.style.width='100%';els.exploreMapViewport.scrollTop=0;els.exploreMapViewport.scrollLeft=0;renderExploreFlags()}
-function renderExploreFlags(){els.exploreFlags.innerHTML='';CITY_LIBRARY.forEach((city,index)=>{const flag=document.createElement('button');flag.type='button';flag.className=`city-flag explore-city-flag ${state.completedIds.includes(city.id)?'solved':'revealed'}`;flag.style.left=`${city.position.x}%`;flag.style.top=`${city.position.y}%`;flag.setAttribute('aria-label',`פתיחת תעודת הזהות של ${city.name}`);const span=document.createElement('span');span.textContent=index+1;flag.appendChild(span);flag.addEventListener('click',event=>{event.stopPropagation();openCityInfo(city)});els.exploreFlags.appendChild(flag)})}
+const OFFICIAL_CITY_NUMBERS={
+  'jerusalem':1,
+  'tel-aviv':2,
+  'haifa':3,
+  'beer-sheva':4,
+  'nof-hagalil':5,
+  'katzrin':6,
+  'safed':7,
+  'afula':8,
+  'tiberias':9,
+  'eilat':10,
+  'ariel':11,
+  'arad':12
+};
+
+function renderExploreFlags(){els.exploreFlags.innerHTML='';CITY_LIBRARY.forEach(city=>{const flag=document.createElement('button');flag.type='button';flag.className=`city-flag explore-city-flag ${state.completedIds.includes(city.id)?'solved':'revealed'}`;flag.style.left=`${city.position.x}%`;flag.style.top=`${city.position.y}%`;flag.setAttribute('aria-label',`פתיחת תעודת הזהות של ${city.name}`);const span=document.createElement('span');span.textContent=OFFICIAL_CITY_NUMBERS[city.id];flag.appendChild(span);flag.addEventListener('click',event=>{event.stopPropagation();openCityInfo(city)});els.exploreFlags.appendChild(flag)})}
 function openCityInfo(city){els.cityInfoType.textContent=city.type;els.cityInfoName.textContent=city.name;els.cityInfoRegion.textContent=city.region;els.cityInfoRole.textContent=city.role;els.cityInfoFeature.textContent=city.feature;els.cityInfoServices.textContent=city.services.join(' • ');els.cityInfoModal.hidden=false}
 function setExploreZoom(z){state.exploreZoom=Math.max(1,Math.min(2.5,z));els.exploreMapCanvas.style.width=`${state.exploreZoom*100}%`}
 function finishStation(){state.stage='complete';hideStages();els.completeStage.hidden=false;resetSidebar();els.phaseChip.textContent='התחנה הושלמה';els.riddleText.textContent='כעת אפשר להוריד את דף הסיכום.';els.finalCities.textContent=state.completedIds.length;els.finalBonus.textContent=state.bonusCompleted;els.finalScore.textContent=state.score;localStorage.setItem(STORAGE_KEY,JSON.stringify({completed:true,completedIds:state.completedIds,score:state.score,bonusCompleted:state.bonusCompleted,completedAt:new Date().toISOString()}))}
