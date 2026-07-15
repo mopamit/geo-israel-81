@@ -427,10 +427,11 @@ main {
 .solved-river-line {
   fill: none;
   stroke: #0d66b2;
-  stroke-width: 9;
+  stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 4px #fff);
+  filter: drop-shadow(0 0 2px #fff);
+  opacity: .9;
 }
 
 .click-marker {
