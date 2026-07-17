@@ -9,7 +9,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 28,
-    path: [[486,411],[486,405],[480,397],[478,390],[472,385],[471,380],[464,376],[460,377],[454,374],[448,374],[424,352],[416,348],[414,328],[408,319],[398,309],[400,300],[390,289],[384,289],[381,286],[381,280]]
+    path: [[486,411],[486,408],[485,405],[484,402],[482,399],[480,396],[479,393],[477,390],[475,387],[472,384],[471,381],[468,379],[465,377],[462,376],[459,376],[456,375],[453,374],[450,374],[447,373],[444,371],[441,369],[438,366],[435,363],[432,360],[429,357],[426,354],[423,351],[420,350],[417,349],[416,346],[416,343],[415,340],[414,337],[413,334],[413,331],[413,328],[412,325],[410,322],[408,319],[405,316],[402,314],[399,311],[398,308],[399,305],[400,302],[399,299],[396,296],[393,294],[391,291],[389,288],[386,288],[383,288],[382,285],[381,282]]
   },
   {
     id: 'alexander',
@@ -21,7 +21,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 30,
-    path: [[308,501],[310,506],[319,506],[322,515],[327,517],[331,512],[339,512],[347,516],[352,522],[354,538],[361,553],[360,561],[362,566],[359,571],[359,583],[362,586],[374,590],[404,590],[409,593]]
+    path: [[410,593],[407,592],[404,590],[401,589],[398,590],[395,589],[392,589],[389,588],[386,588],[383,589],[380,589],[377,589],[374,589],[371,588],[368,587],[365,587],[362,586],[359,583],[358,580],[358,577],[358,574],[359,571],[361,568],[361,565],[360,562],[360,559],[360,556],[360,553],[359,550],[358,547],[357,544],[356,541],[354,538],[353,535],[353,532],[352,529],[352,526],[352,523],[350,520],[348,517],[345,515],[342,514],[339,512],[336,512],[333,512],[330,512],[328,515],[325,516],[322,515],[321,512],[320,509],[318,506],[315,506],[312,506],[309,504],[308,502]]
   },
   {
     id: 'dan',
@@ -33,7 +33,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 17,
-    path: [[665,33],[663,43],[663,54],[664,66],[663,78],[661,91],[659,104],[657,118],[655,133],[654,149],[654,161]]
+    path: [[660,50],[657,57],[654,64],[651,72],[648,80],[644,88],[640,96],[636,104],[632,112],[629,120]]
   },
   {
     id: 'banias',
@@ -45,7 +45,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 17,
-    path: [[682,51],[679,59],[676,69],[673,79],[669,89],[665,99],[662,109],[659,120],[656,133],[654,148],[654,161]]
+    path: [[674,73],[669,78],[664,84],[659,90],[654,97],[648,104],[642,111],[636,118],[631,124],[628,128]]
   },
   {
     id: 'snir',
@@ -57,7 +57,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 17,
-    path: [[650,35],[647,43],[645,53],[645,64],[646,76],[648,89],[650,102],[651,116],[652,132],[653,149],[654,161]]
+    path: [[645,36],[644,44],[644,52],[645,60],[646,68],[646,76],[644,84],[640,92],[635,100],[629,108],[625,116]]
   },
   {
     id: 'saar',
@@ -69,7 +69,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הירדן והכנרת',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 16,
-    path: [[705,44],[700,51],[696,59],[692,68],[688,77],[683,87],[678,97],[672,108],[666,119],[660,132],[656,146],[654,161]]
+    path: [[708,55],[700,58],[692,63],[684,68],[676,73],[668,79],[660,84],[653,90],[646,96],[640,102]]
   },
   {
     id: 'taninim',
@@ -81,7 +81,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 28,
-    path: [[419,411],[401,415],[388,412],[384,416],[376,418],[362,432],[351,435],[342,433],[335,421],[326,427],[323,426],[324,424]]
+    path: [[324,424],[324,427],[327,427],[330,424],[333,421],[336,421],[336,424],[338,427],[339,430],[342,432],[345,434],[348,434],[351,434],[354,434],[357,434],[360,433],[363,431],[366,429],[368,426],[370,423],[373,420],[376,418],[379,417],[382,416],[385,415],[388,412],[391,413],[394,414],[397,414],[400,414],[403,414],[406,413],[409,412],[412,412],[415,412],[418,411],[419,411]]
   },
   {
     id: 'sorek',
@@ -93,7 +93,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן הים התיכון',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 30,
-    path: [[236,746],[242,746],[252,759],[252,765],[255,769],[254,779],[256,783],[256,792],[265,804],[275,806],[281,812],[288,812],[295,815],[304,814],[313,816],[328,828],[328,832],[344,843],[350,843],[355,840],[365,842],[373,840],[383,841],[388,839],[391,843],[398,840],[400,846],[405,846],[410,842],[421,842],[427,836],[437,835],[441,826],[446,824],[451,818],[457,818],[462,812],[458,799],[454,795],[455,789],[452,783],[454,781]]
+    path: [[453,780],[452,783],[453,786],[455,789],[455,792],[454,795],[457,798],[458,801],[459,804],[461,807],[462,810],[461,813],[459,816],[456,818],[453,818],[450,818],[448,821],[445,824],[442,826],[439,828],[439,831],[437,834],[434,834],[431,836],[428,836],[425,838],[422,839],[420,842],[417,842],[414,841],[411,841],[408,844],[405,845],[402,846],[399,846],[398,843],[398,840],[395,840],[393,843],[390,843],[390,840],[387,839],[384,840],[381,840],[378,840],[375,840],[372,841],[369,841],[366,841],[363,842],[360,841],[357,840],[354,841],[351,842],[348,843],[345,843],[342,842],[339,840],[336,838],[333,836],[330,834],[328,831],[327,828],[324,825],[321,822],[318,821],[316,818],[313,816],[310,815],[307,814],[304,815],[301,814],[298,814],[295,814],[292,814],[289,813],[286,811],[283,812],[280,811],[278,808],[275,806],[272,805],[269,805],[266,804],[263,802],[260,799],[259,796],[258,793],[256,790],[255,787],[256,784],[255,781],[254,778],[254,775],[254,772],[254,769],[253,766],[251,763],[251,760],[250,757],[249,754],[246,751],[243,748],[240,746],[237,746],[235,746]]
   },
   {
     id: 'paran',
@@ -105,7 +105,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן ים המלח והערבה',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 32,
-    path: [[234,1714],[241,1709],[242,1703],[252,1694],[254,1689],[260,1683],[259,1676],[266,1673],[269,1664],[277,1658],[278,1652],[289,1645],[283,1641],[286,1637],[286,1632],[297,1625],[297,1619],[308,1611],[308,1608],[315,1598],[322,1597],[326,1599],[331,1594],[334,1594],[339,1598],[344,1606],[350,1602],[354,1602],[357,1605],[365,1604],[367,1606],[377,1608],[384,1597],[391,1590],[396,1588],[404,1589],[433,1572],[441,1564]]
+    path: [[234,1715],[235,1712],[238,1710],[240,1707],[242,1704],[244,1701],[247,1698],[250,1695],[253,1692],[254,1689],[257,1686],[260,1684],[260,1681],[258,1678],[259,1675],[262,1674],[265,1673],[266,1670],[268,1667],[269,1664],[271,1661],[274,1659],[277,1657],[278,1654],[279,1651],[282,1649],[285,1648],[288,1646],[289,1643],[286,1642],[283,1641],[284,1638],[286,1635],[286,1632],[289,1629],[292,1628],[295,1627],[297,1624],[296,1621],[297,1618],[300,1617],[303,1615],[306,1613],[308,1610],[309,1607],[311,1604],[313,1601],[316,1598],[319,1597],[322,1597],[325,1599],[328,1597],[330,1594],[333,1594],[336,1595],[339,1598],[341,1601],[342,1604],[345,1605],[348,1603],[351,1601],[354,1602],[356,1605],[359,1604],[362,1604],[365,1604],[368,1605],[371,1607],[374,1608],[377,1607],[380,1604],[382,1601],[384,1598],[386,1595],[389,1592],[392,1590],[395,1589],[398,1588],[401,1589],[404,1588],[407,1587],[410,1586],[413,1584],[416,1582],[419,1581],[422,1579],[425,1577],[428,1574],[431,1572],[434,1570],[437,1568],[440,1566],[441,1564]]
   },
   {
     id: 'david',
@@ -117,7 +117,7 @@ const RIVER_LIBRARY = [
     basin: 'אגן ים המלח והערבה',
     basinChoices: ['אגן הים התיכון', 'אגן הירדן והכנרת', 'אגן ים המלח והערבה'],
     hitTolerance: 25,
-    path: [[550,993],[545,994],[538,988],[530,988],[525,980],[517,978],[508,970],[502,969]]
+    path: [[549,994],[546,994],[543,993],[540,990],[537,988],[534,987],[531,987],[528,986],[527,983],[525,980],[522,978],[519,978],[516,977],[513,974],[510,971],[507,970],[504,970],[501,969]]
   }
 ];
 
@@ -197,6 +197,7 @@ const els = {
   goWorksheetBtn: document.getElementById('goWorksheetBtn'),
   bonusBtn: document.getElementById('bonusBtn'),
   remainingBonusText: document.getElementById('remainingBonusText'),
+  exploreStage: document.getElementById('exploreStage'),exploreMapViewport: document.getElementById('exploreMapViewport'),exploreMapCanvas: document.getElementById('exploreMapCanvas'),exploreRiverMap: document.getElementById('exploreRiverMap'),exploreRiverPaths: document.getElementById('exploreRiverPaths'),exploreFitMapBtn: document.getElementById('exploreFitMapBtn'),exploreZoomInBtn: document.getElementById('exploreZoomInBtn'),exploreZoomOutBtn: document.getElementById('exploreZoomOutBtn'),exploreResetMapBtn: document.getElementById('exploreResetMapBtn'),continueToWorksheetBtn: document.getElementById('continueToWorksheetBtn'),riverInfoModal: document.getElementById('riverInfoModal'),closeRiverInfoBtn: document.getElementById('closeRiverInfoBtn'),riverInfoName: document.getElementById('riverInfoName'),riverInfoOutlet: document.getElementById('riverInfoOutlet'),riverInfoBasin: document.getElementById('riverInfoBasin'),riverInfoHint: document.getElementById('riverInfoHint'),
   worksheetStage: document.getElementById('worksheetStage'),
   worksheetCounter: document.getElementById('worksheetCounter'),
   wordBank: document.getElementById('wordBank'),
@@ -290,6 +291,7 @@ function hideAllMainStages() {
   els.nameStage.hidden = true;
   els.mapStage.hidden = true;
   els.decisionStage.hidden = true;
+  els.exploreStage.hidden = true;
   els.worksheetStage.hidden = true;
   els.completeStage.hidden = true;
 }
@@ -618,7 +620,7 @@ function showDecision() {
 function startBonusRiver() {
   const candidates = remainingRivers();
   if (candidates.length === 0) {
-    showWorksheet();
+    showExploration();
     return;
   }
 
@@ -627,6 +629,7 @@ function startBonusRiver() {
   loadNextRiver();
 }
 
+function openRiverInfo(r){els.riverInfoName.textContent=r.name;els.riverInfoOutlet.textContent=r.outlet;els.riverInfoBasin.textContent=r.basin;els.riverInfoHint.textContent=r.hint;els.riverInfoModal.hidden=false}function renderExploreRivers(){els.exploreRiverPaths.innerHTML='';RIVER_LIBRARY.forEach(r=>{const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.classList.add('explore-river-group');const v=document.createElementNS('http://www.w3.org/2000/svg','polyline');v.classList.add('explore-river-line');v.setAttribute('points',r.path.map(p=>p.join(',')).join(' '));const h=document.createElementNS('http://www.w3.org/2000/svg','polyline');h.classList.add('explore-river-hit');h.setAttribute('points',r.path.map(p=>p.join(',')).join(' '));h.setAttribute('tabindex','0');h.addEventListener('click',e=>{e.stopPropagation();openRiverInfo(r)});h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRiverInfo(r)}});g.append(v,h);els.exploreRiverPaths.appendChild(g)})}function getExploreFitWidth(){if(!els.exploreRiverMap.naturalWidth)return Math.max(240,els.exploreMapViewport.clientWidth*.36);const b=(els.exploreMapViewport.clientHeight-8)*(els.exploreRiverMap.naturalWidth/els.exploreRiverMap.naturalHeight);return Math.max(220,Math.min(els.exploreMapViewport.clientWidth-8,b))}function centerExploreMap(){els.exploreMapViewport.scrollLeft=Math.max(0,(els.exploreMapViewport.scrollWidth-els.exploreMapViewport.clientWidth)/2);els.exploreMapViewport.scrollTop=Math.max(0,(els.exploreMapViewport.scrollHeight-els.exploreMapViewport.clientHeight)/2)}function fitExploreMap(){const w=getExploreFitWidth();state.exploreFitWidth=w;state.exploreZoom=1;els.exploreMapCanvas.style.width=`${w}px`;requestAnimationFrame(centerExploreMap)}function setExploreZoom(z){state.exploreZoom=Math.max(1,Math.min(5,z));els.exploreMapCanvas.style.width=`${(state.exploreFitWidth||getExploreFitWidth())*state.exploreZoom}px`;requestAnimationFrame(centerExploreMap)}function attachExplorePan(){let a=false,m=false,sx=0,sy=0,sl=0,st=0,id=null;els.exploreMapViewport.addEventListener('pointerdown',e=>{if(e.button!==undefined&&e.button!==0)return;a=true;m=false;id=e.pointerId;sx=e.clientX;sy=e.clientY;sl=els.exploreMapViewport.scrollLeft;st=els.exploreMapViewport.scrollTop});els.exploreMapViewport.addEventListener('pointermove',e=>{if(!a||e.pointerId!==id)return;const dx=e.clientX-sx,dy=e.clientY-sy;if(!m&&Math.hypot(dx,dy)>5){m=true;els.exploreMapViewport.setPointerCapture?.(id)}if(!m)return;e.preventDefault();els.exploreMapViewport.scrollLeft=sl-dx;els.exploreMapViewport.scrollTop=st-dy});const end=e=>{if(!a||e.pointerId!==id)return;a=false;try{els.exploreMapViewport.releasePointerCapture?.(id)}catch(_){}};els.exploreMapViewport.addEventListener('pointerup',end);els.exploreMapViewport.addEventListener('pointercancel',end)}function showExploration(){state.stage='explore';hideAllMainStages();els.exploreStage.hidden=false;resetChallengeSidebar();els.phaseChip.textContent='מפת חקר הנחלים';els.riddleText.textContent='לחצו על כל נחל במפה כדי לפתוח את תעודת הזהות שלו.';renderExploreRivers();requestAnimationFrame(fitExploreMap)}
 function showWorksheet() {
   state.stage = 'worksheet';
   hideAllMainStages();
@@ -990,7 +993,7 @@ els.resetMapBtn.addEventListener('click', () => {
   requestAnimationFrame(fitWholeMap);
 });
 
-els.goWorksheetBtn.addEventListener('click', showWorksheet);
+els.goWorksheetBtn.addEventListener('click',showExploration);els.continueToWorksheetBtn.addEventListener('click',showWorksheet);els.exploreFitMapBtn.addEventListener('click',fitExploreMap);els.exploreZoomInBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom+.35));els.exploreZoomOutBtn.addEventListener('click',()=>setExploreZoom(state.exploreZoom-.35));els.exploreResetMapBtn.addEventListener('click',centerExploreMap);els.closeRiverInfoBtn.addEventListener('click',()=>els.riverInfoModal.hidden=true);els.riverInfoModal.addEventListener('click',e=>{if(e.target===els.riverInfoModal)els.riverInfoModal.hidden=true});
 els.bonusBtn.addEventListener('click', startBonusRiver);
 els.checkWorksheetBtn.addEventListener('click', checkWorksheet);
 els.clearWorksheetBtn.addEventListener('click', clearWorksheet);
@@ -1033,6 +1036,6 @@ els.amitLogo.addEventListener('error', () => {
 
 attachMapPan();
 window.addEventListener('resize', () => {
-  if (!els.mapStage.hidden) fitWholeMap();
+  if (!els.mapStage.hidden) fitWholeMap();if(!els.exploreStage.hidden)fitExploreMap();
 });
 initializeStation();
