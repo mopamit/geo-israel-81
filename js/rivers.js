@@ -162,6 +162,8 @@ const state = {
   stage: 'name',
   zoom: 1,
   mapFitWidth: 0,
+  exploreZoom: 1,
+  exploreFitWidth: 0,
   suppressMapClickUntil: 0,
   worksheetAnswers: {},
   selectedSlot: null
@@ -250,6 +252,8 @@ function initializeStation() {
   state.stage = 'name';
   state.zoom = 1;
   state.mapFitWidth = 0;
+  state.exploreZoom = 1;
+  state.exploreFitWidth = 0;
   state.suppressMapClickUntil = 0;
   state.worksheetAnswers = {};
   state.selectedSlot = null;
@@ -1035,6 +1039,7 @@ els.amitLogo.addEventListener('error', () => {
 });
 
 attachMapPan();
+attachExplorePan();
 window.addEventListener('resize', () => {
   if (!els.mapStage.hidden) fitWholeMap();if(!els.exploreStage.hidden)fitExploreMap();
 });
