@@ -181,7 +181,7 @@
             </p>
             <div class="decision-actions">
               <button class="primary-button" id="goWorksheetBtn" type="button">
-                מעבר לדף העבודה
+                מעבר למפת חקר הנחלים
               </button>
               <button class="bonus-button" id="bonusBtn" type="button">
                 חידת בונוס נוספת
@@ -191,6 +191,7 @@
           </div>
         </section>
 
+        <section class="explore-stage" id="exploreStage" hidden><div class="section-heading explore-heading"><div><span>מפת חקר</span><h2>עשרת הנחלים על מפת ישראל</h2></div><p>כל הנחלים מוצגים על המפה. לחצו על תוואי של נחל כדי לפתוח תעודת זהות קצרה.</p></div><div class="map-toolbar"><button id="exploreFitMapBtn" type="button">כל מפת ישראל</button><button id="exploreZoomInBtn" type="button">＋ הגדלה</button><button id="exploreZoomOutBtn" type="button">− הקטנה</button><button id="exploreResetMapBtn" type="button">מרכוז המפה</button></div><div class="map-viewport" id="exploreMapViewport"><div class="map-canvas" id="exploreMapCanvas"><img src="../assets/maps/israel-regions-map.png" alt="מפת חקר של נחלי ישראל" id="exploreRiverMap"><svg class="river-overlay explore-river-overlay" viewBox="0 0 776 2048" preserveAspectRatio="none"><g id="exploreRiverPaths"></g></svg></div></div><p class="map-note">אפשר לגרור את המפה בלחיצה ממושכת. לחיצה קצרה על קו של נחל פותחת את תעודת הזהות שלו.</p><div class="explore-actions"><button class="primary-button" id="continueToWorksheetBtn" type="button">המשך לדף העבודה</button></div></section>
         <section class="worksheet-stage" id="worksheetStage" hidden>
           <div class="worksheet-heading">
             <div>
@@ -357,5 +358,6 @@
   </div>
 
   <script src="../js/rivers.js"></script>
+<div class="modal-backdrop" id="riverInfoModal" hidden><section class="modal river-info-modal" role="dialog" aria-modal="true" aria-labelledby="riverInfoName"><button class="modal-close" id="closeRiverInfoBtn" type="button" aria-label="סגירה">×</button><span class="river-info-type">תעודת זהות לנחל</span><h2 id="riverInfoName"></h2><dl class="river-info-list"><div><dt>נקודת שפך או חיבור</dt><dd id="riverInfoOutlet"></dd></div><div><dt>אגן ניקוז</dt><dd id="riverInfoBasin"></dd></div><div><dt>מאפיין</dt><dd id="riverInfoHint"></dd></div></dl></section></div>
 </body>
 </html>
