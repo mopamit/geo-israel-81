@@ -161,6 +161,8 @@ const state = {
   attempts: 0,
   stage: 'name',
   zoom: 1,
+  mapFitWidth: 0,
+  suppressMapClickUntil: 0,
   worksheetAnswers: {},
   selectedSlot: null
 };
@@ -205,6 +207,7 @@ const els = {
   finalRivers: document.getElementById('finalRivers'),
   finalBonus: document.getElementById('finalBonus'),
   finalScore: document.getElementById('finalScore'),
+  fitMapBtn: document.getElementById('fitMapBtn'),
   zoomInBtn: document.getElementById('zoomInBtn'),
   zoomOutBtn: document.getElementById('zoomOutBtn'),
   resetMapBtn: document.getElementById('resetMapBtn'),
@@ -245,6 +248,8 @@ function initializeStation() {
   state.attempts = 0;
   state.stage = 'name';
   state.zoom = 1;
+  state.mapFitWidth = 0;
+  state.suppressMapClickUntil = 0;
   state.worksheetAnswers = {};
   state.selectedSlot = null;
 
@@ -388,9 +393,7 @@ function showMapStage() {
   els.clickMarker.hidden = true;
   clearFeedback();
 
-  setMapZoom(1);
-  els.mapViewport.scrollTop = 0;
-  els.mapViewport.scrollLeft = 0;
+  requestAnimationFrame(fitWholeMap);
 }
 
 function screenClickToViewBox(event) {
@@ -442,7 +445,7 @@ function positionClickMarker(click) {
 }
 
 function handleMapClick(event) {
-  if (state.stage !== 'map') return;
+  if (state.stage !== 'map' || Date.now() < state.suppressMapClickUntil) return;
 
   const click = screenClickToViewBox(event);
   positionClickMarker(click);
@@ -856,9 +859,87 @@ function showComplete() {
   );
 }
 
+function getFitWidth() {
+  const viewport = els.mapViewport;
+  const image = els.riverMap;
+  if (!image.naturalWidth || !image.naturalHeight) {
+    return Math.max(240, viewport.clientWidth * 0.36);
+  }
+  const byHeight = (viewport.clientHeight - 8) * (image.naturalWidth / image.naturalHeight);
+  return Math.max(220, Math.min(viewport.clientWidth - 8, byHeight));
+}
+
+function centerMap() {
+  els.mapViewport.scrollLeft = Math.max(0, (els.mapViewport.scrollWidth - els.mapViewport.clientWidth) / 2);
+  els.mapViewport.scrollTop = Math.max(0, (els.mapViewport.scrollHeight - els.mapViewport.clientHeight) / 2);
+}
+
+function fitWholeMap() {
+  const width = getFitWidth();
+  state.mapFitWidth = width;
+  state.zoom = 1;
+  els.mapCanvas.style.width = `${width}px`;
+  requestAnimationFrame(centerMap);
+}
+
 function setMapZoom(nextZoom) {
-  state.zoom = Math.max(1, Math.min(2.5, nextZoom));
-  els.mapCanvas.style.width = `${state.zoom * 100}%`;
+  state.zoom = Math.max(1, Math.min(5, nextZoom));
+  const base = state.mapFitWidth || getFitWidth();
+  els.mapCanvas.style.width = `${base * state.zoom}px`;
+  requestAnimationFrame(centerMap);
+}
+
+function attachMapPan() {
+  let active = false;
+  let moved = false;
+  let startX = 0;
+  let startY = 0;
+  let startLeft = 0;
+  let startTop = 0;
+  let pointerId = null;
+
+  els.mapViewport.addEventListener('pointerdown', (event) => {
+    if (event.button !== undefined && event.button !== 0) return;
+    active = true;
+    moved = false;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    startLeft = els.mapViewport.scrollLeft;
+    startTop = els.mapViewport.scrollTop;
+  });
+
+  els.mapViewport.addEventListener('pointermove', (event) => {
+    if (!active || event.pointerId !== pointerId) return;
+    const dx = event.clientX - startX;
+    const dy = event.clientY - startY;
+    if (!moved && Math.hypot(dx, dy) > 5) {
+      moved = true;
+      els.mapViewport.classList.add('is-dragging');
+      els.mapViewport.setPointerCapture?.(pointerId);
+    }
+    if (!moved) return;
+    event.preventDefault();
+    els.mapViewport.scrollLeft = startLeft - dx;
+    els.mapViewport.scrollTop = startTop - dy;
+  });
+
+  const endPan = (event) => {
+    if (!active || event.pointerId !== pointerId) return;
+    if (moved) state.suppressMapClickUntil = Date.now() + 250;
+    active = false;
+    els.mapViewport.classList.remove('is-dragging');
+    try { els.mapViewport.releasePointerCapture?.(pointerId); } catch (_error) {}
+  };
+
+  els.mapViewport.addEventListener('pointerup', endPan);
+  els.mapViewport.addEventListener('pointercancel', endPan);
+  els.mapViewport.addEventListener('click', (event) => {
+    if (Date.now() < state.suppressMapClickUntil) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
 }
 
 function saveState() {
@@ -902,12 +983,11 @@ els.hintBtn.addEventListener('click', () => {
 });
 
 els.riverMap.addEventListener('click', handleMapClick);
+els.fitMapBtn.addEventListener('click', fitWholeMap);
 els.zoomInBtn.addEventListener('click', () => setMapZoom(state.zoom + .25));
 els.zoomOutBtn.addEventListener('click', () => setMapZoom(state.zoom - .25));
 els.resetMapBtn.addEventListener('click', () => {
-  setMapZoom(1);
-  els.mapViewport.scrollTop = 0;
-  els.mapViewport.scrollLeft = 0;
+  requestAnimationFrame(fitWholeMap);
 });
 
 els.goWorksheetBtn.addEventListener('click', showWorksheet);
@@ -951,4 +1031,8 @@ els.amitLogo.addEventListener('error', () => {
   els.logoFallback.hidden = false;
 });
 
+attachMapPan();
+window.addEventListener('resize', () => {
+  if (!els.mapStage.hidden) fitWholeMap();
+});
 initializeStation();
