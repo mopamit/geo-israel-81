@@ -75,3 +75,76 @@ main{width:min(1560px,calc(100% - 28px));margin:20px auto 70px}.hud{margin-botto
   outline-offset:3px;
 }
 #mountainInfoModal{z-index:1000;}
+
+/* סמן הר מדויק: קצה הסמן נוגע בדיוק בקואורדינטה */
+#mapMarkers .mountain-marker,
+#exploreMarkers .mountain-marker{
+  position:absolute;
+  width:42px;
+  height:52px;
+  padding:0;
+  border:0;
+  background:transparent!important;
+  transform:translate(-50%,-100%);
+  pointer-events:none;
+  z-index:25;
+}
+#exploreMarkers .mountain-marker{pointer-events:auto!important;cursor:pointer;}
+#mapMarkers .mountain-marker::before,
+#exploreMarkers .mountain-marker::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:40px;
+  height:40px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:#8a5a2b;
+  box-shadow:0 5px 14px rgba(20,54,94,.28);
+}
+#mapMarkers .mountain-marker::after,
+#exploreMarkers .mountain-marker::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0;
+  height:0;
+  transform:translateX(-50%);
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:13px solid #8a5a2b;
+}
+#mapMarkers .mountain-marker span,
+#exploreMarkers .mountain-marker span{
+  position:absolute;
+  left:50%;
+  top:10px;
+  z-index:2;
+  transform:translateX(-50%);
+  color:#fff;
+  font-weight:950;
+  line-height:1;
+}
+#mapMarkers .mountain-marker.marker-below,
+#exploreMarkers .mountain-marker.marker-below{
+  transform:translate(-50%,0);
+}
+#mapMarkers .mountain-marker.marker-below::after,
+#exploreMarkers .mountain-marker.marker-below::after{
+  top:-12px;
+  bottom:auto;
+  border-top:0;
+  border-bottom:13px solid #8a5a2b;
+}
+#exploreMarkers .mountain-marker:hover,
+#exploreMarkers .mountain-marker:focus-visible{
+  filter:brightness(1.08);
+  transform:translate(-50%,-100%) scale(1.06);
+  outline:none;
+}
+#exploreMarkers .mountain-marker.marker-below:hover,
+#exploreMarkers .mountain-marker.marker-below:focus-visible{
+  transform:translate(-50%,0) scale(1.06);
+}
