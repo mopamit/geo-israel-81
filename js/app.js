@@ -39,10 +39,15 @@ function calculateProgress() {
     'amitHeritageStationV1'
   ]);
 
+  const borderSettlementsCompleted = readCompleted([
+    'amitBorderSettlementsStationV1'
+  ]);
+
   const completedStations =
     Number(riversCompleted) +
     Number(regionsCompleted) +
-    Number(heritageCompleted);
+    Number(heritageCompleted) +
+    Number(borderSettlementsCompleted);
 
   const percent = Math.round((completedStations / 5) * 100);
 
@@ -60,7 +65,8 @@ if (resetBtn) {
         key.startsWith('amit') ||
         key.includes('RiversStation') ||
         key.includes('RegionsStation') ||
-        key.includes('HeritageStation')
+        key.includes('HeritageStation') ||
+        key.includes('BorderSettlementsStation')
       ) {
         localStorage.removeItem(key);
       }
