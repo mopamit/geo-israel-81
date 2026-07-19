@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תחנה 3 – אתרי מורשת</title>
+  <meta name="description" content="תחנת למידה אינטראקטיבית על אתרי מורשת בישראל">
+  <link rel="stylesheet" href="../css/heritage.css">
+</head>
+<body>
+<header class="station-header">
+  <div class="brand-area">
+    <img src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000" alt="לוגו רשת אמית" class="amit-logo" id="amitLogo">
+    <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
+    <img src="../assets/icons/station-heritage.svg" alt="" class="station-symbol" aria-hidden="true">
+    <div class="brand-copy">
+      <strong>אתרי מורשת בישראל</strong>
+      <span>תחנה 3 – התחנה הצהובה</span>
+    </div>
+  </div>
+
+  <nav class="header-actions" aria-label="פעולות תחנה">
+    <a class="round-action" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית"><img src="../assets/icons/home.png" alt=""></a>
+    <button class="round-action" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות"><img src="../assets/icons/instructions.png" alt=""></button>
+    <button class="round-action" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש"><img src="../assets/icons/reset.png" alt=""></button>
+  </nav>
+</header>
+
+<main>
+  <section class="hud" aria-label="מצב המשחק">
+    <div class="hud-item"><span>🏆 ניקוד</span><strong id="scoreValue">0</strong></div>
+    <div class="hud-item"><span>🔥 רצף</span><strong id="streakValue">0</strong></div>
+    <div class="hud-item"><span>🏛️ אתרים שהושלמו</span><strong id="completedValue">0/12</strong></div>
+    <div class="hud-progress">
+      <div class="progress-label"><span>מסלול חובה</span><strong id="requiredValue">0/3</strong></div>
+      <div class="progress-track"><span id="progressBar"></span></div>
+    </div>
+  </section>
+
+  <section class="station-intro">
+    <div>
+      <span class="station-chip">תחנה צהובה</span>
+      <h1>מסע בין אתרי המורשת</h1>
+      <p>זהו לפחות שלושה אתרים, מקמו אותם במדויק על המפה וגלו את הסיפור שהם משמרים.</p>
+    </div>
+    <img src="../assets/icons/station-heritage.svg" alt="אייקון אתר מורשת" class="intro-icon">
+  </section>
+
+  <section class="game-layout">
+    <aside class="challenge-panel">
+      <div class="phase-chip" id="phaseChip">שלב א׳ – זיהוי האתר</div>
+      <p class="challenge-count">משימה <strong id="challengeNumber">1</strong> <span id="challengeType">מתוך 3 משימות החובה</span></p>
+
+      <article class="riddle-card">
+        <span class="question-mark" aria-hidden="true">?</span>
+        <h2>מי אני והיכן אני נמצא?</h2>
+        <p id="riddleText"></p>
+      </article>
+
+      <div class="feedback" id="feedback" hidden aria-live="polite"></div>
+      <button class="hint-button" id="hintBtn" type="button" hidden>💡 הצגת רמז</button>
+
+      <section class="map-instructions" id="mapInstructions" hidden>
+        <h2>מקמו את האתר</h2>
+        <p>לחצו על המיקום של <strong id="currentSiteName"></strong> במפה.</p>
+        <p class="small-note">אפשר להגדיל ולגרור את המפה. אין צורך לפגוע בפיקסל יחיד.</p>
+      </section>
+    </aside>
+
+    <section class="activity-panel">
+      <section id="nameStage">
+        <div class="section-heading">
+          <div><span>שלב א׳</span><h2>בחרו את שם האתר</h2></div>
+          <p>כל האתרים שעדיין לא השתמשתם בהם מוצגים בסדר אקראי.</p>
+        </div>
+        <div class="site-options" id="siteOptions"></div>
+      </section>
+
+      <section id="mapStage" hidden>
+        <div class="section-heading">
+          <div><span>שלב ב׳</span><h2>מקמו את האתר במפה</h2></div>
+          <p>אותה מפת ישראל החדה של שאר התחנות, עם זום וגרירה חופשית.</p>
+        </div>
+
+        <div class="map-toolbar">
+          <button id="fitMapBtn" type="button">כל מפת ישראל</button>
+          <button id="zoomInBtn" type="button">＋ הגדלה</button>
+          <button id="zoomOutBtn" type="button">− הקטנה</button>
+          <button id="resetMapBtn" type="button">מרכוז המפה</button>
+        </div>
+
+        <div class="map-viewport" id="mapViewport">
+          <div class="map-canvas" id="mapCanvas">
+            <img src="../assets/maps/israel-regions-map.png" alt="מפת ארץ ישראל בחלוקה לחבלי ארץ" id="heritageMap">
+            <div class="map-markers" id="mapMarkers"></div>
+            <div class="click-marker" id="clickMarker" hidden></div>
+          </div>
+        </div>
+        <p class="map-note">גררו בלחיצה ממושכת. לחיצה קצרה במיקום האתר מסמנת תשובה.</p>
+      </section>
+
+      <section class="passport-stage" id="passportStage" hidden>
+        <article class="passport-card">
+          <div class="passport-top"><span>תעודת זהות – אתר מורשת</span><strong id="passportType"></strong></div>
+          <h2 id="passportName"></h2>
+          <dl>
+            <div><dt>מיקום</dt><dd id="passportLocation"></dd></div>
+            <div><dt>מה האתר מספר?</dt><dd id="passportStory"></dd></div>
+            <div><dt>מאפיין מרכזי</dt><dd id="passportFeature"></dd></div>
+          </dl>
+          <button class="primary-button" id="continueBtn" type="button">המשך במסע</button>
+        </article>
+      </section>
+
+      <section class="decision-stage" id="decisionStage" hidden>
+        <div class="decision-card">
+          <div class="decision-icon">✓</div>
+          <h2>שלושת אתרי החובה הושלמו</h2>
+          <p>אפשר להמשיך לאתר בונוס נוסף או לעבור למפת החקר של כל 12 האתרים.</p>
+          <div class="decision-actions">
+            <button class="primary-button" id="exploreBtn" type="button">מעבר למפת החקר</button>
+            <button class="bonus-button" id="bonusBtn" type="button">אתר בונוס נוסף</button>
+          </div>
+          <p class="remaining-note" id="remainingBonusText"></p>
+        </div>
+      </section>
+
+      <section class="explore-stage" id="exploreStage" hidden>
+        <div class="section-heading explore-heading">
+          <div><span>מפת חקר</span><h2>12 אתרי מורשת בישראל</h2></div>
+          <p>לחצו על כל סמל צהוב כדי לפתוח את תעודת הזהות של האתר.</p>
+        </div>
+
+        <div class="map-toolbar">
+          <button id="exploreFitMapBtn" type="button">כל מפת ישראל</button>
+          <button id="exploreZoomInBtn" type="button">＋ הגדלה</button>
+          <button id="exploreZoomOutBtn" type="button">− הקטנה</button>
+          <button id="exploreResetMapBtn" type="button">מרכוז המפה</button>
+        </div>
+
+        <div class="map-viewport explore-map-viewport" id="exploreMapViewport">
+          <div class="map-canvas" id="exploreMapCanvas">
+            <img src="../assets/maps/israel-regions-map.png" alt="מפת חקר של אתרי מורשת" id="exploreHeritageMap">
+            <div class="map-markers explore-markers" id="exploreMarkers"></div>
+          </div>
+        </div>
+        <p class="map-note">אפשר לגרור ולהגדיל. לחיצה על סמל פותחת תעודת זהות.</p>
+        <div class="explore-actions"><button class="primary-button" id="finishBtn" type="button">סיום התחנה</button></div>
+      </section>
+
+      <section class="complete-stage" id="completeStage" hidden>
+        <div class="stamp">התחנה הושלמה</div>
+        <h2>סיימתם את תחנת אתרי המורשת</h2>
+        <p>הכרתם אתרי מורשת מן הצפון, המרכז, ירושלים והדרום.</p>
+        <div class="completion-stats">
+          <div><span>אתרים שהושלמו</span><strong id="finalSites">3</strong></div>
+          <div><span>אתרי בונוס</span><strong id="finalBonus">0</strong></div>
+          <div><span>ניקוד</span><strong id="finalScore">0</strong></div>
+        </div>
+        <div class="completion-actions"><a class="route-button" href="../index.html">חזרה למסלול הראשי</a></div>
+      </section>
+
+      <section class="collection-panel">
+        <div class="collection-heading"><h2>אתרי המורשת שאספתם</h2><span id="collectionCount">0</span></div>
+        <div class="collection-grid" id="collectionGrid"><p class="empty-collection">הכרטיס הראשון יופיע לאחר השלמת אתר.</p></div>
+      </section>
+    </section>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="instructionsModal" hidden>
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+    <button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button>
+    <h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2>
+    <ol>
+      <li>מזהים את אתר המורשת מתוך החידה.</li>
+      <li>בוחרים את שם האתר.</li>
+      <li>ממקמים אותו על מפת ישראל.</li>
+      <li>קוראים את תעודת הזהות שלו.</li>
+      <li>אחרי שלושה אתרים אפשר להמשיך לבונוס או לפתוח את מפת החקר.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="modal-backdrop" id="siteInfoModal" hidden>
+  <section class="modal site-info-modal" role="dialog" aria-modal="true" aria-labelledby="siteInfoName">
+    <button class="modal-close" id="closeSiteInfoBtn" type="button" aria-label="סגירה">×</button>
+    <span class="site-info-type" id="siteInfoType"></span>
+    <h2 id="siteInfoName"></h2>
+    <dl class="site-info-list">
+      <div><dt>מיקום</dt><dd id="siteInfoLocation"></dd></div>
+      <div><dt>הסיפור</dt><dd id="siteInfoStory"></dd></div>
+      <div><dt>מאפיין מרכזי</dt><dd id="siteInfoFeature"></dd></div>
+    </dl>
+  </section>
+</div>
+
+<script src="../js/heritage.js"></script>
+</body>
+</html>
