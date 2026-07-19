@@ -43,7 +43,6 @@
       <button class="hint-button" id="hintBtn" type="button" hidden>💡 הצגת רמז</button>
       <section class="map-instructions" id="mapInstructions" hidden><h2>מקמו את היישוב</h2><p>לחצו על המיקום של <strong id="currentSettlementName"></strong> במפה.</p><p class="small-note">אזור הלחיצה רחב מעט מן הנקודה המדויקת. לאחר הצלחה יוצב דגל במקום הנכון.</p></section>
       <section class="choice-step" id="borderStep" hidden><h2>ליד איזה גבול נמצא היישוב?</h2><div class="choice-list" id="borderChoices"></div></section>
-      <section class="choice-step" id="importanceStep" hidden><h2>מדוע המיקום שלו חשוב?</h2><div class="choice-list" id="importanceChoices"></div></section>
     </aside>
 
     <section class="activity-panel">
@@ -91,7 +90,7 @@
   </section>
 </main>
 
-<div class="modal-backdrop" id="instructionsModal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle"><button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button><h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2><ol><li>קוראים את ההקדמה על הקשר בין התיישבות לגבולות.</li><li>מזהים את היישוב מתוך החידה.</li><li>ממקמים אותו במפת ישראל.</li><li>בוחרים את הגבול הסמוך ואת חשיבות המיקום.</li><li>אחרי שלושה יישובים אפשר להמשיך לבונוס או לפתוח את מפת החקר.</li></ol></section></div>
+<div class="modal-backdrop" id="instructionsModal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle"><button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button><h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2><ol><li>קוראים את ההקדמה על הקשר בין התיישבות לגבולות.</li><li>מזהים את היישוב מתוך החידה.</li><li>ממקמים אותו במפת ישראל.</li><li>בוחרים את הגבול הסמוך ליישוב.</li><li>אחרי שלושה יישובים אפשר להמשיך לבונוס או לפתוח את מפת החקר.</li></ol></section></div>
 <div class="modal-backdrop" id="settlementInfoModal" hidden><section class="modal settlement-info-modal" role="dialog" aria-modal="true" aria-labelledby="settlementInfoName"><button class="modal-close" id="closeSettlementInfoBtn" type="button" aria-label="סגירה">×</button><span class="settlement-info-type" id="settlementInfoType"></span><h2 id="settlementInfoName"></h2><dl class="settlement-info-list"><div><dt>מיקום</dt><dd id="settlementInfoLocation"></dd></div><div><dt>הגבול הסמוך</dt><dd id="settlementInfoBorder"></dd></div><div><dt>מאפיין</dt><dd id="settlementInfoFeature"></dd></div><div><dt>חשיבות כיישוב ספר</dt><dd id="settlementInfoImportance"></dd></div></dl></section></div>
 <script src="../js/border-settlements.js"></script>
 </body>
