@@ -66,7 +66,7 @@ const SITE_LIBRARY = [
     id:'israel-museum', number:8, name:'מוזיאון ישראל', zone:'jerusalem',
     riddle:'אני שוכן בירושלים ומהווה את הבית הרשמי של מגילות מדבר יהודה העתיקות ושל אוצרות הארכאולוגיה של הארץ. מי אני והיכן אני נמצא?',
     hint:'אני נמצא בגבעת רם בירושלים ובתחומי נמצא היכל הספר.',
-    position:{x:57.67,y:41.02}, hitEllipse:{x:57.67,y:41.02,rx:1.55,ry:.72},
+    position:{x:57.67,y:41.02}, displayPosition:{x:56.15,y:41.55}, hitEllipse:{x:57.67,y:41.02,rx:1.55,ry:.72},
     location:'גבעת רם, ירושלים', type:'מוזיאון לאומי',
     story:'אוספי ארכאולוגיה, אמנות ותרבות יהודית, ובהם מגילות מדבר יהודה ודגם ירושלים בימי הבית השני.',
     feature:'היכל הספר ואוספי המורשת והאמנות החשובים במדינה.'
@@ -75,7 +75,7 @@ const SITE_LIBRARY = [
     id:'mount-herzl', number:9, name:'הר הרצל', zone:'jerusalem',
     riddle:'אני ממוקם בירושלים, ובין שבילי שוכנים לעד גדולי האומה של מדינת ישראל וחללי צה״ל שלחמו על תקומתה. מי אני והיכן אני נמצא?',
     hint:'אני סמוך ליד ושם במערב ירושלים.',
-    position:{x:58.31,y:39.99}, hitEllipse:{x:58.31,y:39.99,rx:1.55,ry:.72},
+    position:{x:58.31,y:39.99}, displayPosition:{x:59.35,y:38.95}, hitEllipse:{x:58.31,y:39.99,rx:1.55,ry:.72},
     location:'מערב ירושלים', type:'אתר הנצחה לאומי',
     story:'בית העלמין הלאומי שבו קבורים מנהיגי המדינה, גדולי האומה וחללי מערכות ישראל.',
     feature:'קברו של בנימין זאב הרצל וחלקת גדולי האומה.'
@@ -144,7 +144,7 @@ function chooseSite(site,button){if(state.stage!=='name')return;state.attempts++
 function showMapStage(){state.stage='map';hideStages();els.mapStage.hidden=false;els.phaseChip.textContent='שלב ב׳ – מיקום במפה';els.mapInstructions.hidden=false;els.currentSiteName.textContent=state.current.name;els.hintBtn.hidden=true;els.clickMarker.hidden=true;clearFeedback();requestAnimationFrame(()=>fitWholeMap('task'))}
 function handleMapClick(event){if(state.stage!=='map'||Date.now()<state.suppressMapClickUntil)return;const rect=els.heritageMap.getBoundingClientRect();const x=((event.clientX-rect.left)/rect.width)*100;const y=((event.clientY-rect.top)/rect.height)*100;if(x<0||x>100||y<0||y>100)return;els.clickMarker.hidden=false;els.clickMarker.style.left=`${x}%`;els.clickMarker.style.top=`${y}%`;const area=state.current.hitEllipse;const inside=Math.pow((x-area.x)/area.rx,2)+Math.pow((y-area.y)/area.ry,2)<=1;if(inside){state.score+=50;state.streak++;state.stage='passport';state.completedIds.push(state.current.id);if(state.requiredCompleted<REQUIRED_COUNT)state.requiredCompleted++;else state.bonusCompleted++;showFeedback(`המיקום נכון. ${state.current.name} נוסף לאוסף.`,'success');renderCurrentMarker();updateHud();renderCollection();setTimeout(showPassport,650)}else{state.streak=0;updateHud();showFeedback('המיקום אינו מדויק מספיק. הגדילו את המפה ונסו שוב באזור שבו נמצא האתר.','try-again');els.hintBtn.hidden=false}}
 
-function createMarker(site,interactive=false){const marker=document.createElement(interactive?'button':'div');if(interactive)marker.type='button';marker.className=`heritage-marker ${interactive?'explore-marker':''}`;marker.style.left=`${site.position.x}%`;marker.style.top=`${site.position.y}%`;marker.setAttribute('aria-label',site.name);const span=document.createElement('span');span.textContent=site.number;marker.appendChild(span);if(interactive)marker.addEventListener('click',event=>{event.stopPropagation();openSiteInfo(site)});return marker}
+function createMarker(site,interactive=false){const marker=document.createElement(interactive?'button':'div');if(interactive)marker.type='button';marker.className=`heritage-marker ${interactive?'explore-marker':''}`;const displayPosition=site.displayPosition||site.position;marker.style.left=`${displayPosition.x}%`;marker.style.top=`${displayPosition.y}%`;marker.setAttribute('aria-label',site.name);marker.title=site.name;const span=document.createElement('span');span.textContent=site.number;marker.appendChild(span);if(interactive)marker.addEventListener('click',event=>{event.stopPropagation();openSiteInfo(site)});return marker}
 function renderCurrentMarker(){if(document.getElementById(`heritage-${state.current.id}`))return;const marker=createMarker(state.current);marker.id=`heritage-${state.current.id}`;els.mapMarkers.appendChild(marker)}
 function renderTaskMarkers(){els.mapMarkers.innerHTML='';state.completedIds.forEach(id=>{const site=getSite(id);const marker=createMarker(site);marker.id=`heritage-${site.id}`;els.mapMarkers.appendChild(marker)})}
 
