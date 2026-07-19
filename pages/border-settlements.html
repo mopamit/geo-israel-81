@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תחנה 4 – יישובי ספר לאורך הגבולות</title>
+  <meta name="description" content="תחנת למידה אינטראקטיבית על יישובי ספר בישראל">
+  <link rel="stylesheet" href="../css/border-settlements.css">
+</head>
+<body>
+<header class="station-header">
+  <div class="brand-area">
+    <img src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000" alt="לוגו רשת אמית" class="amit-logo" id="amitLogo">
+    <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
+    <img src="../assets/icons/station-border.svg" alt="" class="station-symbol" aria-hidden="true">
+    <div class="brand-copy"><strong>יישובי ספר לאורך הגבולות</strong><span>תחנה 4 – התחנה הירוקה</span></div>
+  </div>
+  <nav class="header-actions" aria-label="פעולות תחנה">
+    <a class="round-action" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית"><img src="../assets/icons/home.png" alt=""></a>
+    <button class="round-action" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות"><img src="../assets/icons/instructions.png" alt=""></button>
+    <button class="round-action" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש"><img src="../assets/icons/reset.png" alt=""></button>
+  </nav>
+</header>
+<main>
+  <section class="hud" aria-label="מצב המשחק">
+    <div class="hud-item"><span>🏆 ניקוד</span><strong id="scoreValue">0</strong></div>
+    <div class="hud-item"><span>🔥 רצף</span><strong id="streakValue">0</strong></div>
+    <div class="hud-item"><span>🏡 יישובים שהושלמו</span><strong id="completedValue">0/12</strong></div>
+    <div class="hud-progress"><div class="progress-label"><span>מסלול חובה</span><strong id="requiredValue">0/3</strong></div><div class="progress-track"><span id="progressBar"></span></div></div>
+  </section>
+
+  <section class="station-intro">
+    <div><span class="station-chip">תחנה ירוקה</span><h1>שומרים על גבולות הארץ</h1><p>זהו יישובי ספר, מקמו אותם לאורך הגבולות וגלו כיצד ההתיישבות מחזקת ריבונות, ביטחון ופיזור אוכלוסייה.</p></div>
+    <img src="../assets/icons/station-border.svg" alt="אייקון יישובי ספר" class="intro-icon">
+  </section>
+
+  <section class="game-layout">
+    <aside class="challenge-panel">
+      <div class="phase-chip" id="phaseChip">הקדמה – התיישבות וריבונות</div>
+      <p class="challenge-count">משימה <strong id="challengeNumber">0</strong> <span id="challengeType">מתוך 3 משימות החובה</span></p>
+      <article class="riddle-card"><span class="question-mark" aria-hidden="true">?</span><h2 id="riddleTitle">במקום שבו תעבור המחרשה...</h2><p id="riddleText">שם יעבור הגבול.</p></article>
+      <div class="feedback" id="feedback" hidden aria-live="polite"></div>
+      <button class="hint-button" id="hintBtn" type="button" hidden>💡 הצגת רמז</button>
+      <section class="map-instructions" id="mapInstructions" hidden><h2>מקמו את היישוב</h2><p>לחצו על המיקום של <strong id="currentSettlementName"></strong> במפה.</p><p class="small-note">אזור הלחיצה רחב מעט מן הנקודה המדויקת. לאחר הצלחה יוצב דגל במקום הנכון.</p></section>
+      <section class="choice-step" id="borderStep" hidden><h2>ליד איזה גבול נמצא היישוב?</h2><div class="choice-list" id="borderChoices"></div></section>
+      <section class="choice-step" id="importanceStep" hidden><h2>מדוע המיקום שלו חשוב?</h2><div class="choice-list" id="importanceChoices"></div></section>
+    </aside>
+
+    <section class="activity-panel">
+      <section id="introStage" class="opening-stage">
+        <article class="opening-card">
+          <span class="opening-label">הקדמה חובה</span>
+          <blockquote>„במקום שבו תעבור המחרשה — שם יעבור הגבול.”</blockquote>
+          <p>האמרה המיוחסת ליוסף טרומפלדור מבטאת את הקשר בין התיישבות לבין קביעת גבולות ושמירתם. יישובי ספר יוצרים נוכחות אזרחית בשטח, מחזקים את הריבונות, משמשים קו הגנה ראשון ומסייעים לפיזור האוכלוסייה בכל רחבי הארץ.</p>
+          <div class="opening-principles">
+            <div><strong>ריבונות</strong><span>נוכחות אזרחית קבועה בשטח.</span></div>
+            <div><strong>קו הגנה ראשון</strong><span>חוסן קהילתי סמוך לגבול.</span></div>
+            <div><strong>פיזור אוכלוסייה</strong><span>חיזוק הפריפריה והמרחב הלאומי.</span></div>
+          </div>
+          <button class="primary-button" id="startStationBtn" type="button">יוצאים אל קו הגבול</button>
+        </article>
+      </section>
+
+      <section id="nameStage" hidden><div class="section-heading"><div><span>שלב א׳</span><h2>בחרו את שם היישוב</h2></div><p>כל היישובים שעדיין לא השתמשתם בהם מוצגים בסדר אקראי.</p></div><div class="settlement-options" id="settlementOptions"></div></section>
+
+      <section id="mapStage" hidden>
+        <div class="section-heading"><div><span>שלב ב׳</span><h2>מקמו את היישוב במפה</h2></div><p>אותה מפת ישראל החדה של התחנות הקודמות, עם זום וגרירה חופשית.</p></div>
+        <div class="map-toolbar"><button id="fitMapBtn" type="button">כל מפת ישראל</button><button id="zoomInBtn" type="button">＋ הגדלה</button><button id="zoomOutBtn" type="button">− הקטנה</button><button id="resetMapBtn" type="button">מרכוז המפה</button></div>
+        <div class="map-viewport" id="mapViewport"><div class="map-canvas" id="mapCanvas"><img src="../assets/maps/israel-regions-map.png" alt="מפת ארץ ישראל בחלוקה לחבלי ארץ" id="settlementsMap"><div class="map-markers" id="mapMarkers"></div><div class="click-marker" id="clickMarker" hidden></div></div></div>
+        <p class="map-note">גררו בלחיצה ממושכת. לחיצה קצרה באזור היישוב מסמנת תשובה.</p>
+      </section>
+
+      <section class="passport-stage" id="passportStage" hidden><article class="passport-card"><div class="passport-top"><span>תעודת זהות – יישוב ספר</span><strong id="passportType"></strong></div><h2 id="passportName"></h2><dl><div><dt>מיקום</dt><dd id="passportLocation"></dd></div><div><dt>הגבול הסמוך</dt><dd id="passportBorder"></dd></div><div><dt>מאפיין ייחודי</dt><dd id="passportFeature"></dd></div><div><dt>חשיבות כיישוב ספר</dt><dd id="passportImportance"></dd></div></dl><button class="primary-button" id="continueBtn" type="button">המשך במסע</button></article></section>
+
+      <section class="decision-stage" id="decisionStage" hidden><div class="decision-card"><div class="decision-icon">✓</div><h2>שלושת יישובי החובה הושלמו</h2><p>אפשר להמשיך ליישוב בונוס נוסף או לעבור למפת החקר של כל 12 היישובים.</p><div class="decision-actions"><button class="primary-button" id="exploreBtn" type="button">מעבר למפת החקר</button><button class="bonus-button" id="bonusBtn" type="button">יישוב בונוס נוסף</button></div><p class="remaining-note" id="remainingBonusText"></p></div></section>
+
+      <section class="explore-stage" id="exploreStage" hidden>
+        <div class="section-heading explore-heading"><div><span>מפת חקר</span><h2>12 יישובי ספר לאורך הגבולות</h2></div><p>לחצו על כל דגל ירוק כדי לפתוח את תעודת הזהות של היישוב.</p></div>
+        <div class="border-filters" id="borderFilters"><button type="button" class="active" data-border="all">כל הגבולות</button><button type="button" data-border="גבול לבנון">לבנון</button><button type="button" data-border="גבול סוריה">סוריה</button><button type="button" data-border="גבול ירדן">ירדן</button><button type="button" data-border="גבול מצרים">מצרים</button><button type="button" data-border="גבול רצועת עזה">רצועת עזה</button></div>
+        <div class="map-toolbar"><button id="exploreFitMapBtn" type="button">כל מפת ישראל</button><button id="exploreZoomInBtn" type="button">＋ הגדלה</button><button id="exploreZoomOutBtn" type="button">− הקטנה</button><button id="exploreResetMapBtn" type="button">מרכוז המפה</button></div>
+        <div class="map-viewport explore-map-viewport" id="exploreMapViewport"><div class="map-canvas" id="exploreMapCanvas"><img src="../assets/maps/israel-regions-map.png" alt="מפת חקר של יישובי ספר" id="exploreSettlementsMap"><div class="map-markers explore-markers" id="exploreMarkers"></div></div></div>
+        <p class="map-note">אפשר לסנן לפי גבול, לגרור ולהגדיל. לחיצה על דגל פותחת תעודת זהות.</p>
+        <div class="summary-question"><h3>מה מלמד פיזור היישובים?</h3><p>יישובי הספר מחזקים נוכחות אזרחית, ביטחון וריבונות לאורך גבולות המדינה.</p></div>
+        <div class="explore-actions"><button class="primary-button" id="finishBtn" type="button">סיום התחנה</button></div>
+      </section>
+
+      <section class="complete-stage" id="completeStage" hidden><div class="stamp">התחנה הושלמה</div><h2>סיימתם את תחנת יישובי הספר</h2><p>ראיתם כיצד יישובים אזרחיים מסמנים ומחזקים את גבולות המדינה בפועל.</p><div class="completion-stats"><div><span>יישובים שהושלמו</span><strong id="finalSettlements">3</strong></div><div><span>יישובי בונוס</span><strong id="finalBonus">0</strong></div><div><span>ניקוד</span><strong id="finalScore">0</strong></div></div><div class="completion-actions"><a class="route-button" href="../index.html">חזרה למסלול הראשי</a></div></section>
+
+      <section class="collection-panel"><div class="collection-heading"><h2>יישובי הספר שאספתם</h2><span id="collectionCount">0</span></div><div class="collection-grid" id="collectionGrid"><p class="empty-collection">הכרטיס הראשון יופיע לאחר השלמת יישוב.</p></div></section>
+    </section>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="instructionsModal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle"><button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button><h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2><ol><li>קוראים את ההקדמה על הקשר בין התיישבות לגבולות.</li><li>מזהים את היישוב מתוך החידה.</li><li>ממקמים אותו במפת ישראל.</li><li>בוחרים את הגבול הסמוך ואת חשיבות המיקום.</li><li>אחרי שלושה יישובים אפשר להמשיך לבונוס או לפתוח את מפת החקר.</li></ol></section></div>
+<div class="modal-backdrop" id="settlementInfoModal" hidden><section class="modal settlement-info-modal" role="dialog" aria-modal="true" aria-labelledby="settlementInfoName"><button class="modal-close" id="closeSettlementInfoBtn" type="button" aria-label="סגירה">×</button><span class="settlement-info-type" id="settlementInfoType"></span><h2 id="settlementInfoName"></h2><dl class="settlement-info-list"><div><dt>מיקום</dt><dd id="settlementInfoLocation"></dd></div><div><dt>הגבול הסמוך</dt><dd id="settlementInfoBorder"></dd></div><div><dt>מאפיין</dt><dd id="settlementInfoFeature"></dd></div><div><dt>חשיבות כיישוב ספר</dt><dd id="settlementInfoImportance"></dd></div></dl></section></div>
+<script src="../js/border-settlements.js"></script>
+</body>
+</html>
