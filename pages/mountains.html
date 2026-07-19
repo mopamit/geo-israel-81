@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תחנה 5 – הרי ישראל</title>
+  <meta name="description" content="תחנת למידה אינטראקטיבית על הרי ישראל בישראל">
+  <link rel="stylesheet" href="../css/mountains.css">
+</head>
+<body>
+<header class="station-header">
+  <div class="brand-area">
+    <img src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000" alt="לוגו רשת אמית" class="amit-logo" id="amitLogo">
+    <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
+    <img src="../assets/icons/station-mountains.svg" alt="" class="station-symbol" aria-hidden="true">
+    <div class="brand-copy"><strong>הרי ישראל</strong><span>תחנה 5 – התחנה החומה</span></div>
+  </div>
+  <nav class="header-actions" aria-label="פעולות תחנה">
+    <a class="round-action" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית"><img src="../assets/icons/home.png" alt=""></a>
+    <button class="round-action" id="instructionsBtn" type="button" aria-label="הוראות" title="הוראות"><img src="../assets/icons/instructions.png" alt=""></button>
+    <button class="round-action" id="resetBtn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש"><img src="../assets/icons/reset.png" alt=""></button>
+  </nav>
+</header>
+<main>
+  <section class="hud" aria-label="מצב המשחק">
+    <div class="hud-item"><span>🏆 ניקוד</span><strong id="scoreValue">0</strong></div>
+    <div class="hud-item"><span>🔥 רצף</span><strong id="streakValue">0</strong></div>
+    <div class="hud-item"><span>⛰️ הרים שהושלמו</span><strong id="completedValue">0/13</strong></div>
+    <div class="hud-progress"><div class="progress-label"><span>מסלול חובה</span><strong id="requiredValue">0/3</strong></div><div class="progress-track"><span id="progressBar"></span></div></div>
+  </section>
+
+  <section class="station-intro">
+    <div><span class="station-chip">תחנה חומה</span><h1>הרי ישראל</h1><p>זהו הרים ורכסים, מקמו אותם על המפה וגלו מה מייחד כל אחד מהם.</p></div>
+    <img src="../assets/icons/station-mountains.svg" alt="איור הר" class="intro-icon">
+  </section>
+
+  <section class="game-layout">
+    <aside class="challenge-panel">
+      <div class="phase-chip" id="phaseChip">הקדמה – שדרת ההר</div>
+      <p class="challenge-count">משימה <strong id="challengeNumber">0</strong> <span id="challengeType">מתוך 3 משימות החובה</span></p>
+      <article class="riddle-card"><span class="question-mark" aria-hidden="true">?</span><h2 id="riddleTitle">שדרת ההר המרכזית</h2><p id="riddleText">הרי ישראל יוצרים שדרה מצפון לדרום.</p></article>
+      <div class="feedback" id="feedback" hidden aria-live="polite"></div>
+      <button class="hint-button" id="hintBtn" type="button" hidden>💡 הצגת רמז</button>
+      <section class="map-instructions" id="mapInstructions" hidden><h2>מקמו את ההר</h2><p>לחצו על מיקומו של <strong id="currentMountainName"></strong> במפה.</p></section>
+      <section class="choice-step" id="featureStep" hidden><h2>מה מייחד אותו?</h2><div class="choice-list" id="featureChoices"></div></section>
+    </aside>
+
+    <section class="activity-panel">
+      <section id="introStage" class="intro-stage">
+        <div class="intro-card"><div class="intro-quote">„שדרת ההר המרכזית”</div><h2>לפני שיוצאים אל הפסגות</h2><div class="intro-principles"><article><strong>שדרת ההר</strong><p>רוב רכסי ישראל מסודרים מצפון לדרום.</p></article><article><strong>מבנה א־סימטרי</strong><p>ברוב המקומות המדרון מתון יותר מערבה ותלול יותר מזרחה.</p></article><article><strong>יוצאי דופן</strong><p>החרמון והרי אילת שונים במבנה ובסוגי הסלעים.</p></article></div><button class="primary-button" id="startStationBtn" type="button">יוצאים אל הפסגות</button></div>
+      </section>
+      <section id="nameStage" hidden><div class="section-heading"><div><span>שלב א׳</span><h2>בחרו את שם ההר</h2></div><p>כל ההרים שעדיין לא הופיעו מוצגים בסדר אקראי.</p></div><div class="settlement-options" id="mountainOptions"></div></section>
+      <section id="mapStage" hidden><div class="section-heading"><div><span>שלב ב׳</span><h2>מקמו את ההר במפה</h2></div><p>בפסגה לחצו באזור הנקודה; ברכס אפשר ללחוץ בתוך האזור שסביבו.</p></div><div class="map-toolbar"><button id="fitMapBtn" type="button">כל מפת ישראל</button><button id="zoomInBtn" type="button">＋ הגדלה</button><button id="zoomOutBtn" type="button">− הקטנה</button><button id="resetMapBtn" type="button">מרכוז המפה</button></div><div class="map-viewport" id="mapViewport"><div class="map-canvas" id="mapCanvas"><img src="../assets/maps/israel-regions-map.png" alt="מפת ישראל" id="mountainsMap"><div class="map-markers" id="mapMarkers"></div><div class="click-marker" id="clickMarker" hidden></div></div></div><p class="map-note">גררו את המפה בלחיצה ממושכת. לחיצה קצרה מסמנת תשובה.</p></section>
+      <section class="passport-stage" id="passportStage" hidden><article class="passport-card"><div class="passport-top"><span>תעודת זהות – הר</span><strong id="passportType"></strong></div><h2 id="passportName"></h2><dl><div><dt>אזור</dt><dd id="passportLocation"></dd></div><div><dt>גובה / סוג</dt><dd id="passportHeight"></dd></div><div><dt>מאפיין ייחודי</dt><dd id="passportFeature"></dd></div><div><dt>חשיבות</dt><dd id="passportImportance"></dd></div></dl><button class="primary-button" id="continueBtn" type="button">המשך במסע</button></article></section>
+      <section class="decision-stage" id="decisionStage" hidden><div class="decision-card"><div class="decision-icon">✓</div><h2>שלושת הרי החובה הושלמו</h2><p>אפשר לעבור למפת החקר או להמשיך להר בונוס.</p><div class="decision-actions"><button class="primary-button" id="exploreBtn" type="button">מעבר למפת החקר</button><button class="bonus-button" id="bonusBtn" type="button">הר בונוס נוסף</button></div><p class="remaining-note" id="remainingBonusText"></p></div></section>
+      <section class="explore-stage" id="exploreStage" hidden><div class="section-heading"><div><span>מפת חקר</span><h2>13 הרי ורכסי ישראל</h2></div><p>לחצו על סמן חום כדי לפתוח תעודת זהות.</p></div><div class="map-toolbar"><button id="exploreFitMapBtn" type="button">כל מפת ישראל</button><button id="exploreZoomInBtn" type="button">＋ הגדלה</button><button id="exploreZoomOutBtn" type="button">− הקטנה</button><button id="exploreResetMapBtn" type="button">מרכוז המפה</button></div><div class="map-viewport" id="exploreMapViewport"><div class="map-canvas" id="exploreMapCanvas"><img src="../assets/maps/israel-regions-map.png" alt="מפת חקר הרי ישראל" id="exploreMountainsMap"><div class="map-markers" id="exploreMarkers"></div></div></div><button class="primary-button" id="finishBtn" type="button">סיום התחנה</button></section>
+      <section class="complete-stage" id="completeStage" hidden><div class="stamp">התחנה הושלמה</div><h2>סיימתם את תחנת הרי ישראל</h2><p>למדתם על שדרת ההר, המבנה הא־סימטרי והחריגים הגאולוגיים.</p><div class="completion-stats"><div><span>הרים שהושלמו</span><strong id="finalMountains">3</strong></div><div><span>הרי בונוס</span><strong id="finalBonus">0</strong></div><div><span>ניקוד</span><strong id="finalScore">0</strong></div></div><a class="route-button" href="../index.html">חזרה למסלול הראשי</a></section>
+      <section class="collection-panel"><div class="collection-heading"><h2>כרטיסי ההרים שאספתם</h2><span id="collectionCount">0</span></div><div class="collection-grid" id="collectionGrid"><p class="empty-collection">הכרטיס הראשון יופיע לאחר השלמת הר.</p></div></section>
+    </section>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="instructionsModal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle"><button class="modal-close" id="closeInstructionsBtn" type="button" aria-label="סגירה">×</button><h2 id="instructionsTitle">איך מתקדמים בתחנה?</h2><ol><li>קוראים את ההקדמה על שדרת ההר והמבנה הא־סימטרי.</li><li>מזהים את ההר מתוך החידה.</li><li>ממקמים אותו במפת ישראל.</li><li>עונים על שאלה קצרה על המאפיין הייחודי של ההר.</li><li>אחרי שלושה הרים אפשר להמשיך לבונוס או לפתוח את מפת החקר.</li></ol></section></div>
+<div class="modal-backdrop" id="mountainInfoModal" hidden><section class="modal settlement-info-modal" role="dialog" aria-modal="true" aria-labelledby="mountainInfoName"><button class="modal-close" id="closeMountainInfoBtn" type="button" aria-label="סגירה">×</button><span class="settlement-info-type" id="mountainInfoType"></span><h2 id="mountainInfoName"></h2><dl class="settlement-info-list"><div><dt>מיקום</dt><dd id="mountainInfoLocation"></dd></div><div><dt>גובה / סוג</dt><dd id="mountainInfoHeight"></dd></div><div><dt>מאפיין</dt><dd id="mountainInfoFeature"></dd></div><div><dt>חשיבות</dt><dd id="mountainInfoImportance"></dd></div></dl></section></div>
+<script src="../js/mountains.js"></script>
+</body>
+</html>
