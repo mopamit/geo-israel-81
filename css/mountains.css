@@ -19,3 +19,8 @@ main{width:min(1560px,calc(100% - 28px));margin:20px auto 70px}.hud{margin-botto
 @media(max-width:760px){.opening-principles{grid-template-columns:1fr}}
 
 .settlement-marker{background:#8a5a2b!important}.station-chip,.phase-chip{background:#f5ebe1!important;color:#6d421f!important}.intro-card{border-color:#dcc3aa}.intro-quote{color:#8a5a2b}.mountain-marker{position:absolute;transform:translate(-50%,-100%);background:#8a5a2b;color:#fff;border:0;border-radius:50% 50% 50% 0;width:42px;height:42px;display:grid;place-items:center;box-shadow:0 6px 16px #0003;cursor:pointer}.mountain-marker span{transform:rotate(45deg);font-weight:800}.mountain-marker{transform:translate(-50%,-100%) rotate(-45deg)}
+
+/* תיקון מפת החקר: הסמנים לחיצים גם כשהשכבה מעל המפה */
+#exploreMarkers{pointer-events:auto;}
+#exploreMarkers .mountain-marker{pointer-events:auto;z-index:5;}
+#exploreMarkers .mountain-marker:hover{filter:brightness(1.08);}
