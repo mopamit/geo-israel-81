@@ -46,11 +46,18 @@ function renderRivers(){
     hit.addEventListener('click',e=>{e.stopPropagation();openInfo('rivers',item)});
     hit.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInfo('rivers',item)}});
 
+    const northernLabelPositions={
+      saar:{x:724,y:34},
+      banias:{x:688,y:24},
+      dan:{x:651,y:15},
+      snir:{x:612,y:43}
+    };
+    const customLabel=northernLabelPositions[item.id];
     const labelPoint=item.path[Math.floor(item.path.length/2)]||item.path[0];
     const label=document.createElementNS(SVG_NS,'text');
     label.classList.add('river-name');
-    label.setAttribute('x',labelPoint[0]);
-    label.setAttribute('y',labelPoint[1]-10);
+    label.setAttribute('x',customLabel?customLabel.x:labelPoint[0]);
+    label.setAttribute('y',customLabel?customLabel.y:labelPoint[1]-10);
     label.setAttribute('text-anchor','middle');
     label.textContent=item.name;
 
