@@ -46,20 +46,23 @@ function renderRivers(){
     hit.addEventListener('click',e=>{e.stopPropagation();openInfo('rivers',item)});
     hit.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInfo('rivers',item)}});
 
-    const northernLabelPositions={
-      saar:{x:724,y:34},
-      banias:{x:688,y:24},
-      dan:{x:651,y:15},
-      snir:{x:612,y:43}
+    const northernLabels={
+      snir:{x:620,y:66,text:'נחל שניר'},
+      dan:{x:651,y:31,text:'נחל דן'},
+      banias:{x:684,y:49,text:'נחל חרמון'},
+      saar:{x:716,y:82,text:'נחל סער'}
     };
-    const customLabel=northernLabelPositions[item.id];
+    const customLabel=northernLabels[item.id];
     const labelPoint=item.path[Math.floor(item.path.length/2)]||item.path[0];
     const label=document.createElementNS(SVG_NS,'text');
     label.classList.add('river-name');
+    if(customLabel) label.classList.add('north-river-name');
     label.setAttribute('x',customLabel?customLabel.x:labelPoint[0]);
     label.setAttribute('y',customLabel?customLabel.y:labelPoint[1]-10);
     label.setAttribute('text-anchor','middle');
-    label.textContent=item.name;
+    label.setAttribute('direction','rtl');
+    label.setAttribute('unicode-bidi','plaintext');
+    label.textContent=customLabel?customLabel.text:item.name;
 
     g.append(visible,hit,label);
     els.riverLayer.appendChild(g);
