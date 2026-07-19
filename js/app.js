@@ -11,45 +11,40 @@ if (logo) {
   });
 }
 
+function readCompleted(keys) {
+  return keys.some((key) => {
+    try {
+      return JSON.parse(localStorage.getItem(key) || 'null')?.completed === true;
+    } catch {
+      return false;
+    }
+  });
+}
+
 function calculateProgress() {
-  const stationKeys = [
+  const riversCompleted = readCompleted([
+    'amitRiversStationV7',
     'amitRiversStationV6',
     'amitRiversStationV5',
-    'amitIsraelJourneyStation1',
+    'amitIsraelJourneyStation1'
+  ]);
+
+  const regionsCompleted = readCompleted([
+    'amitRegionalCapitalsV5',
     'amitRegionsStationV1',
     'amitRegionalCapitalsStation'
-  ];
+  ]);
 
-  let completed = 0;
+  const heritageCompleted = readCompleted([
+    'amitHeritageStationV1'
+  ]);
 
-  stationKeys.forEach((key) => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(key) || 'null');
-      if (stored?.completed) completed += 1;
-    } catch (error) {
-      console.warn(`לא ניתן לקרוא את נתוני ההתקדמות עבור ${key}`, error);
-    }
-  });
+  const completedStations =
+    Number(riversCompleted) +
+    Number(regionsCompleted) +
+    Number(heritageCompleted);
 
-  // כרגע קיימות שתי תחנות פעילות. מונעים ספירה כפולה של גרסאות ישנות.
-  const riversCompleted = stationKeys.slice(0, 3).some((key) => {
-    try {
-      return JSON.parse(localStorage.getItem(key) || 'null')?.completed === true;
-    } catch {
-      return false;
-    }
-  });
-
-  const regionsCompleted = stationKeys.slice(3).some((key) => {
-    try {
-      return JSON.parse(localStorage.getItem(key) || 'null')?.completed === true;
-    } catch {
-      return false;
-    }
-  });
-
-  const activeCompleted = Number(riversCompleted) + Number(regionsCompleted);
-  const percent = Math.round((activeCompleted / 5) * 100);
+  const percent = Math.round((completedStations / 5) * 100);
 
   if (progressText) progressText.textContent = `${percent}%`;
   if (progressBar) progressBar.style.width = `${percent}%`;
@@ -64,7 +59,8 @@ if (resetBtn) {
       if (
         key.startsWith('amit') ||
         key.includes('RiversStation') ||
-        key.includes('RegionsStation')
+        key.includes('RegionsStation') ||
+        key.includes('HeritageStation')
       ) {
         localStorage.removeItem(key);
       }
