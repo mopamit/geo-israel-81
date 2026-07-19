@@ -20,7 +20,8 @@ function openInfo(kind,item){
   const c=configs[kind];els.infoType.textContent=c.type;els.infoName.textContent=item.name;els.infoBody.innerHTML=c.rows.map(([l,v])=>row(l,v)).join('');els.infoModal.hidden=false;
 }
 function marker(item,kind,index){
-  const button=document.createElement('button');button.type='button';button.className=`map-marker ${kind.slice(0,-1)}-marker`;button.dataset.kind=kind;
+  const markerClass={cities:'city-marker',heritage:'heritage-marker',settlements:'settlement-marker',mountains:'mountain-marker'}[kind]||'';
+  const button=document.createElement('button');button.type='button';button.className=`map-marker ${markerClass}`;button.dataset.kind=kind;
   const p=item.displayPosition||item.position;button.style.left=`${p.x}%`;button.style.top=`${p.y}%`;button.title=item.name;button.setAttribute('aria-label',`מידע על ${item.name}`);
   const n=document.createElement('span');n.className='marker-number';n.textContent=item.number||index+1;const label=document.createElement('span');label.className='marker-name';label.textContent=item.name;button.append(n,label);
   button.addEventListener('pointerdown',e=>e.stopPropagation());button.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openInfo(kind,item)});return button;
