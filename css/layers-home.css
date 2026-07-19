@@ -1,0 +1,43 @@
+
+.layers-map-button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2px 12px;
+  width: fit-content;
+  margin-top: 20px;
+  padding: 11px 18px;
+  border: 1px solid rgba(20,54,94,.18);
+  border-radius: 14px;
+  background: #fff;
+  color: #14365e;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(20,54,94,.08);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.layers-map-button:hover,
+.layers-map-button:focus-visible {
+  transform: translateY(-2px);
+  border-color: #2badde;
+  box-shadow: 0 14px 30px rgba(20,54,94,.14);
+}
+.layers-map-button-icon {
+  grid-row: 1 / 3;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #14365e;
+  color: #fff;
+  font-size: 22px;
+}
+.layers-map-button small {
+  font-size: 12px;
+  font-weight: 600;
+  color: #63758b;
+}
+@media (max-width: 720px) {
+  .layers-map-button { width: 100%; box-sizing: border-box; }
+}
