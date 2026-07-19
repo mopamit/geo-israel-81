@@ -12,3 +12,6 @@ main{width:min(1460px,calc(100% - 48px));margin:24px auto 50px}.intro-card{backg
 .city-marker{--marker:#d64545!important}.heritage-marker{--marker:#d6b322!important}.settlement-marker{--marker:#6db580!important}.mountain-marker{--marker:#8a5a2b!important}
 .river-name{display:none;fill:#14365e;stroke:#fff;stroke-width:4px;paint-order:stroke fill;font-size:13px;font-weight:900;line-height:1;pointer-events:none;dominant-baseline:middle}
 .show-names .river-name{display:block}
+
+/* סידור מדורג לשמות ארבעת נחלי הצפון */
+.north-river-name{font-size:11px;stroke-width:3px;letter-spacing:0;direction:rtl;unicode-bidi:plaintext}
