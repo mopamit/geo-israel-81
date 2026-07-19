@@ -21,12 +21,43 @@ function openInfo(kind,item){
 }
 function marker(item,kind,index){
   const markerClass={cities:'city-marker',heritage:'heritage-marker',settlements:'settlement-marker',mountains:'mountain-marker'}[kind]||'';
-  const button=document.createElement('button');button.type='button';button.className=`map-marker ${markerClass}`;button.dataset.kind=kind;
+  const markerColor={cities:'#d64545',heritage:'#d6b322',settlements:'#6db580',mountains:'#8a5a2b'}[kind]||'#666666';
+  const button=document.createElement('button');button.type='button';button.className=`map-marker ${markerClass}`;button.dataset.kind=kind;button.style.setProperty('--marker',markerColor);
   const p=item.displayPosition||item.position;button.style.left=`${p.x}%`;button.style.top=`${p.y}%`;button.title=item.name;button.setAttribute('aria-label',`מידע על ${item.name}`);
   const n=document.createElement('span');n.className='marker-number';n.textContent=item.number||index+1;const label=document.createElement('span');label.className='marker-name';label.textContent=item.name;button.append(n,label);
   button.addEventListener('pointerdown',e=>e.stopPropagation());button.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openInfo(kind,item)});return button;
 }
-function renderRivers(){els.riverLayer.innerHTML='';LAYER_DATA.rivers.forEach(item=>{const g=document.createElementNS(SVG_NS,'g');g.classList.add('river-group');const visible=document.createElementNS(SVG_NS,'polyline');visible.classList.add('river-visible');visible.setAttribute('points',item.path.map(p=>p.join(',')).join(' '));const hit=document.createElementNS(SVG_NS,'polyline');hit.classList.add('river-hit');hit.setAttribute('points',item.path.map(p=>p.join(',')).join(' '));hit.setAttribute('tabindex','0');hit.setAttribute('aria-label',`מידע על ${item.name}`);hit.addEventListener('pointerdown',e=>e.stopPropagation());hit.addEventListener('click',e=>{e.stopPropagation();openInfo('rivers',item)});hit.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInfo('rivers',item)}});g.append(visible,hit);els.riverLayer.appendChild(g)})}
+function renderRivers(){
+  els.riverLayer.innerHTML='';
+  LAYER_DATA.rivers.forEach(item=>{
+    const g=document.createElementNS(SVG_NS,'g');
+    g.classList.add('river-group');
+
+    const visible=document.createElementNS(SVG_NS,'polyline');
+    visible.classList.add('river-visible');
+    visible.setAttribute('points',item.path.map(p=>p.join(',')).join(' '));
+
+    const hit=document.createElementNS(SVG_NS,'polyline');
+    hit.classList.add('river-hit');
+    hit.setAttribute('points',item.path.map(p=>p.join(',')).join(' '));
+    hit.setAttribute('tabindex','0');
+    hit.setAttribute('aria-label',`מידע על ${item.name}`);
+    hit.addEventListener('pointerdown',e=>e.stopPropagation());
+    hit.addEventListener('click',e=>{e.stopPropagation();openInfo('rivers',item)});
+    hit.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInfo('rivers',item)}});
+
+    const labelPoint=item.path[Math.floor(item.path.length/2)]||item.path[0];
+    const label=document.createElementNS(SVG_NS,'text');
+    label.classList.add('river-name');
+    label.setAttribute('x',labelPoint[0]);
+    label.setAttribute('y',labelPoint[1]-10);
+    label.setAttribute('text-anchor','middle');
+    label.textContent=item.name;
+
+    g.append(visible,hit,label);
+    els.riverLayer.appendChild(g);
+  });
+}
 function renderPoints(){[['cities',els.cityLayer],['heritage',els.heritageLayer],['settlements',els.settlementLayer],['mountains',els.mountainLayer]].forEach(([kind,root])=>{root.innerHTML='';LAYER_DATA[kind].forEach((item,i)=>root.appendChild(marker(item,kind,i)))})}
 function updateLayers(){let count=0;els.layerSwitches.querySelectorAll('input[type="checkbox"]').forEach(input=>{const root=document.getElementById(input.value.replace('rivers','river').replace('cities','city').replace('heritage','heritage').replace('settlements','settlement').replace('mountains','mountain')+'Layer');root.classList.toggle('active',input.checked);if(input.checked)count++});els.activeCount.textContent=`${count} פעילות`}
 function setAll(value){els.layerSwitches.querySelectorAll('input[type="checkbox"]').forEach(i=>i.checked=value);updateLayers()}
