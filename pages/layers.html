@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מפת השכבות – מסע בארץ ישראל</title>
+  <meta name="description" content="מפה מסכמת המציגה את שכבות הנחלים, הערים, אתרי המורשת, יישובי הספר וההרים בישראל">
+  <link rel="stylesheet" href="../css/layers.css">
+</head>
+<body>
+<header class="layers-header">
+  <div class="brand-area">
+    <img src="https://drive.google.com/thumbnail?id=19ZhKbYoXfZMBmr-PU4r3sueFPOeTNgD_&sz=w1000" alt="לוגו רשת אמית" class="amit-logo" id="amitLogo">
+    <div class="logo-fallback" id="logoFallback" hidden>AMIT</div>
+    <div class="layers-symbol" aria-hidden="true">▤</div>
+    <div class="brand-copy"><strong>מפת השכבות של ישראל</strong><span>סיכום חמש תחנות המסע</span></div>
+  </div>
+  <nav class="header-actions" aria-label="פעולות">
+    <a class="round-action" href="../index.html" aria-label="חזרה למסך הבית" title="חזרה למסך הבית"><img src="../assets/icons/home.png" alt=""></a>
+    <button class="round-action" id="resetViewBtn" type="button" aria-label="איפוס התצוגה" title="איפוס התצוגה"><img src="../assets/icons/reset.png" alt=""></button>
+  </nav>
+</header>
+
+<main>
+  <section class="intro-card">
+    <div><span class="eyebrow">מפת סיכום אינטראקטיבית</span><h1>בוחרים שכבות ומגלים את ישראל</h1><p>הפעילו שכבה אחת או כמה שכבות יחד. לחיצה על כל נחל, עיר, אתר, יישוב או הר פותחת תעודת זהות.</p></div>
+    <div class="intro-badge" aria-hidden="true">5</div>
+  </section>
+
+  <section class="workspace">
+    <aside class="layers-panel" aria-label="בחירת שכבות">
+      <div class="panel-heading"><span>שכבות המפה</span><strong id="activeCount">0 פעילות</strong></div>
+      <div class="layer-switches" id="layerSwitches">
+        <label class="layer-switch rivers"><input type="checkbox" value="rivers"><span class="switch-icon">≋</span><span><strong>נחלים</strong><small>10 תוואים</small></span></label>
+        <label class="layer-switch cities"><input type="checkbox" value="cities"><span class="switch-icon">▦</span><span><strong>בירות חבלי הארץ</strong><small>12 ערים</small></span></label>
+        <label class="layer-switch heritage"><input type="checkbox" value="heritage"><span class="switch-icon">⌂</span><span><strong>מרכזי מורשת</strong><small>12 אתרים</small></span></label>
+        <label class="layer-switch settlements"><input type="checkbox" value="settlements"><span class="switch-icon">🏠</span><span><strong>יישובי ספר</strong><small>12 יישובים</small></span></label>
+        <label class="layer-switch mountains"><input type="checkbox" value="mountains"><span class="switch-icon">▲</span><span><strong>הרים ורכסים</strong><small>13 פריטים</small></span></label>
+      </div>
+      <div class="panel-actions"><button id="showAllBtn" type="button">הצגת הכול</button><button id="clearAllBtn" type="button">ניקוי המפה</button></div>
+      <label class="names-toggle"><input type="checkbox" id="showNamesToggle"><span>הצגת שמות על המפה</span></label>
+      <div class="legend-note"><strong>טיפ:</strong> כאשר כמה שכבות פעילות, אפשר לכבות שכבה אחת בלי להשפיע על האחרות.</div>
+    </aside>
+
+    <section class="map-panel">
+      <div class="map-toolbar">
+        <button id="fitMapBtn" type="button">כל מפת ישראל</button>
+        <button id="zoomInBtn" type="button">＋ הגדלה</button>
+        <button id="zoomOutBtn" type="button">− הקטנה</button>
+        <button id="centerMapBtn" type="button">מרכוז המפה</button>
+      </div>
+      <div class="map-viewport" id="mapViewport">
+        <div class="map-canvas" id="mapCanvas">
+          <img src="../assets/maps/israel-regions-map.png" alt="מפת ישראל" id="baseMap">
+          <svg class="river-overlay layer-root" id="riverLayer" viewBox="0 0 776 2048" preserveAspectRatio="none" aria-label="שכבת הנחלים"></svg>
+          <div class="point-layer layer-root" id="cityLayer"></div>
+          <div class="point-layer layer-root" id="heritageLayer"></div>
+          <div class="point-layer layer-root" id="settlementLayer"></div>
+          <div class="point-layer layer-root" id="mountainLayer"></div>
+        </div>
+      </div>
+      <p class="map-note">גררו את המפה בלחיצה ממושכת. לחצו על סימון או על תוואי נחל כדי לראות מידע.</p>
+    </section>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="infoModal" hidden>
+  <section class="info-modal" role="dialog" aria-modal="true" aria-labelledby="infoName">
+    <button class="modal-close" id="closeInfoBtn" type="button" aria-label="סגירה">×</button>
+    <span class="info-type" id="infoType"></span>
+    <h2 id="infoName"></h2>
+    <div class="info-body" id="infoBody"></div>
+  </section>
+</div>
+<script src="../js/layers.js"></script>
+</body>
+</html>
